@@ -1,18 +1,18 @@
+package com.game.templejog.gui;
+
 import com.game.templejog.Game;
 import com.game.templejog.Temple;
 import com.game.templejog.client.FileLoader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class GUI {
-    private static final int GAME_WIDTH = 800;
-    private static final int GAME_HEIGHT = 800;
+    public static final int GAME_WIDTH = 800;
+    public static final int GAME_HEIGHT = 800;
     private Game game;
-    private JFrame frame;
+    private JFrame mainContainer;
     private JPanel topHUD;
     private JLabel currentLocationLabel;
     private JLabel currentHealthLabel;
@@ -31,12 +31,12 @@ public class GUI {
     public GUI () {
 
     }
-    public GUI(Game game, JFrame frame, JPanel topHUD, JLabel currentLocationLabel, JLabel currentHealthLabel,
+    public GUI(Game game, JFrame mainContainer, JPanel topHUD, JLabel currentLocationLabel, JLabel currentHealthLabel,
                JLabel timeLabel, JPanel middleImage, JPanel bottomLeftOptions, JPanel bottomRightDisplay,
                JButton directionArrows, JButton attackButton, JButton searchButton, JButton mapButton,
                JButton inventoryButton, JButton helpButton, JButton exitButton) {
         this.game = game;
-        this.frame = frame;
+        this.mainContainer = mainContainer;
         this.topHUD = topHUD;
         this.currentLocationLabel = currentLocationLabel;
         this.currentHealthLabel = currentHealthLabel;
@@ -53,13 +53,14 @@ public class GUI {
         this.exitButton = exitButton;
     }
 
-    public void setUpGUI() {
+    public void setUpGUI(GUI gui) {
         // main container
-        JFrame gameFrame = new JFrame();
-        gameFrame.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        JFrame mainContainer = new JFrame();
+        this.mainContainer = mainContainer;
+        mainContainer.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT);
         // overall layout of main container
         BorderLayout mainFrame = new BorderLayout();
-        gameFrame.setLayout(mainFrame);
+        mainContainer.setLayout(mainFrame);
 
         // hud layout and panel
         FlowLayout HUD = new FlowLayout();
@@ -71,15 +72,21 @@ public class GUI {
 
 
         JButton helpButton = new JButton("Help");
-        ActionListener help = e -> {
-            if( e.getSource() == helpButton ) {
-                setUpHelpGUI();
+        helpButton.addActionListener(e -> {
+            if (e.getSource() == helpButton) {
+                HelpMenu.setUpHelpGUI(game);
             }
-        };
-        helpButton.addActionListener(help);
+        });
 
 
         JButton exitButton = new JButton("Exit");
+
+        exitButton.addActionListener(e -> {
+            if (e.getSource() == exitButton) {
+                ExitMenu.setUpExitGUI(gui);
+            }
+        });
+
         // add information to hud
         topHUD.setLayout(HUD);
         topHUD.add(currentLocation);
@@ -88,7 +95,7 @@ public class GUI {
         topHUD.add(exitButton);
 
         // add hud to main container
-        gameFrame.add(topHUD, BorderLayout.PAGE_START);
+        mainContainer.add(topHUD, BorderLayout.PAGE_START);
 
         // middle panel w/ image of location
         JPanel middlePanel = new JPanel();
@@ -96,7 +103,7 @@ public class GUI {
         JLabel middleImage = new JLabel(game.getCurrentRoom().getDescription());
         middlePanel.add(middleImage);
         // add panel w/ image to main container
-        gameFrame.add(middlePanel, BorderLayout.CENTER);
+        mainContainer.add(middlePanel, BorderLayout.CENTER);
 
         // bottom section of main frame
         JPanel bottomSection = new JPanel(new BorderLayout());
@@ -120,17 +127,17 @@ public class GUI {
         //TODO: Populate br display
         bottomSection.add(bottomRightDisplay, BorderLayout.LINE_END);
         // add bottom right to main container
-        gameFrame.add(bottomSection, BorderLayout.PAGE_END);
+        mainContainer.add(bottomSection, BorderLayout.PAGE_END);
 
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gameFrame.setVisible(true);
+        mainContainer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainContainer.setVisible(true);
     }
 
     public static void main(String[] args) throws IOException {
         Temple gameFiles = FileLoader.jsonLoader("JSON/gameFiles.json");
         GUI gui = new GUI();
         gui.game = new Game(gameFiles);
-        gui.setUpGUI();
+        gui.setUpGUI(gui);
     }
 
     public JLabel setupCurrentLocationLabel() {
@@ -148,17 +155,11 @@ public class GUI {
         return new JLabel();
     }
 
-    /** setUpHelpGUI is called when the help button is pressed, creating a JFrame with helpful information about the game
-     * @return Returns the JFrame container with the help menu
-     * */
-    private JFrame setUpHelpGUI() {
-        JFrame helpFrame = new JFrame("Help Menu");
-        JTextArea helpMessage = new JTextArea(game.getGameText().get("gameHelp"));
-        helpFrame.add(helpMessage);
-        helpFrame.setBounds(0, 0, GAME_WIDTH / 2, GAME_HEIGHT / 2);
-        helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        helpFrame.setVisible(true);
-        return helpFrame;
+    public JButton getHelpButton() {
+        return helpButton;
     }
 
+    public JFrame getMainContainer() {
+        return this.mainContainer;
+    }
 }
