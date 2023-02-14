@@ -4,10 +4,13 @@ import com.game.templejog.client.FileLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class GUI {
-
+    private static final int GAME_WIDTH = 800;
+    private static final int GAME_HEIGHT = 800;
     private Game game;
     private JFrame frame;
     private JPanel topHUD;
@@ -53,7 +56,7 @@ public class GUI {
     public void setUpGUI() {
         // main container
         JFrame gameFrame = new JFrame();
-        gameFrame.setBounds(0, 0, 800, 800);
+        gameFrame.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT);
         // overall layout of main container
         BorderLayout mainFrame = new BorderLayout();
         gameFrame.setLayout(mainFrame);
@@ -65,7 +68,17 @@ public class GUI {
         JLabel currentLocation = setupCurrentLocationLabel();
         JLabel currentHealth = setUpCurrentHealthLabel();
         //Jlabel currentTime = setUpCurrentTimeLabel();
+
+
         JButton helpButton = new JButton("Help");
+        ActionListener help = e -> {
+            if( e.getSource() == helpButton ) {
+                setUpHelpGUI();
+            }
+        };
+        helpButton.addActionListener(help);
+
+
         JButton exitButton = new JButton("Exit");
         // add information to hud
         topHUD.setLayout(HUD);
@@ -133,6 +146,19 @@ public class GUI {
     public JLabel setUpCurrentTimeLabel() {
         //TODO: Capture current time, add it to a JLabel.
         return new JLabel();
+    }
+
+    /** setUpHelpGUI is called when the help button is pressed, creating a JFrame with helpful information about the game
+     * @return Returns the JFrame container with the help menu
+     * */
+    private JFrame setUpHelpGUI() {
+        JFrame helpFrame = new JFrame("Help Menu");
+        JTextArea helpMessage = new JTextArea(game.getGameText().get("gameHelp"));
+        helpFrame.add(helpMessage);
+        helpFrame.setBounds(0, 0, GAME_WIDTH / 2, GAME_HEIGHT / 2);
+        helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        helpFrame.setVisible(true);
+        return helpFrame;
     }
 
 }
