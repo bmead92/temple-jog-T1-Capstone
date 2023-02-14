@@ -15,7 +15,8 @@ public class ExitMenu {
                 exitFrame.dispose();
                 gui.getMainContainer().dispose();
             }
-            //TODO: close exit menu window when no button is pressed
+        });
+        exitNo.addActionListener(e -> {
             if (e.getSource() == exitNo) {
                 exitFrame.dispose();
             }
