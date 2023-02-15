@@ -13,15 +13,19 @@ public class BottomLeftOptions {
     private final JButton inventoryButton;
 
     public BottomLeftOptions(Game game) {
-        this.attackButton = new JButton("Attack");
         this.game = game;
+        this.attackButton = new JButton("Attack");
         attackButton.addActionListener(e -> {
             if (e.getSource() == this.attackButton) {
                 AttackMenu.setUpAttackMenu(this.game);
             }
         });
         this.searchAreaButton = new JButton("Search Area");
-
+        searchAreaButton.addActionListener(e -> {
+            if (e.getSource() == this.searchAreaButton) {
+                SearchMenu.setUpSearchDisplay(this.game);
+            }
+        });
         this.mapButton = new JButton("Map");
 
         this.inventoryButton = new JButton("Inventory");

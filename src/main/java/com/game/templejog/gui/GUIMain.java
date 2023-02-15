@@ -18,5 +18,11 @@ public class GUIMain {
         BottomSection bottomSection = new BottomSection(game);
         MainContainer mainContainer = new MainContainer(game, topHUD, middleSection, bottomSection);
         mainContainer.setUpMainContainer();
+        do {
+            mainContainer.getMainContainer().repaint();
+        } while (!game.getQuitGame()
+                && game.getPlayer().getSteps() < 24
+                && game.getPlayer().getHealth() > 0
+                && !(game.getCommunicatorOff() && game.getCurrentRoom().getName().equalsIgnoreCase("landing zone")));
     }
 }
