@@ -82,7 +82,7 @@ public class GUI {
         JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> {
             if (e.getSource() == exitButton) {
-                ExitMenu.setUpExitGUI(gui);
+                ExitMenu.setUpExitOptions(gui);
             }
         });
 
