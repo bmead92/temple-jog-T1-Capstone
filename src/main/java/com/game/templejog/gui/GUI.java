@@ -198,38 +198,6 @@ public class GUI {
         middlePanel.add(locationDesc);
         middlePanel.add(imagePanel);
 
-//        // middle panel w/ location image
-//        String pathToImage = "Images/LZ.jpeg";
-//        ImageIcon lzImage = new ImageIcon(GUI.class.getClassLoader().getResource(pathToImage));
-//        JLabel lzImageLabel = new JLabel(lzImage);
-//        JPanel imagePanel = new JPanel();
-//        imagePanel.add(lzImageLabel, BorderLayout.CENTER);
-
-        //adding button for available directions to move
-//        JLabel arrowsLabel = new JLabel();
-//        JButton upButton = new JButton("^");
-//        upButton.setForeground(Color.BLUE);
-//        arrowsLabel.setLocation(imagePanel.getX(), imagePanel.getY() - 10);
-//        arrowsLabel.add(upButton, BorderLayout.NORTH);
-//
-//        JButton downButton = new JButton("v");
-//        downButton.setForeground(Color.BLUE);
-//        arrowsLabel.setLocation(imagePanel.getX(), imagePanel.getY() + 10);
-//        arrowsLabel.add(downButton, BorderLayout.SOUTH);
-//
-//        JButton leftButton = new JButton("<");
-//        leftButton.setForeground(Color.BLUE);
-//        arrowsLabel.setLocation(imagePanel.getX() - 10, imagePanel.getY());
-//        arrowsLabel.add(leftButton, BorderLayout.WEST);
-//
-//        JButton rightButton = new JButton(">");
-//        rightButton.setForeground(Color.BLUE);
-//        arrowsLabel.setLocation(imagePanel.getX() + 10, imagePanel.getY());
-//        arrowsLabel.add(rightButton, BorderLayout.EAST);
-//        arrowsLabel.setVisible(true);
-//
-//        imagePanel.add(arrowsLabel);
-//        middlePanel.add(imagePanel, BorderLayout.CENTER);
         return middlePanel;
     }
 
@@ -244,7 +212,6 @@ public class GUI {
         GUI gui = new GUI();
         gui.game = new Game(gameFiles);
         gui.setUpGUI(gui);
-//        gui.guiSetUp(gui);
     }
 
     public JLabel setupCurrentLocationLabel() {
