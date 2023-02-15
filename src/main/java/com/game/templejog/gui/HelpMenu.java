@@ -11,9 +11,7 @@ public class HelpMenu {
     public static void setUpHelpGUI(Game game) {
         JFrame helpFrame = new JFrame("Help Menu");
         JTextArea helpMessage = new JTextArea(game.getGameText().get("gameHelp"));
-        helpFrame.add(helpMessage);
-        helpFrame.setBounds(0, 0, GUI.GAME_WIDTH / 2, GUI.GAME_HEIGHT / 2);
-        helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        helpFrame.setVisible(true);
+        JOptionPane.showMessageDialog(helpFrame, helpMessage, "Help Menu", JOptionPane.WARNING_MESSAGE);
     }
 }
+

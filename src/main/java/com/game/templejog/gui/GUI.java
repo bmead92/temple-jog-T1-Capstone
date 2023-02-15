@@ -158,7 +158,13 @@ public class GUI {
         JButton attackButton = new JButton("Attack");
         JButton searchAreaButton = new JButton("Search Area");
         JButton mapButton = new JButton("Map");
+
         JButton inventoryButton = new JButton("Inventory");
+        inventoryButton.addActionListener(e -> {
+            if (e.getSource() == inventoryButton) {
+                InventoryMenu.setUpInventoryDisplay(game);
+            }
+        });
         bottomLeftPanel.add(attackButton);
         bottomLeftPanel.add(searchAreaButton);
         bottomLeftPanel.add(mapButton);
