@@ -1,6 +1,7 @@
 package com.game.templejog.gui;
 
 import com.game.templejog.Game;
+import com.game.templejog.Room;
 import com.game.templejog.Temple;
 import com.game.templejog.client.FileLoader;
 import com.game.templejog.gui.top.ExitMenu;
@@ -9,6 +10,8 @@ import com.game.templejog.gui.top.InventoryMenu;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class GUI {
@@ -31,9 +34,10 @@ public class GUI {
     private JButton helpButton;
     private JButton exitButton;
 
-    public GUI () {
+    public GUI() {
 
     }
+
     public GUI(Game game, JFrame mainContainer, JPanel topHUD, JLabel currentLocationLabel, JLabel currentHealthLabel,
                JLabel timeLabel, JPanel middleImage, JPanel bottomLeftOptions, JPanel bottomRightDisplay,
                JButton directionArrows, JButton attackButton, JButton searchButton, JButton mapButton,
@@ -57,53 +61,76 @@ public class GUI {
     }
 
 
+    public JPanel setUpMiddleHUD(Room currentRoom) {
+        JLabel imageLabel;
+        JButton leftButton, rightButton, upButton, downButton;
+        JPanel imagePanel, buttonPanel;
+        String imagePathString = currentRoom.getImage();
 
-    public void guiSetUp(GUI gui) {
-        JFrame mainContainer = new JFrame();
-        this.mainContainer = mainContainer;
-        mainContainer.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT);
-        mainContainer.setLayout(null);
-
-        JPanel imagePanel = new JPanel();
-        imagePanel.setBounds(0,0, 800, 800);
-        String pathToImage = gui.game.getCurrentRoom().getImage();
-        ImageIcon lzImage = new ImageIcon(GUI.class.getClassLoader().getResource(pathToImage));
-        JLabel lzImageLabel = new JLabel(lzImage);
-        imagePanel.add(lzImageLabel);
-        imagePanel.setVisible(true);
-
-        //adding button for available directions to move
+//        JFrame frame = new JFrame();
+        JPanel middleHUD = new JPanel();
         JPanel middlePanel = new JPanel();
-        JLabel arrowsLabel = new JLabel();
-        arrowsLabel.setBounds(0,0,400,400);
-        arrowsLabel.setBackground(Color.BLUE);
-        JButton upButton = new JButton("^");
-        upButton.setForeground(Color.BLUE);
-        arrowsLabel.setLocation(imagePanel.getX(), imagePanel.getY() - 10);
-        arrowsLabel.add(upButton);
 
-        JButton downButton = new JButton("v");
-        downButton.setForeground(Color.BLUE);
-        arrowsLabel.setLocation(imagePanel.getX(), imagePanel.getY() + 10);
-        arrowsLabel.add(downButton);
+        imagePanel = new JPanel();
+        imagePanel.revalidate();
+        imagePanel.repaint();
+        ImageIcon currentLocationBackgroundIcon = getBackgroundImage(imagePathString);
+        imageLabel = new JLabel(currentLocationBackgroundIcon);
+        imagePanel.setLayout(new BorderLayout());
+        imagePanel.add(imageLabel, BorderLayout.CENTER);
 
-        JButton leftButton = new JButton("<");
-        leftButton.setForeground(Color.BLUE);
-        arrowsLabel.setLocation(imagePanel.getX() - 10, imagePanel.getY());
-        arrowsLabel.add(leftButton);
+        // Create the button panel
+        buttonPanel = new JPanel();
+        leftButton = new JButton("<");
+        leftButton.setLocation(imagePanel.getX() - 10, imagePanel.getY());
+        rightButton = new JButton(">");
+        upButton = new JButton("^");
+        downButton = new JButton("v");
+        buttonPanel.setLayout(new BorderLayout());
+        buttonPanel.add(leftButton, BorderLayout.WEST);
+        buttonPanel.add(rightButton, BorderLayout.EAST);
+        buttonPanel.add(upButton, BorderLayout.NORTH);
+        buttonPanel.add(downButton, BorderLayout.SOUTH);
 
-        JButton rightButton = new JButton(">");
-        rightButton.setForeground(Color.BLUE);
-        arrowsLabel.setLocation(imagePanel.getX() + 10, imagePanel.getY());
-        arrowsLabel.add(rightButton);
-        arrowsLabel.setVisible(true);
+        // Add the panels to the middleHUD
+        middleHUD.setLayout(new BorderLayout());
+        buttonPanel.add(imagePanel, BorderLayout.CENTER);
+        middlePanel.add(buttonPanel, BorderLayout.CENTER);
+        middleHUD.add(middlePanel, BorderLayout.CENTER);
 
-        imagePanel.add(arrowsLabel);
-        middlePanel.add(imagePanel);
+        // Set panel properties
+        middleHUD.setSize(500, 500);
+        middleHUD.setVisible(true);
 
-        // add middle panel w/ image to main container
-        mainContainer.add(imagePanel);
-        mainContainer.setVisible(true);
+        // Add button listeners
+        leftButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // handle left button click
+                game.processNavigating("west");
+            }
+        });
+        rightButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // handle right button click
+                game.processNavigating("east");
+            }
+        });
+        upButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // handle up button click
+                game.processNavigating("north");
+                System.out.println("from actionlistner: " + game.getCurrentRoom().getName());
+                setUpMiddleHUD(currentRoom);
+            }
+        });
+        downButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // handle down button click
+                game.processNavigating("south");
+            }
+        });
+
+        return middleHUD;
     }
 
     public void setUpGUI(GUI gui) {
@@ -119,7 +146,9 @@ public class GUI {
         FlowLayout HUD = new FlowLayout();
         JPanel topHUD = new JPanel();
 
-        JPanel middlePanel = setUpLocationBackgroundImage();
+        JPanel middlePanel = setUpMiddleHUD(gui.game.getCurrentRoom());
+        middlePanel.revalidate();
+        middlePanel.repaint();
 
         // add middle panel w/ image to main container
         mainContainer.add(middlePanel, BorderLayout.CENTER);
@@ -194,32 +223,32 @@ public class GUI {
         mainContainer.setVisible(true);
     }
 
-    private JPanel setUpLocationBackgroundImage() {
-        JPanel imagePanel = new JPanel();
-        String currentLocationImage = this.game.getCurrentRoom().getImage();
-        ImageIcon currentLocationBackgroundIcon = new ImageIcon(GUI.class.getClassLoader().getResource(currentLocationImage));
+//    private JPanel setUpLocationBackgroundImage() {
+//        JPanel imagePanel = new JPanel();
+//        String currentLocationImage = this.game.getCurrentRoom().getImage();
+//        ImageIcon currentLocationBackgroundIcon = new ImageIcon(GUI.class.getClassLoader().getResource(currentLocationImage));
+//
+//        JLabel imageLabel = new JLabel(currentLocationBackgroundIcon);
+//        imageLabel.setBounds(50, 0, 700, 350);
+//
+//        imagePanel.add(imageLabel, BorderLayout.CENTER);
+//
+//        // middle panel w/ image of location
+//        JPanel middlePanel = new JPanel();
+//        //TODO: replace with current location image, give each room an image field
+//        JLabel middleImage = new JLabel(game.getCurrentRoom().getDescription());
+//        middlePanel.add(middleImage);
+//        // middle panel w/ location desc
+//        //TODO: replace with current location image, give each room an image field
+//        JLabel locationDesc = new JLabel(game.getCurrentRoom().getDescription());
+//        middlePanel.add(locationDesc);
+//        middlePanel.add(imagePanel);
+//
+//        return middlePanel;
+//    }
 
-        JLabel imageLabel = new JLabel(currentLocationBackgroundIcon);
-        imageLabel.setBounds(50,0,700,350);
-
-        imagePanel.add(imageLabel, BorderLayout.CENTER);
-
-        // middle panel w/ image of location
-        JPanel middlePanel = new JPanel();
-        //TODO: replace with current location image, give each room an image field
-        JLabel middleImage = new JLabel(game.getCurrentRoom().getDescription());
-        middlePanel.add(middleImage);
-        // middle panel w/ location desc
-        //TODO: replace with current location image, give each room an image field
-        JLabel locationDesc = new JLabel(game.getCurrentRoom().getDescription());
-        middlePanel.add(locationDesc);
-        middlePanel.add(imagePanel);
-
-        return middlePanel;
-    }
-
-    public ImageIcon getBackgroundImage() {
-        String currentLocationImage = this.game.getCurrentRoom().getImage();
+    public ImageIcon getBackgroundImage(String image) {
+        String currentLocationImage = game.getCurrentRoom().getImage();
         ImageIcon currentLocationBackgroundIcon = new ImageIcon(GUI.class.getClassLoader().getResource(currentLocationImage));
         return currentLocationBackgroundIcon;
     }
@@ -230,6 +259,7 @@ public class GUI {
         gui.game = new Game(gameFiles);
         gui.setUpGUI(gui);
     }
+
 
     public JLabel setupCurrentLocationLabel() {
         String currentLocation = this.game.getCurrentRoom().getName();
