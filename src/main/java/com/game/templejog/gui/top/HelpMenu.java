@@ -1,4 +1,4 @@
-package com.game.templejog.gui;
+package com.game.templejog.gui.top;
 
 import javax.swing.*;
 

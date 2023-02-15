@@ -3,6 +3,9 @@ package com.game.templejog.gui;
 import com.game.templejog.Game;
 import com.game.templejog.Temple;
 import com.game.templejog.client.FileLoader;
+import com.game.templejog.gui.top.ExitMenu;
+import com.game.templejog.gui.top.HelpMenu;
+import com.game.templejog.gui.top.InventoryMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -133,9 +136,10 @@ public class GUI {
         });
 
         JButton exitButton = new JButton("Exit");
+        this.exitButton = exitButton;
         exitButton.addActionListener(e -> {
             if (e.getSource() == exitButton) {
-                ExitMenu.setUpExitOptions(gui);
+              ExitMenu.setUpExitOptions();
             }
         });
 
@@ -156,6 +160,11 @@ public class GUI {
         bottomLeftPanel.setLayout(bottomLeftLayout);
         // bottom left options
         JButton attackButton = new JButton("Attack");
+        attackButton.addActionListener(e -> {
+            if (e.getSource() == attackButton) {
+//                AttackMenu.setUpAttackMenu(gui, game);
+            }
+        });
         JButton searchAreaButton = new JButton("Search Area");
         JButton mapButton = new JButton("Map");
 
@@ -174,6 +183,8 @@ public class GUI {
 
         // bottom right dynamic box of info
         JPanel bottomRightDisplay = new JPanel();
+        this.bottomRightDisplay = bottomRightDisplay;
+        bottomRightDisplay.setBackground(Color.gray);
         //TODO: Populate br display
         bottomSection.add(bottomRightDisplay, BorderLayout.LINE_END);
         // add bottom right to main container
@@ -241,5 +252,9 @@ public class GUI {
 
     public JFrame getMainContainer() {
         return this.mainContainer;
+    }
+
+    public JPanel getBottomRightDisplay() {
+        return bottomRightDisplay;
     }
 }
