@@ -21,4 +21,5 @@ public class Temple {
     public void setPlayer(Player player) { this.player = player; }
     public HashMap<String, String> getGameText() { return gameText; }
     public void setGameText(HashMap<String, String> gameText) { this.gameText = gameText; }
+
 }

@@ -1,7 +1,6 @@
 package com.game.templejog;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,9 +15,10 @@ public class Room {
     Boolean hasBeenVisited;
     Boolean isLocked;
     String sound;
+    String image;
 
     public Room() {}
-    public Room(Integer number, String name, String description, String west, String south, String north, String east, List<String> items, List<String> encounters_to, List<String> encounters_from, Boolean hasBeenVisited, String sound) {
+    public Room(Integer number, String name, String description, String west, String south, String north, String east, List<String> items, List<String> encounters_to, List<String> encounters_from, Boolean hasBeenVisited, String sound, String backgroungImage) {
         this.number = number;
         this.name = name;
         this.description = description;
@@ -31,6 +31,7 @@ public class Room {
         this.hasBeenVisited = hasBeenVisited;
         this.items = items;
         this.sound = sound;
+        this.image = backgroungImage;
     }
 
 //  HELPER METHODS
@@ -58,6 +59,14 @@ public class Room {
     }
 
 //  ACCESSOR METHODS
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public Integer getNumber() { return number; }
     public void setNumber(Integer number) { this.number = number;}
     public String getName() { return name; }

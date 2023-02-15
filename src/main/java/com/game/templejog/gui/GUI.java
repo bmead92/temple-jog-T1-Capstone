@@ -53,6 +53,56 @@ public class GUI {
         this.exitButton = exitButton;
     }
 
+
+
+    public void guiSetUp(GUI gui) {
+        JFrame mainContainer = new JFrame();
+        this.mainContainer = mainContainer;
+        mainContainer.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        mainContainer.setLayout(null);
+
+        JPanel imagePanel = new JPanel();
+        imagePanel.setBounds(0,0, 800, 800);
+        String pathToImage = gui.game.getCurrentRoom().getImage();
+        ImageIcon lzImage = new ImageIcon(GUI.class.getClassLoader().getResource(pathToImage));
+        JLabel lzImageLabel = new JLabel(lzImage);
+        imagePanel.add(lzImageLabel);
+        imagePanel.setVisible(true);
+
+        //adding button for available directions to move
+        JPanel middlePanel = new JPanel();
+        JLabel arrowsLabel = new JLabel();
+        arrowsLabel.setBounds(0,0,400,400);
+        arrowsLabel.setBackground(Color.BLUE);
+        JButton upButton = new JButton("^");
+        upButton.setForeground(Color.BLUE);
+        arrowsLabel.setLocation(imagePanel.getX(), imagePanel.getY() - 10);
+        arrowsLabel.add(upButton);
+
+        JButton downButton = new JButton("v");
+        downButton.setForeground(Color.BLUE);
+        arrowsLabel.setLocation(imagePanel.getX(), imagePanel.getY() + 10);
+        arrowsLabel.add(downButton);
+
+        JButton leftButton = new JButton("<");
+        leftButton.setForeground(Color.BLUE);
+        arrowsLabel.setLocation(imagePanel.getX() - 10, imagePanel.getY());
+        arrowsLabel.add(leftButton);
+
+        JButton rightButton = new JButton(">");
+        rightButton.setForeground(Color.BLUE);
+        arrowsLabel.setLocation(imagePanel.getX() + 10, imagePanel.getY());
+        arrowsLabel.add(rightButton);
+        arrowsLabel.setVisible(true);
+
+        imagePanel.add(arrowsLabel);
+        middlePanel.add(imagePanel);
+
+        // add middle panel w/ image to main container
+        mainContainer.add(imagePanel);
+        mainContainer.setVisible(true);
+    }
+
     public void setUpGUI(GUI gui) {
         // main container
         JFrame mainContainer = new JFrame();
@@ -66,10 +116,14 @@ public class GUI {
         FlowLayout HUD = new FlowLayout();
         JPanel topHUD = new JPanel();
 
+        JPanel middlePanel = setUpLocationBackgroundImage();
+
+        // add middle panel w/ image to main container
+        mainContainer.add(middlePanel, BorderLayout.CENTER);
+
         JLabel currentLocation = setupCurrentLocationLabel();
         JLabel currentHealth = setUpCurrentHealthLabel();
         //Jlabel currentTime = setUpCurrentTimeLabel();
-
 
         JButton helpButton = new JButton("Help");
         helpButton.addActionListener(e -> {
@@ -77,7 +131,6 @@ public class GUI {
                 HelpMenu.setUpHelpGUI(game);
             }
         });
-
 
         JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> {
@@ -95,14 +148,6 @@ public class GUI {
 
         // add hud to main container
         mainContainer.add(topHUD, BorderLayout.PAGE_START);
-
-        // middle panel w/ image of location
-        JPanel middlePanel = new JPanel();
-        //TODO: replace with current location image, give each room an image field
-        JLabel middleImage = new JLabel(game.getCurrentRoom().getDescription());
-        middlePanel.add(middleImage);
-        // add panel w/ image to main container
-        mainContainer.add(middlePanel, BorderLayout.CENTER);
 
         // bottom section of main frame
         JPanel bottomSection = new JPanel(new BorderLayout());
@@ -132,11 +177,74 @@ public class GUI {
         mainContainer.setVisible(true);
     }
 
+    private JPanel setUpLocationBackgroundImage() {
+        JPanel imagePanel = new JPanel();
+        String currentLocationImage = this.game.getCurrentRoom().getImage();
+        ImageIcon currentLocationBackgroundIcon = new ImageIcon(GUI.class.getClassLoader().getResource(currentLocationImage));
+
+        JLabel imageLabel = new JLabel(currentLocationBackgroundIcon);
+        imageLabel.setBounds(50,0,700,350);
+
+        imagePanel.add(imageLabel, BorderLayout.CENTER);
+
+        // middle panel w/ image of location
+        JPanel middlePanel = new JPanel();
+        //TODO: replace with current location image, give each room an image field
+        JLabel middleImage = new JLabel(game.getCurrentRoom().getDescription());
+        middlePanel.add(middleImage);
+        // middle panel w/ location desc
+        //TODO: replace with current location image, give each room an image field
+        JLabel locationDesc = new JLabel(game.getCurrentRoom().getDescription());
+        middlePanel.add(locationDesc);
+        middlePanel.add(imagePanel);
+
+//        // middle panel w/ location image
+//        String pathToImage = "Images/LZ.jpeg";
+//        ImageIcon lzImage = new ImageIcon(GUI.class.getClassLoader().getResource(pathToImage));
+//        JLabel lzImageLabel = new JLabel(lzImage);
+//        JPanel imagePanel = new JPanel();
+//        imagePanel.add(lzImageLabel, BorderLayout.CENTER);
+
+        //adding button for available directions to move
+//        JLabel arrowsLabel = new JLabel();
+//        JButton upButton = new JButton("^");
+//        upButton.setForeground(Color.BLUE);
+//        arrowsLabel.setLocation(imagePanel.getX(), imagePanel.getY() - 10);
+//        arrowsLabel.add(upButton, BorderLayout.NORTH);
+//
+//        JButton downButton = new JButton("v");
+//        downButton.setForeground(Color.BLUE);
+//        arrowsLabel.setLocation(imagePanel.getX(), imagePanel.getY() + 10);
+//        arrowsLabel.add(downButton, BorderLayout.SOUTH);
+//
+//        JButton leftButton = new JButton("<");
+//        leftButton.setForeground(Color.BLUE);
+//        arrowsLabel.setLocation(imagePanel.getX() - 10, imagePanel.getY());
+//        arrowsLabel.add(leftButton, BorderLayout.WEST);
+//
+//        JButton rightButton = new JButton(">");
+//        rightButton.setForeground(Color.BLUE);
+//        arrowsLabel.setLocation(imagePanel.getX() + 10, imagePanel.getY());
+//        arrowsLabel.add(rightButton, BorderLayout.EAST);
+//        arrowsLabel.setVisible(true);
+//
+//        imagePanel.add(arrowsLabel);
+//        middlePanel.add(imagePanel, BorderLayout.CENTER);
+        return middlePanel;
+    }
+
+    public ImageIcon getBackgroundImage() {
+        String currentLocationImage = this.game.getCurrentRoom().getImage();
+        ImageIcon currentLocationBackgroundIcon = new ImageIcon(GUI.class.getClassLoader().getResource(currentLocationImage));
+        return currentLocationBackgroundIcon;
+    }
+
     public static void main(String[] args) throws IOException {
         Temple gameFiles = FileLoader.jsonLoader("JSON/gameFiles.json");
         GUI gui = new GUI();
         gui.game = new Game(gameFiles);
         gui.setUpGUI(gui);
+//        gui.guiSetUp(gui);
     }
 
     public JLabel setupCurrentLocationLabel() {
