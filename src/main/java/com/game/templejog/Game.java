@@ -88,7 +88,7 @@ public class Game {
 
         return "";
     }
-    private String processNavigating(String noun){
+    public String processNavigating(String noun){
         List<String> standardDirections = Arrays.asList("north", "south", "east", "west");
         if( noun.isEmpty() || !standardDirections.contains(noun.toLowerCase()) ) return InvalidNounInput.BAD_NAV.getWarning();
         String directionValue = getCurrentRoom().checkDirection(noun);
@@ -103,9 +103,14 @@ public class Game {
             Room validRoom = getRooms().get(accessibleRoom);
             validRoom.setHasBeenVisited(!validRoom.getHasBeenVisited());
             setCurrentRoom(validRoom);
+
+            //Need to implement update on location image
+            System.out.println("current room: " + currentRoom.getName());
+            System.out.println("Image :" + currentRoom.getImage());
+
             getCurrentRoom().setHasBeenVisited(true);
             getPlayer().setSteps(getPlayer().getSteps()+1);
-            currentRoomSound();
+//            currentRoomSound();
             return String.format("Traveling to %s... %s",getCurrentRoom().getName(), outputMessage);
         }
 
@@ -121,10 +126,6 @@ public class Game {
         }
     }
 
-    public void currentRoomImage() {
-        String currentRoomImage = getCurrentRoom().getImage();
-        System.out.println(currentRoomImage);
-    }
     private String processLooking(String noun){
         if(noun.isEmpty()) return InvalidNounInput.BAD_LOOK.getWarning();
 
