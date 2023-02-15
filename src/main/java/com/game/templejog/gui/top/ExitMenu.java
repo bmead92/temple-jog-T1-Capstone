@@ -1,12 +1,10 @@
-package com.game.templejog.gui;
+package com.game.templejog.gui.top;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ExitMenu {
 static JFrame frame;
-    public static void setUpExitOptions(GUI gui){
-
+    public static void setUpExitOptions(){
         //click event will return an int and we can use that int in the if statement to take action
         int n = JOptionPane.showConfirmDialog(
                 frame,
@@ -16,7 +14,7 @@ static JFrame frame;
                 JOptionPane.QUESTION_MESSAGE
         );
         if(n == 0){
-            gui.getMainContainer().dispose();
+            System.exit(0);
         }
     }
 }
