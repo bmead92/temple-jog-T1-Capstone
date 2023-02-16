@@ -4,6 +4,7 @@ import com.game.templejog.Game;
 import com.game.templejog.Room;
 import com.game.templejog.Temple;
 import com.game.templejog.client.FileLoader;
+import com.game.templejog.gui.bottom.MapMenu;
 import com.game.templejog.gui.top.ExitMenu;
 import com.game.templejog.gui.top.HelpMenu;
 import com.game.templejog.gui.top.InventoryMenu;
@@ -195,8 +196,17 @@ public class GUI {
             }
         });
         JButton searchAreaButton = new JButton("Search Area");
-        JButton mapButton = new JButton("Map");
 
+        //Map button with action listener
+        JButton mapButton = new JButton("Map");
+        mapButton.addActionListener(e -> {
+            if(e.getSource() == mapButton){
+                MapMenu.mapDisplay(game);
+            }
+        });
+
+
+//Inventory Button on bottom left panel with action listener
         JButton inventoryButton = new JButton("Inventory");
         inventoryButton.addActionListener(e -> {
             if (e.getSource() == inventoryButton) {
