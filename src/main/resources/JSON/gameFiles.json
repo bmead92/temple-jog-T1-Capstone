@@ -14,7 +14,7 @@
       "encounters_to": [],
       "encounters_from": [],
       "sound": "sounds/landing_zone.wav",
-      "image": "Images/LZ.jpeg"
+      "image": "Images/Rooms/LZ.jpeg"
     },
     "room02": {
       "hasBeenVisited": false,
@@ -30,7 +30,7 @@
       "encounters_to": [],
       "encounters_from": ["cougar"],
       "sound": "sounds/jungle_path.wav",
-      "image": "Images/JunglePath.jpeg"
+      "image": "Images/Rooms/JunglePath.jpeg"
     },
     "room03": {
       "hasBeenVisited": false,
@@ -46,7 +46,7 @@
       "encounters_to": ["bald eagle"],
       "encounters_from": [],
       "sound": "sounds/jungle_clearing.wav",
-      "image": "Images/JungleClearing.jpeg"
+      "image": "Images/Rooms/JungleClearing.jpeg"
     },
     "room04": {
       "hasBeenVisited": false,
@@ -62,7 +62,7 @@
       "encounters_to": [ "anaconda" ],
       "encounters_from": [],
       "sound": "sounds/base_of_temple.wav",
-      "image": "Images/BaseOfTemple.jpeg"
+      "image": "Images/Rooms/BaseOfTemple.jpeg"
     },
     "room05": {
       "hasBeenVisited": false,
@@ -78,7 +78,7 @@
       "encounters_to": [ "face mugger", "pit" ],
       "encounters_from": [],
       "sound": "sounds/face_mugging_torment.wav",
-      "image": "Images/JunglePit.jpeg"
+      "image": "Images/Rooms/JunglePit.jpeg"
     },
     "room06": {
       "hasBeenVisited": false,
@@ -94,7 +94,7 @@
       "encounters_to": [],
       "encounters_from": ["lion"],
       "sound": "sounds/central_chamber.wav",
-      "image": "Images/CentralChamber.jpeg"
+      "image": "Images/Rooms/CentralChamber.jpeg"
     },
     "room07": {
       "hasBeenVisited": false,
@@ -110,7 +110,7 @@
       "encounters_to": [],
       "encounters_from": [ "mummy" ],
       "sound": "sounds/temple_entrance.wav",
-      "image": "Images/TempleEntrance.png"
+      "image": "Images/Rooms/TempleEntrance.png"
     },
     "room08": {
       "hasBeenVisited": false,
@@ -126,7 +126,7 @@
       "encounters_to": [ "alien guard" ],
       "encounters_from": [],
       "sound": "sounds/shrine_room.wav",
-      "image": "Images/ShrineRoom.jpeg"
+      "image": "Images/Rooms/ShrineRoom.jpeg"
     },
     "room09": {
       "hasBeenVisited": false,
@@ -142,7 +142,7 @@
       "encounters_to": ["locked door"],
       "encounters_from": [],
       "sound": "sounds/store_room.wav",
-      "image": "Images/StoreRoom.jpeg"
+      "image": "Images/Rooms/StoreRoom.jpeg"
     },
     "room10": {
       "hasBeenVisited": false,
@@ -158,7 +158,7 @@
       "encounters_to": [ "communicator" ],
       "encounters_from": ["alien boss"],
       "sound": "sounds/communication_room.wav",
-      "image": "Images/CommunicationsRoom.webp"
+      "image": "Images/Rooms/CommunicationsRoom.webp"
     }
   },
   "encounters": {
