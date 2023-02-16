@@ -25,7 +25,7 @@ public class Game {
         setGameText(temple.getGameText());
 
         // Set initial conditions
-        setCurrentRoom(getRooms().get("room02"));
+        setCurrentRoom(getRooms().get("room01"));
         setCommunicatorOff(false);
         setQuitGame(false);
     }
@@ -88,7 +88,7 @@ public class Game {
 
         return "";
     }
-    public String processNavigating(String noun){
+    private String processNavigating(String noun){
         List<String> standardDirections = Arrays.asList("north", "south", "east", "west");
         if( noun.isEmpty() || !standardDirections.contains(noun.toLowerCase()) ) return InvalidNounInput.BAD_NAV.getWarning();
         String directionValue = getCurrentRoom().checkDirection(noun);

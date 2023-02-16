@@ -1,7 +1,6 @@
 package com.game.templejog.gui.bottom;
 
 import com.game.templejog.Game;
-import com.game.templejog.gui.top.InventoryMenu;
 
 import javax.swing.*;
 
@@ -28,7 +27,12 @@ public class BottomLeftOptions {
         });
         this.mapButton = new JButton("Map");
         //TODO: add map actionListener
-
+        //Map button with action listener
+        mapButton.addActionListener(e -> {
+            if(e.getSource() == this.mapButton){
+                MapMenu.mapDisplay(this.game);
+            }
+        });
         this.inventoryButton = new JButton("Inventory");
         inventoryButton.addActionListener(e -> {
             if (e.getSource() == this.inventoryButton) {

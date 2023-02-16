@@ -2,7 +2,7 @@ package com.game.templejog.gui.bottom;
 
 import com.game.templejog.Game;
 import com.game.templejog.Item;
-import com.game.templejog.gui.GUI;
+import com.game.templejog.gui.GUIMain;
 import com.game.templejog.gui.MainContainer;
 
 import javax.swing.*;
@@ -21,7 +21,7 @@ public class AttackMenu {
         bottomRightSectionJPanel.removeAll();
         JLabel encounterInformation = new JLabel(game.processChoice(choice));
         attackMenu.add(encounterInformation);
-        attackMenu.setBounds(0, 0, GUI.GAME_WIDTH / 4, GUI.GAME_HEIGHT / 4);
+        attackMenu.setBounds(0, 0, MainContainer.MAIN_CONTAINER_WIDTH / 4, MainContainer.MAIN_CONTAINER_HEIGHT / 4);
         bottomRightSectionJPanel.add(attackMenu);
         bottomRightSectionJPanel.validate();
         bottomRightSectionJPanel.repaint();
