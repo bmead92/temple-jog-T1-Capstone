@@ -19,7 +19,7 @@ public class BottomSection {
         bottomSection.setLayout(new BorderLayout());
         bottomSection.add(bottomLeftOptions.setUpBottomLeftOptionsJPanel(), BorderLayout.LINE_START);
         this.bottomRightSection = new BottomRightSection();
-        bottomSection.add(bottomRightSection.setUpBottomRightSectionJPanel(), BorderLayout.CENTER);
+        bottomSection.add(bottomRightSection.getBottomRightSectionJPanel(), BorderLayout.CENTER);
         return bottomSection;
     }
 

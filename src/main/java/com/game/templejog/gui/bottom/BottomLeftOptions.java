@@ -27,6 +27,7 @@ public class BottomLeftOptions {
             }
         });
         this.mapButton = new JButton("Map");
+        //TODO: add map actionListener
 
         this.inventoryButton = new JButton("Inventory");
         inventoryButton.addActionListener(e -> {

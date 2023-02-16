@@ -9,24 +9,27 @@ import java.util.List;
 
 public class SearchMenu {
     public static void setUpSearchDisplay(Game game) {
+        List<Item> playerInventory = game.getPlayer().getInventory();
+        StringBuilder items = new StringBuilder();
+        List<String> itemsInCurrentRoom = game.getCurrentRoom().getItems();
+        for (String item : itemsInCurrentRoom) {
+            items.append("a ").append(item).append(", ");
+            playerInventory.add(game.getItems().get(item));
+            game.getPlayer().setInventory(playerInventory);
+        }
+        String itOrThem = "it";
+        if (itemsInCurrentRoom.size() > 1) {
+            itOrThem = "them";
+        }
         JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
         bottomRightSectionJPanel.removeAll();
         JLabel searchDisplayJLabel;
-        String items = "";
-        String currentRoomDescription = game.getCurrentRoom().getDescription();
-        List<String> currentRoomItems = game.getCurrentRoom().getItems();
-        List<Item> playerInventory = game.getPlayer().getInventory();
-        if (currentRoomItems.size() == 0) {
-            searchDisplayJLabel = new JLabel(String.format("%s \nYou find nothing useful here.", currentRoomDescription));
-        } else {
-            for (String item : currentRoomItems) {
-                items += item + ", ";
-                Item poppedItem = game.popItemFromMap(item);
-                playerInventory.add(poppedItem);
-            }
-            currentRoomItems.clear();
-            searchDisplayJLabel = new JLabel(String.format("%s \nYou find %sand add it to you inventory.", currentRoomDescription, items));
+        String message = "You find nothing here";
+        if (itemsInCurrentRoom.size() >= 1) {
+            message = String.format("You search the area finding %sand add %s to your inventory", items, itOrThem);
         }
+        searchDisplayJLabel = new JLabel(message);
+        itemsInCurrentRoom.clear();
         bottomRightSectionJPanel.add(searchDisplayJLabel);
         bottomRightSectionJPanel.validate();
         bottomRightSectionJPanel.repaint();
