@@ -9,8 +9,17 @@ public class Encounter {
     String name,type,description,success;
     List<String> weakness;
     Integer failure,outcome;
+    String image;
 
     public Encounter(){}
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getName() {
         return name;

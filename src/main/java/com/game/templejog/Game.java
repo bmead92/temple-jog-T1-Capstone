@@ -38,10 +38,11 @@ public class Game {
         this.rooms = rooms;
         this.items = items;
         this.encounters = encounters;
-        setCurrentRoom(getRooms().get("room01"));
+        setCurrentRoom(getRooms().get("room04"));
         setCommunicatorOff(false);
     }
 // GAME SETUP
+
     public void processDifficulty(String difficulty) {
         // Game is already setup for easy from the start so no need for condition
         if (difficulty.equals("medium")) {
@@ -102,9 +103,14 @@ public class Game {
             Room validRoom = getRooms().get(accessibleRoom);
             validRoom.setHasBeenVisited(!validRoom.getHasBeenVisited());
             setCurrentRoom(validRoom);
+
+            //Need to implement update on location image
+            System.out.println("current room: " + currentRoom.getName());
+            System.out.println("Image :" + currentRoom.getImage());
+
             getCurrentRoom().setHasBeenVisited(true);
             getPlayer().setSteps(getPlayer().getSteps()+1);
-            currentRoomSound();
+//            currentRoomSound();
             return String.format("Traveling to %s... %s",getCurrentRoom().getName(), outputMessage);
         }
 
@@ -119,6 +125,7 @@ public class Game {
             }
         }
     }
+
     private String processLooking(String noun){
         if(noun.isEmpty()) return InvalidNounInput.BAD_LOOK.getWarning();
 
@@ -278,6 +285,7 @@ public class Game {
     }
 
 //  ACCESSOR METHODS
+
     public Room getCurrentRoom() { return currentRoom;}
     public void setCurrentRoom(Room currentRoom) { this.currentRoom = currentRoom;}
     public Player getPlayer() { return player; }
