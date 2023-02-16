@@ -101,6 +101,12 @@ public class MiddleSection {
         buttonPanel.add(upButton, BorderLayout.NORTH);
         buttonPanel.add(downButton, BorderLayout.SOUTH);
 
+
+        ImageIcon getEncounterImage = getEncounterImageTo();
+        JLabel encounterLabel = new JLabel();
+        encounterLabel.setIcon(getEncounterImage);
+        imagePanel.add(imageLabel, BorderLayout.CENTER);
+
         this.currentLocationBackgroundIcon = getBackgroundImage();
         this.imageLabel.setIcon(currentLocationBackgroundIcon);
         this.imageLabel.setBounds(50,0,500,500);
