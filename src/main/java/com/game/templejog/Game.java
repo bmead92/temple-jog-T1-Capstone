@@ -25,7 +25,7 @@ public class Game {
         setGameText(temple.getGameText());
 
         // Set initial conditions
-        setCurrentRoom(getRooms().get("room01"));
+        setCurrentRoom(getRooms().get("room02"));
         setCommunicatorOff(false);
         setQuitGame(false);
     }
@@ -38,7 +38,7 @@ public class Game {
         this.rooms = rooms;
         this.items = items;
         this.encounters = encounters;
-        setCurrentRoom(getRooms().get("room01"));
+        setCurrentRoom(getRooms().get("room04"));
         setCommunicatorOff(false);
     }
 // GAME SETUP

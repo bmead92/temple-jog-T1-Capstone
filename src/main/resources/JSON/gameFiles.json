@@ -272,7 +272,7 @@
       "name": "Desert Eagle",
       "room": "room02",
       "damage": 5,
-      "description": "The Mark XIX Desert Eagle is a gas-operated, semi-automatic pistol with a 7 round capacity. The gun measures 10.75” in length with a 6” barrel. Width is 1.25”, height 6.25” and the weight with an empty magazine is approximately 72 ounces. It has a trigger reach of 2.75” and a sight radius of 8.5” with the 6” barrel. - magnum research",
+      "description": "The Mark XIX Desert Eagle is a gas-operated, semi-automatic pistol with a 7 round capacity.\nThe gun measures 10.75” in length with a 6” barrel.\nWidth is 1.25”, height 6.25” and the weight with an empty magazine is approximately 72 ounces.\nIt has a trigger reach of 2.75” and a sight radius of 8.5” with the 6” barrel. - magnum research",
       "reuse": 2
     },
     "grenade": {
