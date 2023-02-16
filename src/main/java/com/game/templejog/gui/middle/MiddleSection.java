@@ -3,14 +3,13 @@ package com.game.templejog.gui.middle;
 import com.game.templejog.Encounter;
 import com.game.templejog.Game;
 import com.game.templejog.Room;
-<<<<<<< Updated upstream
+
 import com.game.templejog.gui.GUIMain;
 import com.game.templejog.gui.MainContainer;
 
 import javax.swing.*;
 import java.awt.*;
-=======
-import com.game.templejog.gui.GUI;
+
 import org.apache.commons.lang.ObjectUtils;
 
 import javax.swing.*;
@@ -18,7 +17,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
->>>>>>> Stashed changes
+
 import java.util.Objects;
 import java.util.List;
 
@@ -72,22 +71,16 @@ public class MiddleSection {
         });
     }
 
-<<<<<<< Updated upstream
     public JPanel setUpMiddleSectionJPanel() {
-=======
-    public JPanel setUpMiddleSectionJPanel(Room room) {
-        JButton leftButton, rightButton, upButton, downButton;
-        JPanel imagePanel, buttonPanel;
-
         this.middleSectionPanel = new JPanel();
 
-        ImageIcon currentLocationBackgroundIcon = getBackgroundImage(room);
+        ImageIcon currentLocationBackgroundIcon = getBackgroundImage();
         JLabel imageLabel = new JLabel(currentLocationBackgroundIcon);
         imageLabel.setBounds(50,0,700,350);
         imageLabel.validate();
         imageLabel.repaint();
 
-        ImageIcon getEncounterImage = getEncounterImageTo(room);
+        ImageIcon getEncounterImage = getEncounterImageTo();
         JLabel encounterLabel = new JLabel();
         encounterLabel.setIcon(getEncounterImage);
 
@@ -98,11 +91,7 @@ public class MiddleSection {
 
         imagePanel = new JPanel();
         imagePanel.add(imageLabel, BorderLayout.CENTER);
-//        imageLabel = new JLabel(currentLocationBackgroundIcon);
-//        imageLabel.setIcon(currentLocationBackgroundIcon);
-//        imagePanel.setLayout(new BorderLayout());
 
->>>>>>> Stashed changes
         // Create the button panel
         JPanel buttonPanel = new JPanel(new BorderLayout());
         leftButton.setLocation(this.imagePanel.getX() - 10, this.imagePanel.getY());
@@ -112,7 +101,7 @@ public class MiddleSection {
         buttonPanel.add(upButton, BorderLayout.NORTH);
         buttonPanel.add(downButton, BorderLayout.SOUTH);
 
-        this.currentLocationBackgroundIcon = getBackgroundImage(this.game.getCurrentRoom());
+        this.currentLocationBackgroundIcon = getBackgroundImage();
         this.imageLabel.setIcon(currentLocationBackgroundIcon);
         this.imageLabel.setBounds(50,0,500,500);
 
@@ -129,22 +118,22 @@ public class MiddleSection {
         return this.middleSectionPanel;
     }
 
-    public ImageIcon getBackgroundImage(Room room) {
-        String currentLocationImage = room.getImage();
+    public ImageIcon getBackgroundImage() {
+        String currentLocationImage = game.getCurrentRoom().getImage();
         ImageIcon currentLocationBackgroundIcon = new ImageIcon(Objects.requireNonNull
                 (GUIMain.class.getClassLoader().getResource(currentLocationImage)));
         return currentLocationBackgroundIcon;
     }
 
-    public ImageIcon getEncounterImageTo(Room room) {
-        String currentRoomName = room.getName();
+    public ImageIcon getEncounterImageTo() {
+        String currentRoomName = game.getCurrentRoom().getName();
         List<String> encounterToList = game.getCurrentRoom().getEncounters_to();
 
         ImageIcon currentLocationEncounterIcon = new ImageIcon();
         try {
             String currentLocationEncounter = encounterToList.get(0);
             currentLocationEncounterIcon = new ImageIcon(Objects.requireNonNull
-                    (GUI.class.getClassLoader().getResource(currentLocationEncounter)));
+                    (GUIMain.class.getClassLoader().getResource(currentLocationEncounter)));
         } catch (NullPointerException e) {
             System.out.println("No encounters here null.");
         } catch (IndexOutOfBoundsException i) {
