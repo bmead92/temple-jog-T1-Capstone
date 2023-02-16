@@ -72,25 +72,9 @@ public class MiddleSection {
     }
 
     public JPanel setUpMiddleSectionJPanel() {
-        this.middleSectionPanel = new JPanel();
-
-        ImageIcon currentLocationBackgroundIcon = getBackgroundImage();
-        JLabel imageLabel = new JLabel(currentLocationBackgroundIcon);
-        imageLabel.setBounds(50,0,700,350);
-        imageLabel.validate();
-        imageLabel.repaint();
-
         ImageIcon getEncounterImage = getEncounterImageTo();
         JLabel encounterLabel = new JLabel();
         encounterLabel.setIcon(getEncounterImage);
-
-        this.middleSectionPanel.add(imageLabel, BorderLayout.CENTER);
-
-        // middle panel w/ image of location
-        this.middleSectionPanel.add(imageLabel);
-
-        imagePanel = new JPanel();
-        imagePanel.add(imageLabel, BorderLayout.CENTER);
 
         // Create the button panel
         JPanel buttonPanel = new JPanel(new BorderLayout());
