@@ -69,7 +69,16 @@ public class MiddleSection {
         buttonPanel.add(upButton, BorderLayout.NORTH);
         buttonPanel.add(downButton, BorderLayout.SOUTH);
 
+<<<<<<< Updated upstream
         this.currentLocationBackgroundIcon = getBackgroundImage(this.game.getCurrentRoom());
+=======
+        ImageIcon getEncounterImage = getEncounterImageTo();
+        JLabel encounterLabel = new JLabel();
+        encounterLabel.setIcon(getEncounterImage);
+        imagePanel.add(imageLabel, BorderLayout.CENTER);
+
+        this.currentLocationBackgroundIcon = getBackgroundImage();
+>>>>>>> Stashed changes
         this.imageLabel.setIcon(currentLocationBackgroundIcon);
         this.imageLabel.setBounds(50,0,500,500);
 
