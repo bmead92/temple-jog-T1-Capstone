@@ -62,21 +62,21 @@ public class GUI {
     }
 
 
-    public JPanel setUpMiddleHUD(Room currentRoom) {
+    public JPanel setUpMiddleHUD() {
         JLabel imageLabel;
         JButton leftButton, rightButton, upButton, downButton;
         JPanel imagePanel, buttonPanel;
-        String imagePathString = currentRoom.getImage();
 
 //        JFrame frame = new JFrame();
         JPanel middleHUD = new JPanel();
         JPanel middlePanel = new JPanel();
 
         imagePanel = new JPanel();
-        imagePanel.revalidate();
-        imagePanel.repaint();
-        ImageIcon currentLocationBackgroundIcon = getBackgroundImage(imagePathString);
+        ImageIcon currentLocationBackgroundIcon = getBackgroundImage();
+        String currentRoom = game.getCurrentRoom().getName();
+        String image = game.getCurrentRoom().getImage();
         imageLabel = new JLabel(currentLocationBackgroundIcon);
+        imageLabel.setIcon(currentLocationBackgroundIcon);
         imagePanel.setLayout(new BorderLayout());
         imagePanel.add(imageLabel, BorderLayout.CENTER);
 
@@ -108,12 +108,14 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 // handle left button click
                 game.processNavigating("west");
+                System.out.println("from actionlistner: " + game.getCurrentRoom().getName());
             }
         });
         rightButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // handle right button click
                 game.processNavigating("east");
+                System.out.println("from actionlistner: " + game.getCurrentRoom().getName());
             }
         });
         upButton.addActionListener(new ActionListener() {
@@ -121,13 +123,13 @@ public class GUI {
                 // handle up button click
                 game.processNavigating("north");
                 System.out.println("from actionlistner: " + game.getCurrentRoom().getName());
-                setUpMiddleHUD(currentRoom);
             }
         });
         downButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // handle down button click
                 game.processNavigating("south");
+                System.out.println("from actionlistner: " + game.getCurrentRoom().getName());
             }
         });
 
@@ -147,9 +149,7 @@ public class GUI {
         FlowLayout HUD = new FlowLayout();
         JPanel topHUD = new JPanel();
 
-        JPanel middlePanel = setUpMiddleHUD(gui.game.getCurrentRoom());
-        middlePanel.revalidate();
-        middlePanel.repaint();
+        JPanel middlePanel = setUpMiddleHUD();
 
         // add middle panel w/ image to main container
         mainContainer.add(middlePanel, BorderLayout.CENTER);
@@ -229,6 +229,9 @@ public class GUI {
         // add bottom right to main container
         mainContainer.add(bottomSection, BorderLayout.PAGE_END);
 
+        mainContainer.pack();
+        mainContainer.revalidate();
+        mainContainer.repaint();
         mainContainer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainContainer.setVisible(true);
     }
@@ -257,8 +260,9 @@ public class GUI {
 //        return middlePanel;
 //    }
 
-    public ImageIcon getBackgroundImage(String image) {
+    public ImageIcon getBackgroundImage() {
         String currentLocationImage = game.getCurrentRoom().getImage();
+        System.out.println("inside getBackgroundImage: " + currentLocationImage);
         ImageIcon currentLocationBackgroundIcon = new ImageIcon(GUI.class.getClassLoader().getResource(currentLocationImage));
         return currentLocationBackgroundIcon;
     }
@@ -269,7 +273,6 @@ public class GUI {
         gui.game = new Game(gameFiles);
         gui.setUpGUI(gui);
     }
-
 
     public JLabel setupCurrentLocationLabel() {
         String currentLocation = this.game.getCurrentRoom().getName();

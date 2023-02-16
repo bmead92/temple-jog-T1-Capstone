@@ -36,7 +36,7 @@ public class MainContainer {
         mainContainer.setBounds(0, 0, MAIN_CONTAINER_WIDTH, MAIN_CONTAINER_HEIGHT);
         mainContainer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainContainer.add(this.topHUD.setUpTopHUDJPanel(), BorderLayout.PAGE_START);
-        this.mainContainer.add(this.middleSection.setUpMiddleSectionJPanel(), BorderLayout.CENTER);
+        this.mainContainer.add(this.middleSection.setUpMiddleSectionJPanel(game.getCurrentRoom()), BorderLayout.CENTER);
         this.mainContainer.add(bottomSection.setUpBottomSectionJPanel(), BorderLayout.PAGE_END);
         mainContainer.pack();
         mainContainer.setVisible(true);
