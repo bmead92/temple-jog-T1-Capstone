@@ -19,6 +19,7 @@ public class GUIMain {
         final MainContainer mainContainer = new MainContainer(game, topHUD, middleSection, bottomSection);
         mainContainer.setUpMainContainer();
         do {
+            mainContainer.getMainContainer().validate();
             mainContainer.getMainContainer().repaint();
         } while (!game.getQuitGame()
                 && game.getPlayer().getSteps() < 24

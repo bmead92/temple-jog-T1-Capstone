@@ -1,11 +1,14 @@
 package com.game.templejog.gui.top;
 
 import com.game.templejog.Game;
+import com.game.templejog.gui.MainContainer;
 
 import javax.swing.*;
 
 public class TopHUD {
     private Game game;
+
+    private JPanel topHUDJPanel;
     private JLabel currentLocation;
     private JLabel currentHealth;
     private final JButton helpButton;
@@ -13,8 +16,8 @@ public class TopHUD {
 
     public TopHUD(Game game) {
         this.game = game;
-        this.currentLocation = setupCurrentLocationLabel();
-        this.currentHealth = setUpCurrentHealthLabel();
+        this.currentLocation =  new JLabel();
+        this.currentHealth = new JLabel();
         this.helpButton = new JButton("Help");
         helpButton.addActionListener(e -> {
             if (e.getSource() == this.helpButton) {
@@ -30,22 +33,15 @@ public class TopHUD {
     }
 
     public JPanel setUpTopHUDJPanel() {
-        JPanel topHUDJPanel = new JPanel();
-        topHUDJPanel.add(this.currentLocation);
-        topHUDJPanel.add(this.currentHealth);
+        topHUDJPanel = new JPanel();
+        currentLocation = new JLabel("Location: " + game.getCurrentRoom().getName());
+        topHUDJPanel.add(currentLocation);
+        currentHealth = new JLabel("Health: " + game.getPlayer().getHealth());
+        topHUDJPanel.add(currentHealth);
         topHUDJPanel.add(helpButton);
         topHUDJPanel.add(exitButton);
         topHUDJPanel.setVisible(true);
         return topHUDJPanel;
-    }
-    public JLabel setupCurrentLocationLabel() {
-        String currentLocation = this.game.getCurrentRoom().getName();
-        return new JLabel(currentLocation);
-    }
-
-    public JLabel setUpCurrentHealthLabel() {
-        Integer playerCurrentHealth = this.game.getPlayer().getHealth();
-        return new JLabel(String.valueOf(playerCurrentHealth));
     }
 
     public Game getGame() {

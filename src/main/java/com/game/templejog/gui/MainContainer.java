@@ -13,8 +13,8 @@ public class MainContainer {
     public static final int MAIN_CONTAINER_WIDTH = 800;
     public static final int MAIN_CONTAINER_HEIGHT = 800;
     private Game game;
-    private TopHUD topHUD;
-    private MiddleSection middleSection;
+    private static TopHUD topHUD;
+    private static MiddleSection middleSection;
     private static BottomSection bottomSection;
     private JFrame mainContainer;
 
@@ -24,8 +24,8 @@ public class MainContainer {
         mainContainer.setLayout(new BorderLayout());
         mainContainer.setBounds(0, 0, MAIN_CONTAINER_WIDTH, MAIN_CONTAINER_HEIGHT);
         this.game = game;
-        this.topHUD = topHUD;
-        this.middleSection = middleSection;
+        MainContainer.topHUD = topHUD;
+        MainContainer.middleSection = middleSection;
         MainContainer.bottomSection = bottomSection;
     }
 
@@ -36,7 +36,7 @@ public class MainContainer {
         mainContainer.setBounds(0, 0, MAIN_CONTAINER_WIDTH, MAIN_CONTAINER_HEIGHT);
         mainContainer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainContainer.add(this.topHUD.setUpTopHUDJPanel(), BorderLayout.PAGE_START);
-        this.mainContainer.add(this.middleSection.setUpMiddleSectionJPanel(game.getCurrentRoom()), BorderLayout.CENTER);
+        this.mainContainer.add(this.middleSection.setUpMiddleSectionJPanel(), BorderLayout.CENTER);
         this.mainContainer.add(bottomSection.setUpBottomSectionJPanel(), BorderLayout.PAGE_END);
         mainContainer.pack();
         mainContainer.setVisible(true);
@@ -50,7 +50,7 @@ public class MainContainer {
         this.game = game;
     }
 
-    public TopHUD getTopHUD() {
+    public static TopHUD getTopHUD() {
         return topHUD;
     }
 
@@ -58,7 +58,7 @@ public class MainContainer {
         this.topHUD = topHUD;
     }
 
-    public MiddleSection getMiddleSection() {
+    public static MiddleSection getMiddleSection() {
         return middleSection;
     }
 
@@ -81,4 +81,6 @@ public class MainContainer {
     public void setMainContainer(JFrame mainContainer) {
         this.mainContainer = mainContainer;
     }
+
+
 }
