@@ -25,5 +25,7 @@ public class GUIMain {
                 && game.getPlayer().getSteps() < 24
                 && game.getPlayer().getHealth() > 0
                 && !(game.getCommunicatorOff() && game.getCurrentRoom().getName().equalsIgnoreCase("landing zone")));
+        // TODO: create win GUI stuff and call it here
+        // game end message, sends you back to title screen
     }
 }
