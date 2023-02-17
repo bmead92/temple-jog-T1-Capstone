@@ -13,7 +13,11 @@ public class AttackMenu {
         JPanel attackMenu = new JPanel();
         JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
         bottomRightSectionJPanel.removeAll();
-        JLabel encounterInformation = new JLabel();
+        // TODO: Make this pretty
+        JTextArea encounterInformation = new JTextArea();
+        encounterInformation.setLineWrap(true);
+        encounterInformation.setWrapStyleWord(true);
+        encounterInformation.setBounds(100, 0, 500, 150);
         // if they player has items in their inventory, open an attack submenu and create a button for each inventory item
         // when the button is pressed, game.processChoice is called
         List<Item> playerInventory = game.getPlayer().getInventory();
