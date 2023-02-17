@@ -10,13 +10,13 @@ import java.util.List;
 
 public class AttackMenu {
     public static void setUpAttackMenu(Game game) {
-       final List<Item> playerInventory = game.getPlayer().getInventory();
         JPanel attackMenu = new JPanel();
         JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
         bottomRightSectionJPanel.removeAll();
         JLabel encounterInformation = new JLabel();
         // if they player has items in their inventory, open an attack submenu and create a button for each inventory item
         // when the button is pressed, game.processChoice is called
+        List<Item> playerInventory = game.getPlayer().getInventory();
         if (playerInventory.size() > 0) {
             JFrame attackSubMenu = new JFrame("Use");
             attackSubMenu.setLayout(new FlowLayout());
@@ -25,13 +25,12 @@ public class AttackMenu {
                 JButton buttonToAdd = new JButton(item.getName());
                 buttonToAdd.addActionListener(e -> {
                     if (e.getSource() == buttonToAdd) {
-                        String inventoryItem = item.getName();
+                        String inventoryItem = item.getName().toLowerCase();
                         final String[] choice = new String[] {"use", inventoryItem};
                         if (item.getReuse() == 0) {
                             attackSubMenu.remove(buttonToAdd);
                             attackSubMenu.validate();
                             attackSubMenu.repaint();
-                            playerInventory.remove(item);
                         }
                         bottomRightSectionJPanel.removeAll();
                         encounterInformation.setText(game.processChoice(choice));
