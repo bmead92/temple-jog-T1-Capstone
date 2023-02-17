@@ -10,21 +10,14 @@ import com.game.templejog.gui.MainContainer;
 import javax.swing.*;
 import java.awt.*;
 
-import org.apache.commons.lang.ObjectUtils;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import java.util.Objects;
 import java.util.List;
 
 public class MiddleSection {
     private final Game game;
     private JPanel middleSectionPanel;
-    private JPanel imagePanel, buttonPanel;
+    private JPanel imagePanel;
+    private final JPanel buttonPanel;
     private JLabel imageLabel;
     private ImageIcon currentLocationBackgroundIcon;
     private JButton upButton, downButton, leftButton, rightButton;

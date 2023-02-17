@@ -9,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainContainer {
-
     public static final int MAIN_CONTAINER_WIDTH = 800;
     public static final int MAIN_CONTAINER_HEIGHT = 800;
     private Game game;
