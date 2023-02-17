@@ -8,7 +8,7 @@ public class Room {
 //    TODO private fields
     Integer number;
     String name;
-    String description, west, south, north, east;
+    String description, shortDescription, west, south, north, east;
     List<String> items = new ArrayList<>();
     List<String> encounters_to = new ArrayList<>();
     List<String> encounters_from = new ArrayList<>();
@@ -18,10 +18,11 @@ public class Room {
     String image;
 
     public Room() {}
-    public Room(Integer number, String name, String description, String west, String south, String north, String east, List<String> items, List<String> encounters_to, List<String> encounters_from, Boolean hasBeenVisited, String sound, String backgroungImage) {
+    public Room(Integer number, String name, String description, String shortDescription, String west, String south, String north, String east, List<String> items, List<String> encounters_to, List<String> encounters_from, Boolean hasBeenVisited, String sound, String backgroungImage) {
         this.number = number;
         this.name = name;
         this.description = description;
+        this.shortDescription = shortDescription;
         this.west = west;
         this.south = south;
         this.north = north;
@@ -81,6 +82,14 @@ public class Room {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 
     public String getWest() {

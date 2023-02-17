@@ -21,10 +21,10 @@ public class BottomLeftOptions {
         bottomLeftAttackMap.setLayout(new BoxLayout(bottomLeftAttackMap, BoxLayout.PAGE_AXIS));
         this.bottomLeftSearchInventory = new JPanel();
         bottomLeftSearchInventory.setLayout(new BoxLayout(bottomLeftSearchInventory, BoxLayout.PAGE_AXIS));
-        this.attackButton = new JButton("Attack");
+        this.attackButton = new JButton("Use");
         attackButton.addActionListener(e -> {
             if (e.getSource() == this.attackButton) {
-                AttackMenu.setUpAttackMenu(this.game);
+                UseMenu.setUpUseMenu(this.game);
             }
         });
         this.searchAreaButton = new JButton("Search Area");

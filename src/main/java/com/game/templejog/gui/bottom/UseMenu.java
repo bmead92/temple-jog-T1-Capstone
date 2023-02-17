@@ -8,8 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class AttackMenu {
-    public static void setUpAttackMenu(Game game) {
+public class UseMenu {
+    public static void setUpUseMenu(Game game) {
         JPanel attackMenu = new JPanel();
         JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
         bottomRightSectionJPanel.removeAll();
