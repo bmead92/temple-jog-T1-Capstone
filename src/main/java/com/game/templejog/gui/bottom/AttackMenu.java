@@ -18,7 +18,7 @@ public class AttackMenu {
         // if they player has items in their inventory, open an attack submenu and create a button for each inventory item
         // when the button is pressed, game.processChoice is called
         if (playerInventory.size() > 0) {
-            JFrame attackSubMenu = new JFrame("Inventory");
+            JFrame attackSubMenu = new JFrame("Use");
             attackSubMenu.setLayout(new FlowLayout());
             attackSubMenu.setBounds(200, 645, 250, 250);
             for (Item item : playerInventory) {
@@ -27,6 +27,12 @@ public class AttackMenu {
                     if (e.getSource() == buttonToAdd) {
                         String inventoryItem = item.getName();
                         final String[] choice = new String[] {"use", inventoryItem};
+                        if (item.getReuse() == 0) {
+                            attackSubMenu.remove(buttonToAdd);
+                            attackSubMenu.validate();
+                            attackSubMenu.repaint();
+                            playerInventory.remove(item);
+                        }
                         bottomRightSectionJPanel.removeAll();
                         encounterInformation.setText(game.processChoice(choice));
                         attackMenu.add(encounterInformation);
