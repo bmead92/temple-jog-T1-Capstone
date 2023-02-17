@@ -54,8 +54,8 @@ public class MainContainer {
         return topHUD;
     }
 
-    public void setTopHUD(TopHUD topHUD) {
-        this.topHUD = topHUD;
+    public static void setTopHUD(TopHUD t) {
+        topHUD = t;
     }
 
     public static MiddleSection getMiddleSection() {

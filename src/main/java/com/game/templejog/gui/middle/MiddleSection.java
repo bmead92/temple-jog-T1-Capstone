@@ -24,7 +24,7 @@ import java.util.List;
 public class MiddleSection {
     private final Game game;
     private JPanel middleSectionPanel;
-    private JPanel imagePanel;
+    private JPanel imagePanel, buttonPanel;
     private JLabel imageLabel;
     private ImageIcon currentLocationBackgroundIcon;
     private JButton upButton, downButton, leftButton, rightButton;
@@ -34,6 +34,8 @@ public class MiddleSection {
         this.middleSectionPanel = new JPanel();
         this.imagePanel = new JPanel();
         this.imageLabel = new JLabel();
+        // Create the button panel
+        this.buttonPanel = new JPanel(new BorderLayout());
         this.leftButton = new JButton("<");
         this.rightButton = new JButton(">");
         this.upButton = new JButton("^");
@@ -59,7 +61,7 @@ public class MiddleSection {
             // handle up button click
             this.game.processChoice(commands);
             setUpMiddleSectionJPanel();
-            //TODO: Update HUD when changing locations
+            //DONE: Update HUD when changing locations
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
         downButton.addActionListener(e -> {
@@ -76,8 +78,6 @@ public class MiddleSection {
         JLabel encounterLabel = new JLabel();
         encounterLabel.setIcon(getEncounterImage);
 
-        // Create the button panel
-        JPanel buttonPanel = new JPanel(new BorderLayout());
         leftButton.setLocation(this.imagePanel.getX() - 10, this.imagePanel.getY());
         buttonPanel.setLayout(new BorderLayout());
         buttonPanel.add(leftButton, BorderLayout.WEST);
