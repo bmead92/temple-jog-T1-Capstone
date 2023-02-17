@@ -1,13 +1,11 @@
 package com.game.templejog.gui.top;
 
 import com.game.templejog.Game;
-import com.game.templejog.gui.MainContainer;
 
 import javax.swing.*;
 
 public class TopHUD {
     private Game game;
-
     private JPanel topHUDJPanel;
     private JLabel currentLocation;
     private JLabel currentHealth;
@@ -15,6 +13,7 @@ public class TopHUD {
     private final JButton exitButton;
 
     public TopHUD(Game game) {
+        this.topHUDJPanel = new JPanel();
         this.game = game;
         this.currentLocation =  new JLabel();
         this.currentHealth = new JLabel();
@@ -33,13 +32,12 @@ public class TopHUD {
     }
 
     public JPanel setUpTopHUDJPanel() {
-        topHUDJPanel = new JPanel();
-        currentLocation = new JLabel("Location: " + game.getCurrentRoom().getName());
+        currentLocation.setText(game.getCurrentRoom().getName());
         topHUDJPanel.add(currentLocation);
-        currentHealth = new JLabel("Health: " + game.getPlayer().getHealth());
-        topHUDJPanel.add(currentHealth);
-        topHUDJPanel.add(helpButton);
-        topHUDJPanel.add(exitButton);
+        currentHealth.setText(String.valueOf(game.getPlayer().getHealth()));
+        topHUDJPanel.add(this.currentHealth);
+        topHUDJPanel.add(this.helpButton);
+        topHUDJPanel.add(this.exitButton);
         topHUDJPanel.setVisible(true);
         return topHUDJPanel;
     }
@@ -66,5 +64,13 @@ public class TopHUD {
 
     public void setCurrentHealth(JLabel currentHealth) {
         this.currentHealth = currentHealth;
+    }
+
+    public JPanel getTopHUDJPanel() {
+        return topHUDJPanel;
+    }
+
+    public void setTopHUDJPanel(JPanel topHUDJPanel) {
+        this.topHUDJPanel = topHUDJPanel;
     }
 }
