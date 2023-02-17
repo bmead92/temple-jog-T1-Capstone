@@ -10,7 +10,7 @@ public class TopHUD {
     private JLabel currentLocation;
     private JLabel currentHealth;
     private final JButton helpButton;
-    private final JButton exitButton;
+    private final JButton quitButton;
 
     public TopHUD(Game game) {
         this.topHUDJPanel = new JPanel();
@@ -23,10 +23,10 @@ public class TopHUD {
                 HelpMenu.setUpHelpGUI(this.game);
             }
         });
-        this.exitButton = new JButton("Exit");
-        exitButton.addActionListener(e -> {
-            if (e.getSource() == this.exitButton) {
-                ExitMenu.setUpExitOptions();
+        this.quitButton = new JButton("Quit");
+        quitButton.addActionListener(e -> {
+            if (e.getSource() == this.quitButton) {
+                QuitMenu.setUpQuitOptions();
             }
         });
     }
@@ -37,7 +37,7 @@ public class TopHUD {
         currentHealth.setText(String.valueOf(game.getPlayer().getHealth()));
         topHUDJPanel.add(this.currentHealth);
         topHUDJPanel.add(this.helpButton);
-        topHUDJPanel.add(this.exitButton);
+        topHUDJPanel.add(this.quitButton);
         topHUDJPanel.setVisible(true);
         return topHUDJPanel;
     }

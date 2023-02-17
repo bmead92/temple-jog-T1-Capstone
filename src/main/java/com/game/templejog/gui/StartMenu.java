@@ -1,13 +1,10 @@
 package com.game.templejog.gui;
 
-import com.game.templejog.Game;
-import com.game.templejog.gui.top.ExitMenu;
+import com.game.templejog.gui.top.QuitMenu;
 
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 
 
 public class StartMenu {
@@ -15,9 +12,9 @@ public class StartMenu {
 //    Container con;
     JPanel titleNamePanel, startButtonPanel, buttonPanel, bgPanel;
     JLabel titleNameLabel, musicQuestion;
-    Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
+    Font titleFont = new Font("Times New Roman", Font.PLAIN, 45);
     Font questionFont = new Font("Times New Roman", Font.PLAIN, 12);
-    JButton startButton, exitButton, settingsButton, creditsButton;
+    JButton startButton, quitButton, settingsButton, creditsButton;
 
 
     public void gameStartScreen(){
@@ -48,13 +45,13 @@ public class StartMenu {
 //        con = startWindow.getContentPane();
 
         //Create Title
-//        titleNamePanel = new JPanel();
-//        titleNamePanel.setBounds(100, 100, 600, 150);
-//        titleNamePanel.setBackground(Color.darkGray);
-//
-//        titleNameLabel = new JLabel("TEMPLE JOG");
-//        titleNameLabel.setForeground(Color.lightGray);
-//        titleNameLabel.setFont(titleFont);
+        titleNamePanel = new JPanel();
+        titleNamePanel.setBounds(100, 10, 600, 60);
+        titleNamePanel.setBackground(Color.darkGray);
+
+        titleNameLabel = new JLabel("TEMPLE JOG");
+        titleNameLabel.setForeground(Color.lightGray);
+        titleNameLabel.setFont(titleFont);
 
         //create Start button Panel
         startButtonPanel = new JPanel();
@@ -78,13 +75,13 @@ public class StartMenu {
         /*TODO: add settings for music, music volume. etc*/
 
 
-        //create exit button
-        exitButton = new JButton("EXIT");
-        exitButton.setBackground(Color.white);
+        //create QUIT button
+        quitButton = new JButton("QUIT");
+        quitButton.setBackground(Color.white);
         /*DONE: add action listener to exit*/
-        exitButton.addActionListener(e -> {
-            if (e.getSource() == this.exitButton) {
-                ExitMenu.setUpExitOptions();
+        quitButton.addActionListener(e -> {
+            if (e.getSource() == this.quitButton) {
+                QuitMenu.setUpQuitOptions();
             }
         });
 
@@ -102,11 +99,11 @@ public class StartMenu {
 
         startButtonPanel.add(startButton);
         buttonPanel.add(settingsButton);
-        buttonPanel.add(exitButton);
+        buttonPanel.add(quitButton);
         buttonPanel.add(creditsButton);
 
-//        titleNamePanel.add(titleNameLabel);
-//        startWindow.add(titleNamePanel);
+        titleNamePanel.add(titleNameLabel);
+        startWindow.add(titleNamePanel);
 
         startWindow.add(startButtonPanel);
         startWindow.add(buttonPanel);
