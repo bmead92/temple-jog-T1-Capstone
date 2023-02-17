@@ -77,7 +77,6 @@ public class MiddleSection {
         buttonPanel.add(rightButton, BorderLayout.EAST);
         buttonPanel.add(upButton, BorderLayout.NORTH);
         buttonPanel.add(downButton, BorderLayout.SOUTH);
-
         encounterLabel.setIcon(getEncounterImage);
         imagePanel.add(imageLabel, BorderLayout.CENTER);
 
