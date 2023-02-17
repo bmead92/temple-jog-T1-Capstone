@@ -158,7 +158,7 @@
       "encounters_to": [ "communicator" ],
       "encounters_from": ["alien boss"],
       "sound": "sounds/communication_room.wav",
-      "image": "Images/Rooms/CommunicationsRoom.webp"
+      "image": "Images/Rooms/CommunicationsRoom.jpeg"
     }
   },
   "encounters": {
