@@ -15,7 +15,7 @@ public class MapMenu {
 
         JLabel mapLabel = new JLabel();
         mapLabel.setBounds(50,0,800,800);
-        ImageIcon mapImage = new ImageIcon(MapMenu.class.getClassLoader().getResource("Temple_Jog_map.png"));
+        ImageIcon mapImage = new ImageIcon(MapMenu.class.getClassLoader().getResource("Images/Temple_Jog_map.png"));
         mapLabel.setIcon(mapImage);
         mapFrame.add(mapLabel);
         mapFrame.setVisible(true);
