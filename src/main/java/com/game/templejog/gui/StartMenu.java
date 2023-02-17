@@ -1,6 +1,7 @@
 package com.game.templejog.gui;
 
 import com.game.templejog.Game;
+import com.game.templejog.gui.top.ExitMenu;
 
 
 import javax.imageio.ImageIO;
@@ -64,6 +65,7 @@ public class StartMenu {
         startButton = new JButton("START");
         startButton.setBackground(Color.white);
         startButton.setLocation(100,100);
+        /*TODO: connect to start game loop to call start of game show you are at LZ*/
 
         //create Button Panel
         buttonPanel = new JPanel();
@@ -73,14 +75,28 @@ public class StartMenu {
         //create settings buttons
         settingsButton = new JButton("SETTINGS");
         settingsButton.setBackground(Color.white);
+        /*TODO: add settings for music, music volume. etc*/
+
 
         //create exit button
         exitButton = new JButton("EXIT");
         exitButton.setBackground(Color.white);
+        /*DONE: add action listener to exit*/
+        exitButton.addActionListener(e -> {
+            if (e.getSource() == this.exitButton) {
+                ExitMenu.setUpExitOptions();
+            }
+        });
 
         //create credits button
         creditsButton = new JButton("CREDITS");
         creditsButton.setBackground(Color.white);
+        /*DONE: add dialog information window with credit for codebase and our work*/
+        creditsButton.addActionListener(e -> {
+            if (e.getSource() == this.creditsButton) {
+                creditMenu();
+            }
+        });
 
 
 
@@ -100,10 +116,15 @@ public class StartMenu {
     }
 
 
-//    public static void main(String[] args) {
-//        StartMenu sm = new StartMenu();
-//        sm.gameStartScreen();
-//
-//    }
+    public static void creditMenu() {
+        JFrame helpFrame = new JFrame("Developers Menu");
+        JTextArea helpMessage = new JTextArea("Temple Jog Capstone\n\nDevelopers:\nBryce Meadors, Joe Savella, Cindy Pottin\n\nAdaptation from Text Based Game Developed by:\nJoe Racke, Lorenzo Ortega, and Lok Tamang");
+        JOptionPane.showMessageDialog(helpFrame, helpMessage, "Developers", JOptionPane.INFORMATION_MESSAGE);
+    }
+    public static void main(String[] args) {
+        StartMenu sm = new StartMenu();
+        sm.gameStartScreen();
+
+    }
 
 }
