@@ -12,6 +12,8 @@ import java.awt.*;
 import java.io.*;
 
 public class StartMenu {
+
+    GUIMain guiMain;
     JFrame startWindow;
 //    Container con;
     JPanel titleNamePanel, startButtonPanel, buttonPanel, bgPanel;
@@ -20,7 +22,8 @@ public class StartMenu {
     Font questionFont = new Font("Times New Roman", Font.PLAIN, 12);
     JButton startButton, quitButton, settingsButton, creditsButton, loadButton, saveButton;
 
-    public StartMenu(Game game) throws IOException {
+    public StartMenu(GUIMain guiMain) {
+        this.guiMain = guiMain;
     }
 
     public void gameStartScreen(Game game){
@@ -68,8 +71,15 @@ public class StartMenu {
         startButton.setBackground(Color.white);
         startButton.setLocation(100,100);
         /*TODO: connect to start game loop to call start of game show you are at LZ*/
+        startButton.addActionListener(e -> {
+            if(e.getSource() == this.startButton){
+                guiMain.gameLoop();
+                    startWindow.dispose();
 
-        //create load button
+            }
+        });
+
+//        create load button
         loadButton = new JButton("LOAD");
         loadButton.setBackground(Color.white);
         loadButton.addActionListener(e -> {
@@ -159,12 +169,4 @@ public class StartMenu {
         JOptionPane.showMessageDialog(helpFrame, helpMessage, "Developers", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public static void main(String[] args) throws IOException {
-        final Temple gameFiles = FileLoader.jsonLoader("JSON/gameFiles.json");
-        final Game game = new Game(gameFiles);
-
-        StartMenu sm = new StartMenu(game);
-        sm.gameStartScreen(game);
-
-    }
 }
