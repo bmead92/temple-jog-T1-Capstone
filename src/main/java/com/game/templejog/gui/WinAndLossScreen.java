@@ -31,7 +31,6 @@ public class WinAndLossScreen {
         final String outOfTime = "You look down as your alarm goes off. It's 18:00....";
         final String outOfLife = game.getGameText().get("outOfLife");
         final String playerDiesMessage = "You collapse until the pressure of everything, unable to continue on...";
-        final String playerOverMaxStepsMessage = "You look down as your alarm goes off. It's 18:00....";
         final String successMessage = "You manage to jog back to the landing zone just as the helicopter lands. " +
                 "You all take off, eager to get as much distance between yourselves and the temple as possible...";
         final String sortOfWin = game.getGameText().get("sortOfWin");
@@ -60,7 +59,7 @@ public class WinAndLossScreen {
                 this.winAndLossFrame.setTitle("YOU DIED!");
             } else if (playerOutOfSteps) {
                 //bombSound();
-                this.winAndLossTextArea.setText(String.format("%s\n%s", playerOverMaxStepsMessage, outOfTime));
+                this.winAndLossTextArea.setText(String.format("%s", outOfTime));
                 this.winAndLossFrame.setTitle("YOU RAN OUT OF TIME!");
             }
         }
@@ -69,7 +68,8 @@ public class WinAndLossScreen {
         this.winAndLossFrame.setLayout(new BorderLayout());
         this.winAndLossFrame.add(this.winAndLossTextArea, BorderLayout.CENTER);
         this.winAndLossFrame.add(this.confirmationButton, BorderLayout.PAGE_END);
-        this.winAndLossFrame.setBounds(400, 400, 400, 400);
+        winAndLossFrame.setSize(250, 250);
+        winAndLossFrame.setLocationRelativeTo(null);
         this.winAndLossFrame.setVisible(true);
         return this.winAndLossFrame;
     }

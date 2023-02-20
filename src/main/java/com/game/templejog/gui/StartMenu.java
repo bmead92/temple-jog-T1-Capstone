@@ -2,18 +2,15 @@ package com.game.templejog.gui;
 
 import com.game.templejog.gui.top.QuitMenu;
 import com.game.templejog.Game;
-import com.game.templejog.gui.bottom.BottomSection;
-import com.game.templejog.gui.middle.MiddleSection;
-import com.game.templejog.Temple;
-import com.game.templejog.client.FileLoader;
-import com.game.templejog.gui.top.TopHUD;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 
 public class StartMenu {
 
-    GUIMain guiMain;
+    private RunGUI runGui;
     JFrame startWindow;
 //    Container con;
     JPanel titleNamePanel, startButtonPanel, buttonPanel, bgPanel;
@@ -22,8 +19,8 @@ public class StartMenu {
     Font questionFont = new Font("Times New Roman", Font.PLAIN, 12);
     JButton startButton, quitButton, settingsButton, creditsButton, loadButton, saveButton;
 
-    public StartMenu(GUIMain guiMain) {
-        this.guiMain = guiMain;
+    public StartMenu(RunGUI runGui) {
+        this.runGui = runGui;
     }
 
     public void gameStartScreen(Game game){
@@ -44,7 +41,13 @@ public class StartMenu {
         imageLabel.setBounds(100,0,600,500);
 //        imageLabel.setSize(600,600);
 
-        ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("Images/temple.jpeg"));
+        ImageIcon bgIcon = null;
+        try {
+            //noinspection ConstantConditions
+            bgIcon = new ImageIcon(ImageIO.read(getClass().getClassLoader().getResourceAsStream("Images/temple.jpeg")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         imageLabel.setIcon(bgIcon);
 
         startWindow.add(imageLabel);
@@ -72,10 +75,9 @@ public class StartMenu {
         startButton.setLocation(100,100);
         /*TODO: connect to start game loop to call start of game show you are at LZ*/
         startButton.addActionListener(e -> {
-            if(e.getSource() == this.startButton){
-                guiMain.gameLoop();
-                    startWindow.dispose();
-
+            if(e.getSource() == this.startButton) {
+                new Thread(() -> runGui.runGame()).start();
+                startWindow.dispose();
             }
         });
 

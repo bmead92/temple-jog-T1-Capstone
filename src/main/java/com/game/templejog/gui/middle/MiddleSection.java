@@ -3,13 +3,15 @@ package com.game.templejog.gui.middle;
 import com.game.templejog.Encounter;
 import com.game.templejog.Game;
 import com.game.templejog.Room;
-import com.game.templejog.gui.GUIMain;
+import com.game.templejog.gui.GUIClient;
+import com.game.templejog.gui.RunGUI;
 import com.game.templejog.gui.MainContainer;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.Objects;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 
@@ -45,6 +47,7 @@ public class MiddleSection {
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
+            setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
         rightButton.addActionListener(e -> {
@@ -118,8 +121,13 @@ public class MiddleSection {
 
     public ImageIcon getBackgroundImage() {
         String currentLocationImage = game.getCurrentRoom().getImage();
-        ImageIcon currentLocationBackgroundIcon = new ImageIcon(Objects.requireNonNull
-                (GUIMain.class.getClassLoader().getResource(currentLocationImage)));
+        ImageIcon currentLocationBackgroundIcon = null;
+        try {
+            currentLocationBackgroundIcon = new ImageIcon(ImageIO.read(Objects.requireNonNull
+                    (RunGUI.class.getClassLoader().getResourceAsStream(currentLocationImage))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return currentLocationBackgroundIcon;
     }
 
@@ -145,8 +153,14 @@ public class MiddleSection {
         if( encounter != null ){
             encounterImagePath = encounter.getImage();
             System.out.println(encounterImagePath);
-//            ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(GUIMain.class.getClassLoader().getResource(encounterImagePath)));
-            currentLocationEncounterIcon = new ImageIcon(encounterImagePath);
+            ImageIcon imageIcon = null;
+            try {
+                imageIcon = new ImageIcon(ImageIO.read(Objects.requireNonNull(MiddleSection.class.getClassLoader().getResourceAsStream(encounterImagePath))));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+                //TODO: Fix null pointer
+            } catch (NullPointerException ignored) {}
+            currentLocationEncounterIcon = imageIcon;
         }
 
         return currentLocationEncounterIcon;
@@ -174,7 +188,12 @@ public class MiddleSection {
         if( encounter != null ){
             encounterImagePath = encounter.getImage();
             System.out.println(encounterImagePath);
-//            ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(GUIMain.class.getClassLoader().getResource(encounterImagePath)));
+            try {
+                ImageIcon imageIcon = new ImageIcon(ImageIO.read(Objects.requireNonNull(MiddleSection.class.getClassLoader().getResourceAsStream(encounterImagePath))));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+                //TODO: Fix null pointer
+            } catch (NullPointerException ignored) {}
             currentLocationEncounterIcon = new ImageIcon(encounterImagePath);
         }
 

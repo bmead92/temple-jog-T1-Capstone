@@ -15,6 +15,8 @@ public class InventoryMenu {
             line.append(String.format("%s\n", item.getName()));
         }
         JFrame inventoryFrame = new JFrame("Inventory");
+        inventoryFrame.setSize(250, 250);
+        inventoryFrame.setLocationRelativeTo(null);
         JTextArea inventoryMessage = new JTextArea(String.valueOf(line));
         JOptionPane.showMessageDialog(inventoryFrame, inventoryMessage);
     }

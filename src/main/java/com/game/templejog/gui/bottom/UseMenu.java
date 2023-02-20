@@ -24,7 +24,8 @@ public class UseMenu {
         if (playerInventory.size() > 0) {
             JFrame attackSubMenu = new JFrame("Use");
             attackSubMenu.setLayout(new FlowLayout());
-            attackSubMenu.setBounds(200, 645, 250, 250);
+            attackSubMenu.setSize(250, 250);
+            attackSubMenu.setLocationRelativeTo(null);
             for (Item item : playerInventory) {
                 JButton buttonToAdd = new JButton(item.getName());
                 buttonToAdd.addActionListener(e -> {
