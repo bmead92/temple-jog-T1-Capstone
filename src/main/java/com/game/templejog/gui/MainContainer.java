@@ -29,7 +29,7 @@ public class MainContainer {
         MainContainer.bottomSection = bottomSection;
     }
 
-    public void setUpMainContainer() throws IOException {
+    public void setUpMainContainer() {
         JFrame mainContainer = new JFrame();
         this.mainContainer = mainContainer;
         mainContainer.setLayout(new BorderLayout());
