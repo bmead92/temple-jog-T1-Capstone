@@ -39,7 +39,7 @@ public class TopHUD {
             }
         });
         this.pauseBar = new JMenuBar();
-        this.pauseMenu = new JMenu();
+        this.pauseMenu = new JMenu("PAUSE");
         pauseBar.add(pauseMenu);
         pauseMenu.addActionListener(e -> {
             if (e.getSource() == this.pauseMenu) {
