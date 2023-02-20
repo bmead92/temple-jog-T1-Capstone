@@ -1,6 +1,6 @@
 package com.game.templejog;
 
-public class Item {
+public class Item implements java.io.Serializable {
     private String name, room, description;
     private Integer damage, reuse;
 

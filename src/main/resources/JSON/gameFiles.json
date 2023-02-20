@@ -182,7 +182,9 @@
         "machete"
       ],
       "success": "The alien collapses and dies!",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/AlienGuard.jpeg"
+
     },
     "bald eagle": {
       "name": "bald eagle",
@@ -192,7 +194,8 @@
         "desert eagle"
       ],
       "success": "You fire off a shot into the sky, startling the majestic bald eagle and causing it to fly away.",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/BaldEagle.jpeg"
     },
     "cougar": {
       "name": "cougar",
@@ -201,7 +204,8 @@
       "weakness": ["desert eagle",
                     "ball o yarn"],
       "success": "After everything you've been through, a cougar was the least of your challenges. As such, this challenge was easily overcome.",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/Cougar.webp"
     },
     "lion": {
       "name": "lion",
@@ -209,7 +213,8 @@
       "description": "One of the statues has come to life! A ripped and overly shredded lion with a particular taste for intruders leaps into action.",
       "weakness": ["ball o yarn"],
       "success": "You throw the ball O yarn at the lion, and it bats it around like a kitten with a toy. It's way too distracted to care about you now.",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/Lion.jpeg"
     },
     "mummy": {
       "name": "mummy",
@@ -221,7 +226,8 @@
         "grenade"
       ],
       "success": "The mummy bursts into flames immediately upon your attack. It gets reduced to a pile of ash.",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/Mummy.jpeg"
     },
     "face mugger": {
       "name": "face mugger",
@@ -232,7 +238,8 @@
         "flamethrower"
       ],
       "success": "You dodge the attack and kill the the face-mugger before it can latch on. No telling how terrible an experience that would have been had it succeeded.",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/FaceMugger.jpeg"
     },
     "alien boss": {
       "name": "alien boss",
@@ -242,7 +249,8 @@
         "crystal femur"
       ],
       "success": "Not taking any chances that the alien might just have been trying to communicate, you bludgeon it with the Crystal Femur. The alien leader is knocked unconscious.",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/AlienBoss.jpeg"
     },
     "anaconda": {
       "name": "anaconda",
@@ -250,7 +258,8 @@
       "description": "A giant Anaconda coils itself up, poised to strike at a moment's notice!",
       "weakness": [ "grenade",  "desert eagle",  "machete" ],
       "success": "You quickly deal with the Anaconda before it can wrap itself around you. Injured, it slithers back into its hole. Hopefully it won't come back later...",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/Anaconda.jpeg"
     },
     "communicator": {
       "name": "communicator",
@@ -258,7 +267,8 @@
       "description": "You see this big, complicated-looking machine in the corner of the room with flashing lights and beeping noises. It hits you, this is the communication device! I mean, imagine the technology these aliens have, man. They're able to travel across the universe, talking with each other and keeping in touch, even though they're light years apart. Strangely, there is an outline that is the perfect shape of a femur." ,
       "weakness": ["crystal femur"],
       "success": "You found a way to destroy the communication device and thwarted all communication to the alien planet. Looking good for humanity, but not for you. You should probably start jogging to the landing zone before you get nuked!",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/AlienGuard.jpeg"
     },
     "pit": {
       "name": "pit",
@@ -266,7 +276,8 @@
       "description": "Ahhhhhh!! You have fallen into a black pit at least 10 feet deep!",
       "weakness": [],
       "success": "pop",
-      "outcome": -1
+      "outcome": -1,
+      "image": "Images/Encounters/AlienGuard.jpeg"
     },
     "locked door": {
       "name": "locked door",
@@ -274,7 +285,8 @@
       "description": "...Strange, the south door is locked.",
       "weakness": ["key"],
       "success": "..Or is it? The door creaks open, revealing a dark and mysterious chamber beyond. The air is thick with the smell of metal and ozone, and the hum of unfamiliar machinery fills the room. The walls are slick with some sort of alien lubricant, and strange markings adorn the surface. The flickering lights above cast eerie shadows on the walls, illuminating the strange and alien technology within.",
-      "outcome": -1
+      "outcome": -1,
+      "image": "Images/Encounters/AlienGuard.jpeg"
     }
   },
   "items": {

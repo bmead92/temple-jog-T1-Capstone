@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by dev0 on 2/2/23.
  */
-public class Encounter {
+public class Encounter implements java.io.Serializable {
     String name,type,description,success;
     List<String> weakness;
     Integer failure,outcome;

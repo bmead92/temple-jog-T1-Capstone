@@ -2,7 +2,7 @@ package com.game.templejog;
 
 import java.util.HashMap;
 
-public class Temple {
+public class Temple implements java.io.Serializable {
     private HashMap<String,Room> easymap;
     private HashMap<String,Encounter> encounters;
     private HashMap<String,Item> items;
