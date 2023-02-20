@@ -7,6 +7,7 @@ import com.game.templejog.gui.top.TopHUD;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class MainContainer {
     public static final int MAIN_CONTAINER_WIDTH = 800;
@@ -28,7 +29,7 @@ public class MainContainer {
         MainContainer.bottomSection = bottomSection;
     }
 
-    public void setUpMainContainer() {
+    public void setUpMainContainer() throws IOException {
         JFrame mainContainer = new JFrame();
         this.mainContainer = mainContainer;
         mainContainer.setLayout(new BorderLayout());

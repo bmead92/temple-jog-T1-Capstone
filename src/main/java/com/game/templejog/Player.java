@@ -3,7 +3,7 @@ package com.game.templejog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public class Player implements java.io.Serializable {
     Integer health, steps;
     List<Item> inventory;
 

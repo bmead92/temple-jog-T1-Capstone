@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Room {
+public class Room implements java.io.Serializable {
 //    TODO private fields
     Integer number;
     String name;

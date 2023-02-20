@@ -3,6 +3,7 @@ package com.game.templejog.gui.top;
 import com.game.templejog.Game;
 
 import javax.swing.*;
+import java.io.*;
 
 public class TopHUD {
     private Game game;
@@ -12,6 +13,12 @@ public class TopHUD {
     private JProgressBar currentHealthBar;
     private final JButton helpButton;
     private final JButton quitButton;
+    private JMenuBar pauseBar;
+    private JMenu pauseMenu;
+    private JMenuItem saveItem;
+    private JMenuItem quitItem;
+    private JMenuItem loadItem;
+    private JMenuItem settingsItem;
 
     public TopHUD(Game game) {
         this.topHUDJPanel = new JPanel();
@@ -31,6 +38,49 @@ public class TopHUD {
                 QuitMenu.setUpQuitOptions();
             }
         });
+        this.pauseBar = new JMenuBar();
+        this.pauseMenu = new JMenu();
+        pauseBar.add(pauseMenu);
+        pauseMenu.addActionListener(e -> {
+            if (e.getSource() == this.pauseMenu) {
+                pauseMenu(game);
+            }
+        });
+    }
+
+    private void pauseMenu(Game game) {
+        saveItem = new JMenuItem("SAVE");
+        saveItem.addActionListener(e -> {
+            if (e.getSource() == this.saveItem) {
+                saveGame(game);
+            }
+        });
+
+        loadItem = new JMenuItem("LOAD");
+        loadItem.addActionListener(e -> {
+            if (e.getSource() == this.loadItem) {
+                loadGame(game);
+            }
+        });
+
+        settingsItem = new JMenuItem("SETTINGS");
+        settingsItem.addActionListener(e -> {
+            if (e.getSource() == this.settingsItem) {
+                //TODO: create settings method
+            }
+        });
+
+        quitItem = new JMenuItem("QUIT GAME");
+        quitItem.addActionListener(e -> {
+            if (e.getSource() == this.quitItem) {
+                QuitMenu.setUpQuitOptions();
+            }
+        });
+
+        pauseMenu.add(saveItem);
+        pauseMenu.add(loadItem);
+        pauseMenu.add(settingsItem);
+        pauseMenu.add(quitItem);
     }
 
     public JPanel setUpTopHUDJPanel() {
@@ -42,8 +92,34 @@ public class TopHUD {
         topHUDJPanel.add(this.currentHealthBar);
         topHUDJPanel.add(this.helpButton);
         topHUDJPanel.add(this.quitButton);
+        topHUDJPanel.add(this.pauseBar);
         topHUDJPanel.setVisible(true);
         return topHUDJPanel;
+    }
+
+    private static void saveGame(Game game) {
+        try {
+            FileOutputStream fos = new FileOutputStream("TempleJog.sav");
+            ObjectOutput oos = new ObjectOutputStream(fos);
+            oos.writeObject(game);
+            oos.flush();
+            oos.close();
+            System.out.println("Game saved\n");
+        } catch (Exception e) {
+            System.out.println("Serialization error: " + e.getClass() + ": " + e.getMessage());
+        }
+    }
+
+    private static void loadGame(Game game) {
+        try {
+            FileInputStream fis = new FileInputStream("TempleJog.sav");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            game = (Game) ois.readObject();
+            ois.close();
+            System.out.println("\n Game loaded");
+        } catch (Exception e) {
+            System.out.println("Deserialization error: " + e.getClass() + ": " + e.getMessage());
+        }
     }
 
     public Game getGame() {

@@ -2,7 +2,7 @@ package com.game.templejog;
 
 import java.util.*;
 
-public class Game {
+public class Game implements java.io.Serializable {
     // MODEL
     private Boolean quitGame;
     private String scannerString;
