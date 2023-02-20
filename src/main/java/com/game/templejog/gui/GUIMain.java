@@ -27,5 +27,7 @@ public class GUIMain {
                 && !(game.getCommunicatorOff() && game.getCurrentRoom().getName().equalsIgnoreCase("landing zone")));
         // TODO: create win GUI stuff and call it here
         // game end message, sends you back to title screen
+        WinAndLossScreen winAndLossScreen = new WinAndLossScreen(game, mainContainer.getMainContainer());
+        winAndLossScreen.setUpWinAndLossScreen();
     }
 }
