@@ -16,7 +16,7 @@ public class BottomSection {
     public JPanel setUpBottomSectionJPanel() {
         JPanel bottomSection = new JPanel();
         this.bottomLeftOptions = new BottomLeftOptions(game);
-        bottomSection.setLayout(new BorderLayout());
+        bottomSection.setLayout(new BorderLayout(350, 0));
         bottomSection.add(bottomLeftOptions.setUpBottomLeftOptionsJPanel(), BorderLayout.LINE_START);
         this.bottomRightSection = new BottomRightSection();
         bottomSection.add(bottomRightSection.getBottomRightSectionJPanel(), BorderLayout.CENTER);

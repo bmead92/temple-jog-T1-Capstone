@@ -101,7 +101,11 @@ public class MiddleSection {
         // Add the panels to the middleHUD
 
         if (game.getCurrentRoom().getEncounters_to().size() > 0) {
-            currentLocationEncounterIcon = getEncounterImageTo();
+            JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
+            String encounterKey = game.getCurrentRoom().getEncounters_to().get(0);
+            String encounterDescription = game.getEncounters().get(encounterKey).getShortDescription();
+            bottomRightSectionJPanel.add(new JLabel(encounterDescription));
+            currentLocationEncounterIcon = getEncounterImage();
             encounterLabel.setIcon(currentLocationEncounterIcon);
             imagePanel.add(encounterLabel);
         }
@@ -131,7 +135,7 @@ public class MiddleSection {
         return currentLocationBackgroundIcon;
     }
 
-    public ImageIcon getEncounterImageTo() {
+    public ImageIcon getEncounterImage() {
         String encounter = game.getCurrentRoom().getEncounters_to().get(0);
         String encounterImagePath = game.getEncounters().get(encounter).getImage();
         currentLocationEncounterIcon = null;
@@ -143,40 +147,6 @@ public class MiddleSection {
             throw new RuntimeException(e);
         } catch (NullPointerException e) {
             System.out.println(e);
-        }
-        return currentLocationEncounterIcon;
-    }
-
-    public ImageIcon getEncounterImageFrom() {
-        ImageIcon currentLocationEncounterIcon = new ImageIcon();
-
-        Room currentRoom = game.getCurrentRoom();
-        List<String> encounterFromList = currentRoom.getEncounters_from();
-        if (encounterFromList.isEmpty()) {
-            return null;
-        }
-
-        String currentEncounter = encounterFromList.get(0);
-        HashMap<String, Encounter> mapOfEncounters = game.getEncounters();
-
-        Encounter encounter = null;
-        String encounterImagePath = null;
-
-        if (mapOfEncounters.get(currentEncounter) != null) {
-            encounter = mapOfEncounters.get(currentEncounter);
-        }
-
-        if (encounter != null) {
-            encounterImagePath = encounter.getImage();
-            System.out.println(encounterImagePath);
-            try {
-                ImageIcon imageIcon = new ImageIcon(ImageIO.read(Objects.requireNonNull(RunGUI.class.getClassLoader().getResourceAsStream(encounterImagePath))));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-                //TODO: Fix null pointer
-            } catch (NullPointerException ignored) {
-            }
-            currentLocationEncounterIcon = new ImageIcon(encounterImagePath);
         }
         return currentLocationEncounterIcon;
     }
