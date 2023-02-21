@@ -11,6 +11,7 @@ public class TopHUD {
     private JLabel currentLocation;
     private JLabel currentHealth;
     private JProgressBar currentHealthBar;
+    private JLabel hoursPlayed;
     private final JButton helpButton;
     //    private final JButton quitButton;
     private JMenuBar pauseBar;
@@ -26,6 +27,7 @@ public class TopHUD {
         this.currentLocation = new JLabel();
         this.currentHealth = new JLabel();
         this.currentHealthBar = new JProgressBar(0, 90);
+        this.hoursPlayed = new JLabel();
         this.helpButton = new JButton("Help");
         helpButton.addActionListener(e -> {
             if (e.getSource() == this.helpButton) {
@@ -79,10 +81,15 @@ public class TopHUD {
     public JPanel setUpTopHUDJPanel() {
         currentLocation.setText(game.getCurrentRoom().getName());
         topHUDJPanel.add(currentLocation);
-        currentHealth.setText(String.valueOf("HP: " + game.getPlayer().getHealth()));
+        currentHealth.setText(String.valueOf("     HP: " + game.getPlayer().getHealth()));
         currentHealthBar.setValue(game.getPlayer().getHealth() * 10);
+        int playTime = game.getPlayer().getSteps()*15;
+        int playHrs = playTime/60;
+        int playMins = playTime%60;
+        hoursPlayed.setText("   TIME: " + (1200 + (100*playHrs) + playMins));
         topHUDJPanel.add(this.currentHealth);
         topHUDJPanel.add(this.currentHealthBar);
+        topHUDJPanel.add(this.hoursPlayed);
         topHUDJPanel.add(this.helpButton);
 //        topHUDJPanel.add(this.quitButton);
         topHUDJPanel.add(this.pauseBar);
