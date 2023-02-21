@@ -12,7 +12,7 @@ public class TopHUD {
     private JLabel currentHealth;
     private JProgressBar currentHealthBar;
     private final JButton helpButton;
-    private final JButton quitButton;
+    //    private final JButton quitButton;
     private JMenuBar pauseBar;
     private JMenu pauseMenu;
     private JMenuItem saveItem;
@@ -23,38 +23,26 @@ public class TopHUD {
     public TopHUD(Game game) {
         this.topHUDJPanel = new JPanel();
         this.game = game;
-        this.currentLocation =  new JLabel();
+        this.currentLocation = new JLabel();
         this.currentHealth = new JLabel();
-        this.currentHealthBar = new JProgressBar(0,90);
+        this.currentHealthBar = new JProgressBar(0, 90);
         this.helpButton = new JButton("Help");
         helpButton.addActionListener(e -> {
             if (e.getSource() == this.helpButton) {
                 HelpMenu.setUpHelpGUI(this.game);
             }
         });
-        this.quitButton = new JButton("Quit");
-        quitButton.addActionListener(e -> {
-            if (e.getSource() == this.quitButton) {
-                QuitMenu.setUpQuitOptions();
-            }
-        });
+
+
         this.pauseBar = new JMenuBar();
         this.pauseMenu = new JMenu("PAUSE");
-        pauseBar.add(pauseMenu);
-        pauseMenu.addActionListener(e -> {
-            if (e.getSource() == this.pauseMenu) {
-                pauseMenu(game);
-            }
-        });
-    }
-
-    private void pauseMenu(Game game) {
         saveItem = new JMenuItem("SAVE");
         saveItem.addActionListener(e -> {
             if (e.getSource() == this.saveItem) {
                 saveGame(game);
             }
         });
+
 
         loadItem = new JMenuItem("LOAD");
         loadItem.addActionListener(e -> {
@@ -65,8 +53,8 @@ public class TopHUD {
 
         settingsItem = new JMenuItem("SETTINGS");
         settingsItem.addActionListener(e -> {
-            if (e.getSource() == this.settingsItem) {
-                //TODO: create settings method
+            if(e.getSource() == this.settingsItem){
+                SettingsMenu.settingsMenuDisplay();
             }
         });
 
@@ -81,7 +69,12 @@ public class TopHUD {
         pauseMenu.add(loadItem);
         pauseMenu.add(settingsItem);
         pauseMenu.add(quitItem);
+
+        pauseBar.add(pauseMenu);
+
     }
+
+
 
     public JPanel setUpTopHUDJPanel() {
         currentLocation.setText(game.getCurrentRoom().getName());
@@ -91,7 +84,7 @@ public class TopHUD {
         topHUDJPanel.add(this.currentHealth);
         topHUDJPanel.add(this.currentHealthBar);
         topHUDJPanel.add(this.helpButton);
-        topHUDJPanel.add(this.quitButton);
+//        topHUDJPanel.add(this.quitButton);
         topHUDJPanel.add(this.pauseBar);
         topHUDJPanel.setVisible(true);
         return topHUDJPanel;
