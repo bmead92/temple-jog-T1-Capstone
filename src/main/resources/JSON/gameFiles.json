@@ -183,7 +183,7 @@
       ],
       "success": "The alien collapses and dies!",
       "failure": -1,
-      "image": "Images/Encounters/AlienGuard.jpeg"
+      "image": "Images/Encounters/AlienGuard.jpg"
 
     },
     "bald eagle": {
@@ -195,7 +195,7 @@
       ],
       "success": "You fire off a shot into the sky, startling the majestic bald eagle and causing it to fly away.",
       "failure": -1,
-      "image": "Images/Encounters/BaldEagle.jpeg"
+      "image": "Images/Encounters/BaldEagle.jpg"
     },
     "cougar": {
       "name": "cougar",
@@ -205,7 +205,7 @@
                     "ball o yarn"],
       "success": "After everything you've been through, a cougar was the least of your challenges. As such, this challenge was easily overcome.",
       "failure": -1,
-      "image": "Images/Encounters/Cougar.webp"
+      "image": "Images/Encounters/Cougar.jpg"
     },
     "lion": {
       "name": "lion",
@@ -214,7 +214,7 @@
       "weakness": ["ball o yarn"],
       "success": "You throw the ball O yarn at the lion, and it bats it around like a kitten with a toy. It's way too distracted to care about you now.",
       "failure": -1,
-      "image": "Images/Encounters/Lion.jpeg"
+      "image": "Images/Encounters/Lion.jpg"
     },
     "mummy": {
       "name": "mummy",
@@ -227,7 +227,7 @@
       ],
       "success": "The mummy bursts into flames immediately upon your attack. It gets reduced to a pile of ash.",
       "failure": -1,
-      "image": "Images/Encounters/Mummy.jpeg"
+      "image": "Images/Encounters/Mummy.jpg"
     },
     "face mugger": {
       "name": "face mugger",
@@ -239,7 +239,7 @@
       ],
       "success": "You dodge the attack and kill the the face-mugger before it can latch on. No telling how terrible an experience that would have been had it succeeded.",
       "failure": -1,
-      "image": "Images/Encounters/FaceMugger.jpeg"
+      "image": "Images/Encounters/FaceMugger.jpg"
     },
     "alien boss": {
       "name": "alien boss",
@@ -250,7 +250,7 @@
       ],
       "success": "Not taking any chances that the alien might just have been trying to communicate, you bludgeon it with the Crystal Femur. The alien leader is knocked unconscious.",
       "failure": -1,
-      "image": "Images/Encounters/AlienBoss.jpeg"
+      "image": "Images/Encounters/AlienBoss.jpg"
     },
     "anaconda": {
       "name": "anaconda",
@@ -259,7 +259,7 @@
       "weakness": [ "grenade",  "desert eagle",  "machete" ],
       "success": "You quickly deal with the Anaconda before it can wrap itself around you. Injured, it slithers back into its hole. Hopefully it won't come back later...",
       "failure": -1,
-      "image": "Images/Encounters/Anaconda.jpeg"
+      "image": "Images/Encounters/Anaconda.jpg"
     },
     "communicator": {
       "name": "communicator",
@@ -268,7 +268,7 @@
       "weakness": ["crystal femur"],
       "success": "You found a way to destroy the communication device and thwarted all communication to the alien planet. Looking good for humanity, but not for you. You should probably start jogging to the landing zone before you get nuked!",
       "failure": -1,
-      "image": "Images/Encounters/AlienGuard.jpeg"
+      "image": "Images/Encounters/AlienGuard.jpg"
     },
     "pit": {
       "name": "pit",
@@ -277,7 +277,7 @@
       "weakness": [],
       "success": "pop",
       "outcome": -1,
-      "image": "Images/Encounters/AlienGuard.jpeg"
+      "image": "Images/Encounters/AlienGuard.jpg"
     },
     "locked door": {
       "name": "locked door",
@@ -286,7 +286,7 @@
       "weakness": ["key"],
       "success": "..Or is it? The door creaks open, revealing a dark and mysterious chamber beyond. The air is thick with the smell of metal and ozone, and the hum of unfamiliar machinery fills the room. The walls are slick with some sort of alien lubricant, and strange markings adorn the surface. The flickering lights above cast eerie shadows on the walls, illuminating the strange and alien technology within.",
       "outcome": -1,
-      "image": "Images/Encounters/AlienGuard.jpeg"
+      "image": "Images/Encounters/AlienGuard.jpg"
     }
   },
   "items": {
