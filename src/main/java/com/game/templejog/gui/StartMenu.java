@@ -95,14 +95,6 @@ public class StartMenu {
         buttonPanel.setBounds(300, 600, 200, 100);
         buttonPanel.setBackground(Color.lightGray);
 
-        //create settings buttons
-        settingsButton = new JButton("SETTINGS");
-        settingsButton.setBackground(Color.white);
-        /*TODO: add settings for music, music volume. etc*/
-
-        //create QUIT button
-        quitButton = new JButton("QUIT");
-        quitButton.setBackground(Color.white);
 
         //create exit button
         quitButton = new JButton("EXIT");
@@ -127,7 +119,6 @@ public class StartMenu {
 
         startButtonPanel.add(startButton);
         startButtonPanel.add(loadButton);
-        buttonPanel.add(settingsButton);
         buttonPanel.add(quitButton);
         buttonPanel.add(creditsButton);
 
@@ -166,9 +157,9 @@ public class StartMenu {
     }
 
     public static void creditMenu() {
-        JFrame helpFrame = new JFrame("Developers Menu");
-        JTextArea helpMessage = new JTextArea("Temple Jog Capstone\n\nDevelopers:\nBryce Meadors, Joe Savella, Cindy Pottin\n\nAdaptation from Text Based Game Developed by:\nJoe Racke, Lorenzo Ortega, and Lok Tamang");
-        JOptionPane.showMessageDialog(helpFrame, helpMessage, "Developers", JOptionPane.INFORMATION_MESSAGE);
+        JFrame creditFrame = new JFrame("Developers Menu");
+        JTextArea creditMessage = new JTextArea("Temple Jog Capstone\n\nDevelopers:\nBryce Meadors, Joe Savella, Cindy Pottin\n\nAdaptation from Text Based Game Developed by:\nJoe Racke, Lorenzo Ortega, and Lok Tamang");
+        JOptionPane.showMessageDialog(creditFrame, creditMessage, "Developers", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }
