@@ -98,18 +98,17 @@ public class MiddleSection {
 
         currentLocationBackgroundIcon = getBackgroundImage();
         backgroundImageJLabel.setIcon(currentLocationBackgroundIcon);
-        backgroundImageJLabel.setBounds(0, 0, 500, 500);
         // Add the panels to the middleHUD
-        imagePanel.add(backgroundImageJLabel, BorderLayout.CENTER);
-        buttonPanel.add(this.imagePanel, BorderLayout.CENTER);
 
         if (game.getCurrentRoom().getEncounters_to().size() > 0) {
             currentLocationEncounterIcon = getEncounterImageTo();
             encounterLabel.setIcon(currentLocationEncounterIcon);
-            encounterLabel.setBounds(0, 0, 250, 250);
-            imagePanel.add(encounterLabel, BorderLayout.CENTER);
-            buttonPanel.add(imagePanel, BorderLayout.CENTER);
+            imagePanel.add(encounterLabel);
         }
+
+        imagePanel.add(backgroundImageJLabel);
+        buttonPanel.add(this.imagePanel, BorderLayout.CENTER);
+
         //TODO: check from encounters same way
         middleSectionPanel.add(buttonPanel, BorderLayout.CENTER);
 
