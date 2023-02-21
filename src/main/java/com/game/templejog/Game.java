@@ -111,7 +111,9 @@ public class Game implements java.io.Serializable {
 
             getCurrentRoom().setHasBeenVisited(true);
             getPlayer().setSteps(getPlayer().getSteps()+1);
-            currentRoomSound();
+            if (getPlaySound()) {
+                currentRoomSound();
+            }
             return String.format("Traveling to %s... %s",getCurrentRoom().getName(), outputMessage);
         }
 

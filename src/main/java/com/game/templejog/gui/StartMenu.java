@@ -1,5 +1,6 @@
 package com.game.templejog.gui;
 
+import com.game.templejog.Sound;
 import com.game.templejog.gui.top.QuitMenu;
 import com.game.templejog.Game;
 
@@ -73,9 +74,11 @@ public class StartMenu {
         startButton = new JButton("START");
         startButton.setBackground(Color.white);
         startButton.setLocation(100,100);
-        /*TODO: connect to start game loop to call start of game show you are at LZ*/
+        /*DONE: connect to start game loop to call start of game show you are at LZ*/
         startButton.addActionListener(e -> {
             if(e.getSource() == this.startButton) {
+                Sound.stopSound();
+                Sound.themeSound("sounds/landing_zone.wav");
                 new Thread(() -> runGui.runGame()).start();
                 startWindow.dispose();
             }
