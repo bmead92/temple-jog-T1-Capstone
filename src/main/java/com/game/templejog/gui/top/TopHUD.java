@@ -54,7 +54,7 @@ public class TopHUD {
         settingsItem = new JMenuItem("SETTINGS");
         settingsItem.addActionListener(e -> {
             if(e.getSource() == this.settingsItem){
-                SettingsMenu.settingsMenuDisplay();
+                SettingsMenu.settingsMenuDisplay(this.game);
             }
         });
 
