@@ -130,7 +130,7 @@ public class StartMenu {
 
         startWindow.add(startButtonPanel);
         startWindow.add(buttonPanel);
-
+        startWindow.setResizable(false);
         startWindow.setVisible(true);
     }
 

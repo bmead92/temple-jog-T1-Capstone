@@ -104,11 +104,7 @@ public class Game implements java.io.Serializable {
             Room validRoom = getRooms().get(accessibleRoom);
             validRoom.setHasBeenVisited(!validRoom.getHasBeenVisited());
             setCurrentRoom(validRoom);
-
-            //Need to implement update on location image
-            System.out.println("current room: " + currentRoom.getName());
-            System.out.println("Image :" + currentRoom.getImage());
-
+            
             getCurrentRoom().setHasBeenVisited(true);
             getPlayer().setSteps(getPlayer().getSteps()+1);
             if (getPlaySound()) {

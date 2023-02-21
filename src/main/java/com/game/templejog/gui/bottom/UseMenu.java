@@ -13,11 +13,11 @@ public class UseMenu {
         JPanel attackMenu = new JPanel();
         JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
         bottomRightSectionJPanel.removeAll();
-        // TODO: Make this pretty
         JTextArea encounterInformation = new JTextArea();
         encounterInformation.setLineWrap(true);
         encounterInformation.setWrapStyleWord(true);
-        encounterInformation.setBounds(100, 0, 500, 150);
+        //TODO: blend JTextArea w/ frame/panel
+        encounterInformation.setBounds(0, 0, 500, 50);
         // if they player has items in their inventory, open an attack submenu and create a button for each inventory item
         // when the button is pressed, game.processChoice is called
         List<Item> playerInventory = game.getPlayer().getInventory();
@@ -40,7 +40,6 @@ public class UseMenu {
                         bottomRightSectionJPanel.removeAll();
                         encounterInformation.setText(game.processChoice(choice));
                         attackMenu.add(encounterInformation);
-                        attackMenu.setBounds(0, 0, MainContainer.MAIN_CONTAINER_WIDTH / 4, MainContainer.MAIN_CONTAINER_HEIGHT / 4);
                         bottomRightSectionJPanel.add(attackMenu);
                         bottomRightSectionJPanel.validate();
                         bottomRightSectionJPanel.repaint();
