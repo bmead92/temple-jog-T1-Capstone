@@ -23,6 +23,8 @@ public class SettingsMenu {
         // create a new frame
         settingsFrame = new JFrame("Settings");
 
+        settingsFrame.setLocationRelativeTo(null);
+
         //create an object
         int volume = 10;
 

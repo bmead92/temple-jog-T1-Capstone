@@ -35,6 +35,7 @@ public class MainContainer {
         this.mainContainer.add(topHUD.setUpTopHUDJPanel(), BorderLayout.PAGE_START);
         this.mainContainer.add(middleSection.setUpMiddleSectionJPanel(), BorderLayout.CENTER);
         this.mainContainer.add(bottomSection.setUpBottomSectionJPanel(), BorderLayout.PAGE_END);
+        mainContainer.setResizable(false);
         mainContainer.setVisible(true);
     }
 
