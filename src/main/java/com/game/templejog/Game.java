@@ -28,6 +28,7 @@ public class Game implements java.io.Serializable {
         setCurrentRoom(getRooms().get("room01"));
         setCommunicatorOff(false);
         setQuitGame(false);
+        setPlaySound(true);
     }
     public Game( Player player,
                  HashMap<String, Room> rooms,
@@ -110,7 +111,7 @@ public class Game implements java.io.Serializable {
 
             getCurrentRoom().setHasBeenVisited(true);
             getPlayer().setSteps(getPlayer().getSteps()+1);
-            //currentRoomSound();
+            currentRoomSound();
             return String.format("Traveling to %s... %s",getCurrentRoom().getName(), outputMessage);
         }
 

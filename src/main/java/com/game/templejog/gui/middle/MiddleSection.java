@@ -10,6 +10,7 @@ import com.game.templejog.gui.MainContainer;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,12 +28,19 @@ public class MiddleSection {
     private JButton upButton, downButton, leftButton, rightButton;
     private JLabel encounterLabel;
     private ImageIcon currentLocationEncounterIcon;
+    private Image currentLocationEncounterImage;
+    private Image currentLocationBackgroundImage;
+    int xVelocity = 1;
+    int yVelocity = 1;
+    int x = 0;
+    int y = 0;
 
     public MiddleSection(Game game) {
         this.game = game;
         this.middleSectionPanel = new JPanel();
         this.imagePanel = new JPanel();
         this.backgroundImageJLabel = new JLabel();
+
         // Create the button panel
         this.buttonPanel = new JPanel(new BorderLayout());
         this.leftButton = new JButton("<");
@@ -97,6 +105,7 @@ public class MiddleSection {
         buttonPanel.add(downButton, BorderLayout.SOUTH);
 
         currentLocationBackgroundIcon = getBackgroundImage();
+        currentLocationBackgroundImage = currentLocationBackgroundIcon.getImage();
         backgroundImageJLabel.setIcon(currentLocationBackgroundIcon);
         // Add the panels to the middleHUD
 
@@ -106,12 +115,14 @@ public class MiddleSection {
             String encounterDescription = game.getEncounters().get(encounterKey).getShortDescription();
             bottomRightSectionJPanel.add(new JLabel(encounterDescription));
             currentLocationEncounterIcon = getEncounterImage();
+            currentLocationEncounterImage = currentLocationEncounterIcon.getImage();
             encounterLabel.setIcon(currentLocationEncounterIcon);
-            imagePanel.add(encounterLabel);
+            encounterLabel.setLayout(new OverlayLayout(imagePanel));
         }
 
+//        imagePanel.add(encounterLabel);
         imagePanel.add(backgroundImageJLabel);
-        buttonPanel.add(this.imagePanel, BorderLayout.CENTER);
+        buttonPanel.add(imagePanel, BorderLayout.CENTER);
 
         //TODO: check from encounters same way
         middleSectionPanel.add(buttonPanel, BorderLayout.CENTER);
@@ -121,6 +132,27 @@ public class MiddleSection {
         this.middleSectionPanel.setVisible(true);
 
         return this.middleSectionPanel;
+    }
+
+    public void paint(Graphics g) {
+        Graphics2D g2D = (Graphics2D) g;
+        g2D.drawImage(currentLocationBackgroundImage, 0, 0, null);
+        g2D.drawImage(currentLocationEncounterImage, 0, 0, null);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if(x>=200-currentLocationEncounterImage.getWidth(null) || x<0) {
+            xVelocity = xVelocity * -1;
+        }
+        x = x + xVelocity;
+
+        if(y>=200-currentLocationEncounterImage.getHeight(null) || y<0) {
+            yVelocity = yVelocity * -1;
+        }
+        y = y + yVelocity;
+        middleSectionPanel.repaint();
+
+//        repaint();
     }
 
     public ImageIcon getBackgroundImage() {
