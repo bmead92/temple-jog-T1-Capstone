@@ -60,26 +60,16 @@ public class SettingsMenu {
 
         //TODO:add music On/Off buttons or toggle
         JToggleButton musicToggle = new JToggleButton("Music On/Off");
-        ItemListener musicItemListener = new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                int musicState = e.getStateChange();
-
-                if (musicState == e.SELECTED) {
-                    System.out.println("Music On");
-                    game.setPlaySound(true);
-                    Sound.themeSound(game.getCurrentRoom().getSound());
-
-                } else {
-                    System.out.println("Music Off");
-                    Sound.stopSound();
-                    game.setPlaySound(false);
-                }
-
+        musicToggle.addActionListener(e -> {
+            if (game.getPlaySound()) {
+                game.setPlaySound(false);
+                Sound.stopSound();
+            } else {
+                game.setPlaySound(true);
+                Sound.themeSound(game.getCurrentRoom().getSound());
             }
-        };
-
-        musicToggle.addItemListener(musicItemListener);
+            System.out.println("Sound is enabled: " + game.getPlaySound());
+        });
 
         settingsPanel.add(musicToggle);
         settingsFrame.add(settingsPanel);
