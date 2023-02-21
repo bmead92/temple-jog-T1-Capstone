@@ -2,7 +2,7 @@ package com.game.templejog;
 
 import java.util.*;
 
-public class Game {
+public class Game implements java.io.Serializable {
     // MODEL
     private Boolean quitGame;
     private String scannerString;
@@ -28,6 +28,7 @@ public class Game {
         setCurrentRoom(getRooms().get("room01"));
         setCommunicatorOff(false);
         setQuitGame(false);
+        setPlaySound(true);
     }
     public Game( Player player,
                  HashMap<String, Room> rooms,
@@ -110,7 +111,9 @@ public class Game {
 
             getCurrentRoom().setHasBeenVisited(true);
             getPlayer().setSteps(getPlayer().getSteps()+1);
-//            currentRoomSound();
+            if (getPlaySound()) {
+                currentRoomSound();
+            }
             return String.format("Traveling to %s... %s",getCurrentRoom().getName(), outputMessage);
         }
 

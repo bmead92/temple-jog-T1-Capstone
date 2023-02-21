@@ -5,8 +5,8 @@ import java.util.List;
 /**
  * Created by dev0 on 2/2/23.
  */
-public class Encounter {
-    String name,type,description,success;
+public class Encounter implements java.io.Serializable {
+    String name,type,description , shortDescription, success;
     List<String> weakness;
     Integer failure,outcome;
     String image;
@@ -75,5 +75,13 @@ public class Encounter {
 
     public void setOutcome(Integer outcome) {
         this.outcome = outcome;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 }

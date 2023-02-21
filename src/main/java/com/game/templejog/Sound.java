@@ -2,7 +2,9 @@ package com.game.templejog;
 
 import com.game.templejog.client.Main;
 import javax.sound.sampled.*;
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -12,9 +14,15 @@ public class Sound {
     /* Handles the background theme music */
     public static void themeSound(String file) {
         try {
-            URL landingSound = Main.class.getClassLoader().getResource(file);
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(landingSound);
+            InputStream landingSound = Main.class.getClassLoader().getResourceAsStream(file);
+            InputStream buffer = new BufferedInputStream(landingSound);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(buffer);
             clip = AudioSystem.getClip();
+            clip.addLineListener(event -> {
+                if (event.getType().equals(LineEvent.Type.CLOSE)) {
+                    clip.close();
+                }
+            });
             clip.open(audioStream);
             FloatControl gainControl =
                     (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
@@ -62,9 +70,15 @@ public class Sound {
     public static void ending(String filePath) {
         try {
             stopSound();
-            URL sound = Main.class.getClassLoader().getResource(filePath);
-            AudioInputStream audiostream = AudioSystem.getAudioInputStream(sound);
+            InputStream sound = Main.class.getClassLoader().getResourceAsStream(filePath);
+            InputStream buffer = new BufferedInputStream(sound);
+            AudioInputStream audiostream = AudioSystem.getAudioInputStream(buffer);
             clip = AudioSystem.getClip();
+            clip.addLineListener(event -> {
+                if (event.getType().equals(LineEvent.Type.CLOSE)) {
+                    clip.close();
+                }
+            });
             clip.open(audiostream);
             FloatControl gainControl =
                     (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);

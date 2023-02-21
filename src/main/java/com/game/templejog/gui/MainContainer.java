@@ -7,11 +7,11 @@ import com.game.templejog.gui.top.TopHUD;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class MainContainer {
-
-    public static final int MAIN_CONTAINER_WIDTH = 800;
-    public static final int MAIN_CONTAINER_HEIGHT = 800;
+    public static final int MAIN_CONTAINER_WIDTH = 1200;
+    public static final int MAIN_CONTAINER_HEIGHT = 900;
     private Game game;
     private static TopHUD topHUD;
     private static MiddleSection middleSection;
@@ -22,7 +22,8 @@ public class MainContainer {
         // main container
         this.mainContainer = new JFrame();
         mainContainer.setLayout(new BorderLayout());
-        mainContainer.setBounds(0, 0, MAIN_CONTAINER_WIDTH, MAIN_CONTAINER_HEIGHT);
+        mainContainer.setSize(MAIN_CONTAINER_WIDTH, MAIN_CONTAINER_HEIGHT);
+        mainContainer.setLocationRelativeTo(null);
         this.game = game;
         MainContainer.topHUD = topHUD;
         MainContainer.middleSection = middleSection;
@@ -30,15 +31,10 @@ public class MainContainer {
     }
 
     public void setUpMainContainer() {
-        JFrame mainContainer = new JFrame();
-        this.mainContainer = mainContainer;
-        mainContainer.setLayout(new BorderLayout());
-        mainContainer.setBounds(0, 0, MAIN_CONTAINER_WIDTH, MAIN_CONTAINER_HEIGHT);
         mainContainer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.mainContainer.add(this.topHUD.setUpTopHUDJPanel(), BorderLayout.PAGE_START);
-        this.mainContainer.add(this.middleSection.setUpMiddleSectionJPanel(), BorderLayout.CENTER);
+        this.mainContainer.add(topHUD.setUpTopHUDJPanel(), BorderLayout.PAGE_START);
+        this.mainContainer.add(middleSection.setUpMiddleSectionJPanel(), BorderLayout.CENTER);
         this.mainContainer.add(bottomSection.setUpBottomSectionJPanel(), BorderLayout.PAGE_END);
-        mainContainer.pack();
         mainContainer.setVisible(true);
     }
 
@@ -54,8 +50,8 @@ public class MainContainer {
         return topHUD;
     }
 
-    public void setTopHUD(TopHUD topHUD) {
-        this.topHUD = topHUD;
+    public static void setTopHUD(TopHUD t) {
+        topHUD = t;
     }
 
     public static MiddleSection getMiddleSection() {

@@ -6,6 +6,7 @@
       "number": 1,
       "name": "Landing Zone",
       "description": "You land in a jungle. There is a path that leads north.",
+      "shortDescription" : "You are in the middle of the jungle. You should explore.",
       "west": "",
       "south": "",
       "north": "room02",
@@ -22,6 +23,7 @@
       "number": 2,
       "name": "Jungle Path",
       "description": "You traverse through the jungle and arrive at a clearing. A member of your team lies motionless on the ground. It doesn't look as though their parachute ever deployed. To the north lies a path. To the east, you see rubble and an opening in the ground that you might be able to squeeze down into. To the south is the landing zone.",
+      "shortDescription" : "A path in the jungle.",
       "west": "",
       "south": "room01",
       "north": "room03",
@@ -38,6 +40,7 @@
       "number": 3,
       "name": "Jungle Clearing",
       "description": "You come across a clearing in the jungle. A path lies to the north and the south.",
+      "shortDescription" : "A clearing in the jungle.",
       "west": "",
       "south": "room02",
       "north": "room04",
@@ -54,6 +57,7 @@
       "number": 4,
       "name": "Base of Temple",
       "description": "At the edge of the jungle lies an immense ancient temple. To the south lies a path back into the jungle. Temple steps lead up to the east.",
+      "shortDescription" : "At the edge of the jungle lies an immense ancient temple.",
       "west": "",
       "south": "room03",
       "north": "",
@@ -70,6 +74,7 @@
       "number": 5,
       "name": "Pit of Face-Mugging Torment",
       "description": "You fall into a pit! Spikes stick out from the ground and egg shaped pods are littered throughout. A dense fog hangs at shin level obscuring the ground. A door leads to the north.",
+      "shortDescription" : "You fall into a pit! Spikes stick out from the ground and egg shaped pods are littered throughout.",
       "west": "",
       "south": "",
       "north": "room06",
@@ -86,6 +91,7 @@
       "number": 6,
       "name": "Central Chamber",
       "description": "You enter a musty and poorly lit room. Statues of lions sit poised in the corners. There are doors to north, east and south.",
+      "shortDescription" : "A musty and poorly-lit room. Statues of lions sit poised in the corners",
       "west": "",
       "south": "room05",
       "north": "room07",
@@ -102,6 +108,7 @@
       "number": 7,
       "name": "Temple Entrance",
       "description": "You have entered the temple and find yourself in a candle-lit room revealing strange markings...be careful not to disturb the dead. The temple exit lies to the west. There is a door to the south.",
+      "shortDescription" : "You find yourself in the center of a candle-lit room.",
       "west": "room04",
       "south": "room06",
       "north": "",
@@ -118,6 +125,7 @@
       "number": 8,
       "name": "Temple Shrine Room",
       "description": "You have entered a what looks to be a shrine. The walls are decorated with murals of what looks like an advanced civilization taking over a lesser one. At the center is an alter. A beam of light shines down on it. To the north is a door.",
+      "shortDescription" : "The walls are decorated with murals of an advanced civilization.",
       "west": "",
       "south": "",
       "north": "room09",
@@ -134,6 +142,7 @@
       "number": 9,
       "name": "Temple Store room",
       "description": "You enter what looks like a store room. Shelves line the walls where items were once stored. To the north is a door. There is a room to the south with light emanating from it. This store room seems like a safe place to take a quick break.",
+      "shortDescription" : "Shelves line the walls. This seems like a safe place to take a quick break",
       "west": "room06",
       "south": "room08",
       "north": "room10",
@@ -150,6 +159,7 @@
       "number": 10,
       "name": "Alien Communication Room",
       "description": "You enter a communications room. This must be where the device is. You see a large metallic device in the corner with a web of cables that extend upward into the ceiling.",
+      "shortDescription" : "This must be where the device is. You see a large metallic device in the corner.",
       "west": "",
       "south": "room09",
       "north": "",
@@ -158,7 +168,7 @@
       "encounters_to": [ "communicator" ],
       "encounters_from": ["alien boss"],
       "sound": "sounds/communication_room.wav",
-      "image": "Images/Rooms/CommunicationsRoom.webp"
+      "image": "Images/Rooms/CommunicationsRoom.jpeg"
     }
   },
   "encounters": {
@@ -166,105 +176,128 @@
       "name": "alien guard",
       "type": "enemy",
       "description": "An Alien Guard leaps across the altar and braces itself for combat.",
+      "shortDescription": "An Alien Guard leaps across the altar and braces itself for combat.",
       "weakness": [
         "desert eagle",
         "grenade",
         "machete"
       ],
       "success": "The alien collapses and dies!",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/AlienGuard.jpg"
+
     },
     "bald eagle": {
       "name": "bald eagle",
       "type": "enemy",
       "description": "A Bald Eagle screams as it dives toward you!",
+      "shortDescription": "A Bald Eagle screams as it dives toward you!",
       "weakness": [
         "desert eagle"
       ],
       "success": "You fire off a shot into the sky, startling the majestic bald eagle and causing it to fly away.",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/BaldEagle.jpg"
     },
     "cougar": {
       "name": "cougar",
       "type": "enemy",
       "description": "A giant cougar jumps out from the jungle and attacks you!",
+      "shortDescription": "A giant cougar jumps out from the jungle and attacks you!",
       "weakness": ["desert eagle",
                     "ball o yarn"],
       "success": "After everything you've been through, a cougar was the least of your challenges. As such, this challenge was easily overcome.",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/Cougar.jpg"
     },
     "lion": {
       "name": "lion",
       "type": "enemy",
       "description": "One of the statues has come to life! A ripped and overly shredded lion with a particular taste for intruders leaps into action.",
+      "shortDescription": "One of the statues has come to life! A ripped and overly shredded lion with a particular taste for intruders leaps into action.",
       "weakness": ["ball o yarn"],
       "success": "You throw the ball O yarn at the lion, and it bats it around like a kitten with a toy. It's way too distracted to care about you now.",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/Lion.jpg"
     },
     "mummy": {
       "name": "mummy",
       "type": "enemy",
       "description": "Uh-oh, now you've done it. You have awakened an evil, vengeful, murderous mummy.",
+      "shortDescription": "Uh-oh, now you've done it. You have awakened an evil, vengeful, murderous mummy.",
       "weakness": [
         "desert eagle",
         "flamethrower",
         "grenade"
       ],
       "success": "The mummy bursts into flames immediately upon your attack. It gets reduced to a pile of ash.",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/Mummy.jpg"
     },
     "face mugger": {
       "name": "face mugger",
       "type": "enemy",
       "description": "A face-mugger lunges at your neck, attempting to wrap its creepy-crawly legs around your cranium to re-arrange your lungs from your face!",
+      "shortDescription": "A face-mugger lunges at your neck, attempting to wrap its creepy-crawly legs around your cranium to re-arrange your lungs from your face!",
       "weakness": [
         "desert eagle",
         "flamethrower"
       ],
       "success": "You dodge the attack and kill the the face-mugger before it can latch on. No telling how terrible an experience that would have been had it succeeded.",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/FaceMugger.jpg"
     },
     "alien boss": {
       "name": "alien boss",
       "type": "enemy",
       "description": "A very large roided-out-extraterrestrial being stands at the center of the room! It screams something you can't make out,\"^&@%# @&^#*(!( $^$#*(@!!!!\"",
+      "shortDescription": "You see a large extraterrestrial being stands at the center of the room! It screams something you can't make out.",
       "weakness": [
         "crystal femur"
       ],
       "success": "Not taking any chances that the alien might just have been trying to communicate, you bludgeon it with the Crystal Femur. The alien leader is knocked unconscious.",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/AlienBoss.jpg"
     },
     "anaconda": {
       "name": "anaconda",
       "type": "enemy",
       "description": "A giant Anaconda coils itself up, poised to strike at a moment's notice!",
+      "shortDescription": "A giant Anaconda coils itself up, poised to strike at a moment's notice!",
       "weakness": [ "grenade",  "desert eagle",  "machete" ],
       "success": "You quickly deal with the Anaconda before it can wrap itself around you. Injured, it slithers back into its hole. Hopefully it won't come back later...",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/Anaconda.jpg"
     },
     "communicator": {
       "name": "communicator",
       "type": "environment",
       "description": "You see this big, complicated-looking machine in the corner of the room with flashing lights and beeping noises. It hits you, this is the communication device! I mean, imagine the technology these aliens have, man. They're able to travel across the universe, talking with each other and keeping in touch, even though they're light years apart. Strangely, there is an outline that is the perfect shape of a femur." ,
+      "shortDescription": "Strangely, there is an outline that is the perfect shape of a femur.",
       "weakness": ["crystal femur"],
       "success": "You found a way to destroy the communication device and thwarted all communication to the alien planet. Looking good for humanity, but not for you. You should probably start jogging to the landing zone before you get nuked!",
-      "failure": -1
+      "failure": -1,
+      "image": "Images/Encounters/AlienGuard.jpg"
     },
     "pit": {
       "name": "pit",
       "type": "environment",
       "description": "Ahhhhhh!! You have fallen into a black pit at least 10 feet deep!",
+      "shortDescription": "Ahhhhhh!! You have fallen into a black pit at least 10 feet deep!",
       "weakness": [],
       "success": "pop",
-      "outcome": -1
+      "outcome": -1,
+      "image": "Images/Encounters/AlienGuard.jpg"
     },
     "locked door": {
       "name": "locked door",
       "type": "environment",
       "description": "...Strange, the south door is locked.",
+      "shortDescription": "...Strange, the south door is locked.",
       "weakness": ["key"],
       "success": "..Or is it? The door creaks open, revealing a dark and mysterious chamber beyond. The air is thick with the smell of metal and ozone, and the hum of unfamiliar machinery fills the room. The walls are slick with some sort of alien lubricant, and strange markings adorn the surface. The flickering lights above cast eerie shadows on the walls, illuminating the strange and alien technology within.",
-      "outcome": -1
+      "outcome": -1,
+      "image": "Images/Encounters/AlienGuard.jpg"
     }
   },
   "items": {

@@ -3,7 +3,7 @@ package com.game.templejog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public class Player implements java.io.Serializable {
     Integer health, steps;
     List<Item> inventory;
 
@@ -17,7 +17,7 @@ public class Player {
     /*              HELPERS                    */
     public Integer inventoryHasItem(String itemName){
         for( Item item : getInventory() ){
-            if( item.getName().toLowerCase().equals(itemName) ) return getInventory().indexOf(item);
+            if( item.getName().toLowerCase().equalsIgnoreCase(itemName) ) return getInventory().indexOf(item);
         }
         return -1;
     }

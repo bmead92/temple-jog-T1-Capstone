@@ -10,13 +10,21 @@ public class BottomLeftOptions {
     private final JButton searchAreaButton;
     private final JButton mapButton;
     private final JButton inventoryButton;
+    private final JPanel bottomLeftOptions;
+    private final JPanel bottomLeftAttackMap;
+    private final JPanel bottomLeftSearchInventory;
 
     public BottomLeftOptions(Game game) {
         this.game = game;
-        this.attackButton = new JButton("Attack");
+        this.bottomLeftOptions = new JPanel();
+        this.bottomLeftAttackMap = new JPanel();
+        bottomLeftAttackMap.setLayout(new BoxLayout(bottomLeftAttackMap, BoxLayout.PAGE_AXIS));
+        this.bottomLeftSearchInventory = new JPanel();
+        bottomLeftSearchInventory.setLayout(new BoxLayout(bottomLeftSearchInventory, BoxLayout.PAGE_AXIS));
+        this.attackButton = new JButton("Use");
         attackButton.addActionListener(e -> {
             if (e.getSource() == this.attackButton) {
-                AttackMenu.setUpAttackMenu(this.game);
+                UseMenu.setUpUseMenu(this.game);
             }
         });
         this.searchAreaButton = new JButton("Search Area");
@@ -26,7 +34,7 @@ public class BottomLeftOptions {
             }
         });
         this.mapButton = new JButton("Map");
-        //TODO: add map actionListener
+        //DONE: add map actionListener
         //Map button with action listener
         mapButton.addActionListener(e -> {
             if(e.getSource() == this.mapButton){
@@ -42,11 +50,6 @@ public class BottomLeftOptions {
     }
 
     public JPanel setUpBottomLeftOptionsJPanel() {
-        JPanel bottomLeftOptions = new JPanel();
-        JPanel bottomLeftAttackMap = new JPanel();
-        bottomLeftAttackMap.setLayout(new BoxLayout(bottomLeftAttackMap, BoxLayout.PAGE_AXIS));
-        JPanel bottomLeftSearchInventory = new JPanel();
-        bottomLeftSearchInventory.setLayout(new BoxLayout(bottomLeftSearchInventory, BoxLayout.PAGE_AXIS));
         bottomLeftAttackMap.add(this.attackButton);
         bottomLeftSearchInventory.add(this.searchAreaButton);
         bottomLeftAttackMap.add(this.mapButton);
