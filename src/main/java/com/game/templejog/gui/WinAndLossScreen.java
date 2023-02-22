@@ -1,6 +1,7 @@
 package com.game.templejog.gui;
 
 import com.game.templejog.Game;
+import com.game.templejog.Sound;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,15 +39,14 @@ public class WinAndLossScreen {
         boolean playerOutOfHealth = game.getPlayer().getHealth() <= 0;
         boolean playerOutOfSteps = game.getPlayer().getSteps() >= 24;
         if(game.getCommunicatorOff()) {
-            if (playerOutOfHealth || playerOutOfSteps) {
-                //bombSound();
+            if(game.getPlaySound()){
+            Sound.ending("sounds/victory.wav");}
+            if(playerOutOfHealth || playerOutOfSteps) {
+
                 this.winAndLossTextArea.setText(String.format("%s\n%s", outOfTime, sortOfWin));
                 this.winAndLossFrame.setTitle("YOU (sort of) WIN!");
                 this.confirmationButton.setText("Hmm. At least I saved the world.");
             } else {
-//                if (game.getPlaySound()) {
-//                    Sound.ending("sounds/victory.wav");
-//                }
                 this.winAndLossTextArea.setText(String.format("%s\n%s", successMessage, win));
                 this.winAndLossFrame.setTitle("YOU WIN!");
                 this.confirmationButton.setText("Nice.");
@@ -54,11 +54,13 @@ public class WinAndLossScreen {
         } else {
             this.confirmationButton.setText("Damn, okay.");
             if (playerOutOfHealth) {
-                //bombSound();
+                if(game.getPlaySound()){
+                    Sound.ending("sounds/explosion.wav");}
                 this.winAndLossTextArea.setText(String.format("%s\n%s", playerDiesMessage, outOfLife));
                 this.winAndLossFrame.setTitle("YOU DIED!");
             } else if (playerOutOfSteps) {
-                //bombSound();
+                if(game.getPlaySound()){
+                    Sound.ending("sounds/explosion.wav");}
                 this.winAndLossTextArea.setText(String.format("%s", outOfTime));
                 this.winAndLossFrame.setTitle("YOU RAN OUT OF TIME!");
             }
