@@ -14,7 +14,7 @@ public class MapMenu {
 
     public static void mapDisplay(Game game){
         mapFrame = new JFrame("Map - " + game.getCurrentRoom().getName());
-        mapFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mapFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         mapFrame.setSize(800, 800);
         mapFrame.setLocationRelativeTo(null);
         JPanel mapPanel = new JPanel();

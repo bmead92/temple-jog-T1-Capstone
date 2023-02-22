@@ -18,7 +18,9 @@ public class TitleScreen {
     JLabel titleNameLabel, musicQuestion;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 45);
     Font questionFont = new Font("Times New Roman", Font.PLAIN, 12);
-    JButton startButton, quitButton, difficultyButton, creditsButton, loadButton;
+    JButton startButton, quitButton, settingsButton, creditsButton, loadButton;
+
+    private boolean gameStarted = false;
 
     public TitleScreen(RunGUI runGui) {
         this.runGui = runGui;
@@ -68,12 +70,13 @@ public class TitleScreen {
         startButton.setLocation(100, 100);
         /*DONE: connect to start game loop to call start of game show you are at LZ*/
         startButton.addActionListener(e -> {
-            if (e.getSource() == this.startButton) {
-                Sound.stopSound();
-                Sound.themeSound("sounds/landing_zone.wav");
-                new Thread(runGui::runGame).start();
-                startWindow.dispose();
+            gameStarted = true;
+            Sound.stopSound();
+            if (game.getPlaySound()) {
+                Sound.themeSound(game.getCurrentRoom().getSound());
             }
+            new Thread(runGui::runGame).start();
+            startWindow.dispose();
         });
 
 //        create load button
@@ -86,8 +89,8 @@ public class TitleScreen {
         });
 
         // create difficulty options button
-        difficultyButton = new JButton("DIFFICULTY");
-        JFrame difficultyFrame = new JFrame("Difficulty");
+        settingsButton = new JButton("SETTINGS");
+        JFrame difficultyFrame = new JFrame("SETTINGS");
         difficultyFrame.setLayout(new FlowLayout());
         difficultyFrame.setSize(250, 250);
         difficultyFrame.setLocationRelativeTo(null);
@@ -103,11 +106,29 @@ public class TitleScreen {
             game.processDifficulty("hard");
             difficultyFrame.dispose();
         });
+        JToggleButton musicToggle = new JToggleButton("Toggle Sound");
+        musicToggle.addActionListener(e -> {
+            if (game.getPlaySound()) {
+                game.setPlaySound(false);
+                Sound.stopSound();
+            } else {
+                if (gameStarted) {
+                    game.setPlaySound(true);
+                    Sound.themeSound(game.getCurrentRoom().getSound());
+                } else {
+                    game.setPlaySound(true);
+                    Sound.themeSound("sounds/background_music.wav");
+                }
+            }
+        });
         JLabel difficultyLabel = new JLabel("Select a difficulty");
+        JLabel musicLabel = new JLabel("Music/SFX Settings");
         difficultyFrame.add(difficultyLabel);
         difficultyFrame.add(medium);
         difficultyFrame.add(hard);
-        difficultyButton.addActionListener(e -> {
+        difficultyFrame.add(musicLabel);
+        difficultyFrame.add(musicToggle);
+        settingsButton.addActionListener(e -> {
             difficultyFrame.setVisible(true);
         });
 
@@ -141,7 +162,7 @@ public class TitleScreen {
 
         startButtonPanel.add(startButton);
         startButtonPanel.add(loadButton);
-        startButtonPanel.add(difficultyButton);
+        startButtonPanel.add(settingsButton);
 
         buttonPanel.add(creditsButton);
         buttonPanel.add(quitButton);

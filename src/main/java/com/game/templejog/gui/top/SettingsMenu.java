@@ -13,6 +13,7 @@ import java.awt.event.ItemListener;
 
 
 public class SettingsMenu {
+    public static boolean activeWindow = false;
     // frame
     static JFrame settingsFrame;
     // slider
@@ -20,6 +21,7 @@ public class SettingsMenu {
 
 
     public static void settingsMenuDisplay(Game game) {
+        activeWindow = true;
         // create a new frame
         settingsFrame = new JFrame("Settings");
 
@@ -59,8 +61,7 @@ public class SettingsMenu {
         // add slider to panel
         settingsPanel.add(settingsLabel);
         settingsPanel.add(musicSlider);
-
-        //TODO:add music On/Off buttons or toggle
+        //DONE:add music On/Off buttons or toggle
         JToggleButton musicToggle = new JToggleButton("Music On/Off");
         musicToggle.addActionListener(e -> {
             if (game.getPlaySound()) {
@@ -70,7 +71,6 @@ public class SettingsMenu {
                 game.setPlaySound(true);
                 Sound.themeSound(game.getCurrentRoom().getSound());
             }
-            System.out.println("Sound is enabled: " + game.getPlaySound());
         });
 
         settingsPanel.add(musicToggle);
