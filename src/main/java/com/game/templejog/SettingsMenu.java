@@ -1,25 +1,15 @@
-package com.game.templejog.gui.top;
+package com.game.templejog;
 
-import com.game.templejog.Game;
-import com.game.templejog.Sound;
-
-import javax.sound.sampled.FloatControl;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
 
 public class SettingsMenu {
     public static boolean activeWindow = false;
     // frame
-    static JFrame settingsFrame;
+    public static JFrame settingsFrame;
     // slider
     static JSlider musicSlider;
-
-
     public static void settingsMenuDisplay(Game game) {
         activeWindow = true;
         // create a new frame
@@ -41,7 +31,7 @@ public class SettingsMenu {
         /*TODO: use value to reduce sound*/
 
 
-//    // paint the ticks and tracks
+        //    // paint the ticks and tracks
         musicSlider.setPaintTrack(true);
         musicSlider.setPaintTicks(true);
         musicSlider.setPaintLabels(true);
@@ -53,7 +43,7 @@ public class SettingsMenu {
             @Override
             public void stateChanged(ChangeEvent e) {
                 settingsLabel.setText("Volume is set at " + musicSlider.getValue());
-//                Sound.themeSound(game.getCurrentRoom().getSound());
+                //                Sound.themeSound(game.getCurrentRoom().getSound());
             }
         });
 
