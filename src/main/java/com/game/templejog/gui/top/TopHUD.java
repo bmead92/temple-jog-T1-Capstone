@@ -1,12 +1,8 @@
 package com.game.templejog.gui.top;
 
 import com.game.templejog.Game;
-import com.game.templejog.client.Main;
-import com.game.templejog.gui.MainContainer;
-import com.game.templejog.gui.bottom.MapMenu;
 
 import javax.swing.*;
-import java.io.*;
 
 public class TopHUD {
     private Game game;
@@ -14,7 +10,7 @@ public class TopHUD {
     private JLabel currentLocation;
     private JLabel currentHealth;
     private JProgressBar currentHealthBar;
-    private JLabel hoursPlayed;
+    private JLabel timeLabel;
     private final JButton helpButton;
 
     public TopHUD(Game game) {
@@ -23,7 +19,7 @@ public class TopHUD {
         this.currentLocation = new JLabel();
         this.currentHealth = new JLabel();
         this.currentHealthBar = new JProgressBar(0, 90);
-        this.hoursPlayed = new JLabel();
+        this.timeLabel = new JLabel();
         this.helpButton = new JButton("Help");
         helpButton.addActionListener(e -> {
             if (e.getSource() == this.helpButton) {
@@ -32,20 +28,18 @@ public class TopHUD {
         });
     }
 
-
-
     public JPanel setUpTopHUDJPanel() {
         currentLocation.setText(game.getCurrentRoom().getName());
         topHUDJPanel.add(currentLocation);
-        currentHealth.setText(String.valueOf("     HP: " + game.getPlayer().getHealth()));
+        currentHealth.setText("     HP: " + game.getPlayer().getHealth());
         currentHealthBar.setValue(game.getPlayer().getHealth() * 10);
-        int playTime = game.getPlayer().getSteps()*15;
-        int playHrs = playTime/60;
-        int playMins = playTime%60;
-        hoursPlayed.setText("   TIME: " + (1200 + (100*playHrs) + playMins));
+        int playTime = game.getPlayer().getSteps() * 15;
+        int playHrs = playTime / 60;
+        int playMins = playTime % 60;
+        timeLabel.setText("   TIME: " + (1200 + (100 * playHrs) + playMins));
         topHUDJPanel.add(this.currentHealth);
         topHUDJPanel.add(this.currentHealthBar);
-        topHUDJPanel.add(this.hoursPlayed);
+        topHUDJPanel.add(this.timeLabel);
         topHUDJPanel.add(this.helpButton);
         topHUDJPanel.setVisible(true);
         return topHUDJPanel;

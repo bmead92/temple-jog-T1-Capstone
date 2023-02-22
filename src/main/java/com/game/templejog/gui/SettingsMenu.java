@@ -1,4 +1,7 @@
-package com.game.templejog;
+package com.game.templejog.gui;
+
+import com.game.templejog.Game;
+import com.game.templejog.Sound;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -29,25 +32,17 @@ public class SettingsMenu {
 
         settingsLabel.setText("Volume is set at " + musicSlider.getValue());
         /*TODO: use value to reduce sound*/
-
-
-        //    // paint the ticks and tracks
+        // paint the ticks and tracks
         musicSlider.setPaintTrack(true);
         musicSlider.setPaintTicks(true);
         musicSlider.setPaintLabels(true);
-
         // set spacing
         musicSlider.setMajorTickSpacing(5);
         musicSlider.setMinorTickSpacing(1);
-        musicSlider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                settingsLabel.setText("Volume is set at " + musicSlider.getValue());
-                //                Sound.themeSound(game.getCurrentRoom().getSound());
-            }
+        musicSlider.addChangeListener(e -> {
+            settingsLabel.setText("Volume is set at " + musicSlider.getValue());
+            //                Sound.themeSound(game.getCurrentRoom().getSound());
         });
-
-
         // add slider to panel
         settingsPanel.add(settingsLabel);
         settingsPanel.add(musicSlider);
@@ -62,12 +57,11 @@ public class SettingsMenu {
                 Sound.themeSound(game.getCurrentRoom().getSound());
             }
         });
-
         settingsPanel.add(musicToggle);
         settingsFrame.add(settingsPanel);
-
         // set the size of frame
         settingsFrame.setSize(300, 300);
+        settingsFrame.setLocationRelativeTo(null);
         settingsFrame.setVisible(true);
     }
 }

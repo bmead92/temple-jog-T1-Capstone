@@ -1,7 +1,6 @@
 package com.game.templejog.gui;
 
 import com.game.templejog.Game;
-import com.game.templejog.SettingsMenu;
 import com.game.templejog.gui.bottom.BottomSection;
 import com.game.templejog.gui.middle.MiddleSection;
 import com.game.templejog.gui.top.QuitMenu;
