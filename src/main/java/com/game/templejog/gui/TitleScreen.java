@@ -9,25 +9,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 
-public class StartMenu {
+public class TitleScreen {
 
     private RunGUI runGui;
     JFrame startWindow;
-//    Container con;
+    //    Container con;
     JPanel titleNamePanel, startButtonPanel, buttonPanel, bgPanel;
     JLabel titleNameLabel, musicQuestion;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 45);
     Font questionFont = new Font("Times New Roman", Font.PLAIN, 12);
     JButton startButton, quitButton, settingsButton, creditsButton, loadButton, saveButton;
 
-    public StartMenu(RunGUI runGui) {
+    public TitleScreen(RunGUI runGui) {
         this.runGui = runGui;
     }
 
-    public void gameStartScreen(Game game){
+    public void gameStartScreen(Game game) {
         //create JFrame to hold start menu and title
         startWindow = new JFrame();
-        startWindow.setSize(800,800);
+        startWindow.setSize(800, 800);
         startWindow.setLocationRelativeTo(null);
         startWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         startWindow.setLayout(null);
@@ -39,7 +39,7 @@ public class StartMenu {
 //        bgPanel.setLayout(null);
 
         JLabel imageLabel = new JLabel();
-        imageLabel.setBounds(100,0,600,500);
+        imageLabel.setBounds(100, 0, 600, 500);
 //        imageLabel.setSize(600,600);
 
         ImageIcon bgIcon = null;
@@ -73,10 +73,10 @@ public class StartMenu {
         //create start button
         startButton = new JButton("START");
         startButton.setBackground(Color.white);
-        startButton.setLocation(100,100);
+        startButton.setLocation(100, 100);
         /*DONE: connect to start game loop to call start of game show you are at LZ*/
         startButton.addActionListener(e -> {
-            if(e.getSource() == this.startButton) {
+            if (e.getSource() == this.startButton) {
                 Sound.stopSound();
                 Sound.themeSound("sounds/landing_zone.wav");
                 new Thread(() -> runGui.runGame()).start();
@@ -106,7 +106,7 @@ public class StartMenu {
         /*DONE: add action listener to exit*/
         quitButton.addActionListener(e -> {
             if (e.getSource() == this.quitButton) {
-                QuitMenu.setUpQuitOptions();
+                QuitMenu.setUpTitleScreenQuitOptions();
             }
         });
 
@@ -122,8 +122,9 @@ public class StartMenu {
 
         startButtonPanel.add(startButton);
         startButtonPanel.add(loadButton);
-        buttonPanel.add(quitButton);
+
         buttonPanel.add(creditsButton);
+        buttonPanel.add(quitButton);
 
         titleNamePanel.add(titleNameLabel);
         startWindow.add(titleNamePanel);

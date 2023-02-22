@@ -16,7 +16,7 @@ public class MainContainer {
     private static TopHUD topHUD;
     private static MiddleSection middleSection;
     private static BottomSection bottomSection;
-    private JFrame mainContainer;
+    private static JFrame mainContainer;
 
     public MainContainer(Game game, TopHUD topHUD, MiddleSection middleSection, BottomSection bottomSection) {
         // main container
@@ -71,7 +71,7 @@ public class MainContainer {
         MainContainer.bottomSection = bottomSection;
     }
 
-    public JFrame getMainContainer() {
+    public static JFrame getMainContainer() {
         return mainContainer;
     }
 
