@@ -9,8 +9,12 @@ import java.util.Objects;
 
 public class MapMenu {
 
+    public static boolean clickTracking = false;
+    public static JFrame mapFrame;
+
     public static void mapDisplay(Game game){
-        final JFrame mapFrame = new JFrame("Map - " + game.getCurrentRoom().getName());
+        mapFrame = new JFrame("Map - " + game.getCurrentRoom().getName());
+        mapFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mapFrame.setSize(800, 800);
         mapFrame.setLocationRelativeTo(null);
         JPanel mapPanel = new JPanel();
@@ -28,5 +32,6 @@ public class MapMenu {
         mapLabel.setIcon(mapImage);
         mapFrame.add(mapLabel);
         mapFrame.setVisible(true);
+        clickTracking = true;
     }
 }

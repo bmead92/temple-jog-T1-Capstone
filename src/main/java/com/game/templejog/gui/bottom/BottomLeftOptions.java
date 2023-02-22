@@ -37,10 +37,16 @@ public class BottomLeftOptions {
         //DONE: add map actionListener
         //Map button with action listener
         mapButton.addActionListener(e -> {
-            if(e.getSource() == this.mapButton){
-                MapMenu.mapDisplay(this.game);
+            if (e.getSource() == this.mapButton) {
+                if (MapMenu.clickTracking == false) {
+                    MapMenu.mapDisplay(this.game);
+                } else {
+                    MapMenu.mapFrame.dispose();
+                    MapMenu.clickTracking = false;
+                }
             }
         });
+
         this.inventoryButton = new JButton("Inventory");
         inventoryButton.addActionListener(e -> {
             if (e.getSource() == this.inventoryButton) {
