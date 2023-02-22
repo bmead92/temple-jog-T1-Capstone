@@ -1,6 +1,8 @@
 package com.game.templejog.gui.top;
 
 import com.game.templejog.Game;
+import com.game.templejog.client.Main;
+import com.game.templejog.gui.MainContainer;
 
 import javax.swing.*;
 import java.io.*;
@@ -37,7 +39,7 @@ public class TopHUD {
 
 
         this.pauseBar = new JMenuBar();
-        this.pauseMenu = new JMenu("PAUSE");
+        this.pauseMenu = new JMenu("FILE");
         saveItem = new JMenuItem("SAVE");
         saveItem.addActionListener(e -> {
             if (e.getSource() == this.saveItem) {
@@ -55,16 +57,12 @@ public class TopHUD {
 
         settingsItem = new JMenuItem("SETTINGS");
         settingsItem.addActionListener(e -> {
-            if(e.getSource() == this.settingsItem){
                 SettingsMenu.settingsMenuDisplay(this.game);
-            }
         });
 
         quitItem = new JMenuItem("QUIT GAME");
         quitItem.addActionListener(e -> {
-            if (e.getSource() == this.quitItem) {
-                QuitMenu.setUpQuitOptions();
-            }
+            QuitMenu.setUpInGameQuitOptions(MainContainer.getMainContainer());
         });
 
         pauseMenu.add(saveItem);
