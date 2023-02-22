@@ -1,39 +1,25 @@
 package com.game.templejog.gui.middle;
 
-import com.game.templejog.Encounter;
 import com.game.templejog.Game;
-import com.game.templejog.Room;
 import com.game.templejog.gui.GUIClient;
-import com.game.templejog.gui.RunGUI;
 import com.game.templejog.gui.MainContainer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Objects;
-import java.util.*;
-import java.util.List;
 
 public class MiddleSection {
     private final Game game;
-    private JPanel middleSectionPanel;
-    private JPanel imagePanel;
-    private final JPanel buttonPanel;
-    private JLabel backgroundImageJLabel;
-    private ImageIcon currentLocationBackgroundIcon;
+    private JPanel middleSectionPanel, buttonPanel, imagePanel;
+    private JLabel backgroundImageJLabel, encounterLabel;
+    private ImageIcon currentLocationBackgroundIcon, currentLocationEncounterIcon;
     private JButton upButton, downButton, leftButton, rightButton;
-    private JLabel encounterLabel;
-    private ImageIcon currentLocationEncounterIcon;
-    private Image currentLocationEncounterImage;
     private Image currentLocationBackgroundImage;
-    int xVelocity = 1;
-    int yVelocity = 1;
-    int x = 0;
-    int y = 0;
+
+    private AnimatedEncounterPanel animatedEncounterPanel;
+
 
     public MiddleSection(Game game) {
         this.game = game;
@@ -58,6 +44,7 @@ public class MiddleSection {
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
+            middleSectionPanel.remove(imagePanel);
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
@@ -80,6 +67,7 @@ public class MiddleSection {
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
+            middleSectionPanel.remove(imagePanel);
             setUpMiddleSectionJPanel();
             //DONE: Update HUD when changing locations
             MainContainer.getTopHUD().setUpTopHUDJPanel();
@@ -95,6 +83,8 @@ public class MiddleSection {
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
+
+        this.animatedEncounterPanel = new AnimatedEncounterPanel();
     }
 
     public JPanel setUpMiddleSectionJPanel() {
@@ -104,29 +94,40 @@ public class MiddleSection {
         buttonPanel.add(upButton, BorderLayout.NORTH);
         buttonPanel.add(downButton, BorderLayout.SOUTH);
 
-        currentLocationBackgroundIcon = getBackgroundImage();
+        currentLocationBackgroundIcon = getBackgroundIcon();
         currentLocationBackgroundImage = currentLocationBackgroundIcon.getImage();
-        backgroundImageJLabel.setIcon(currentLocationBackgroundIcon);
-        // Add the panels to the middleHUD
 
+        animatedEncounterPanel.stopTimer();
+        buttonPanel.remove(animatedEncounterPanel);
+        // Add the panels to the middleHUD
         if (game.getCurrentRoom().getEncounters_to().size() > 0) {
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             String encounterKey = game.getCurrentRoom().getEncounters_to().get(0);
             String encounterDescription = game.getEncounters().get(encounterKey).getShortDescription();
             bottomRightSectionJPanel.add(new JLabel(encounterDescription));
-            currentLocationEncounterIcon = getEncounterImage();
-            currentLocationEncounterImage = currentLocationEncounterIcon.getImage();
-            encounterLabel.setIcon(currentLocationEncounterIcon);
-            encounterLabel.setLayout(new OverlayLayout(imagePanel));
+
+            currentLocationEncounterIcon = getEncounterIcon();
+            animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationEncounterIcon
+                    , currentLocationBackgroundImage);
+//            encounterLabel.setIcon(currentLocationEncounterIcon);
+
+//            backgroundImageJLabel.setLayout(null);
+//            encounterLabel.setBounds(50, 50, 100, 100);
+//            backgroundImageJLabel.setIcon(currentLocationEncounterIcon);
+//            imagePanel.add(backgroundImageJLabel);
+//            buttonPanel.add(imagePanel, BorderLayout.CENTER);
+        } else {
+//            backgroundImageJLabel.setIcon(currentLocationBackgroundIcon);
+//            imagePanel.add(backgroundImageJLabel);
+            animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationBackgroundImage);
+//            backgroundImageJLabel.setLayout(null);
+//            backgroundImageJLabel.setIcon(currentLocationBackgroundIcon);
         }
 
-//        imagePanel.add(encounterLabel);
-        imagePanel.add(backgroundImageJLabel);
-        buttonPanel.add(imagePanel, BorderLayout.CENTER);
+        buttonPanel.add(animatedEncounterPanel, BorderLayout.CENTER);
 
         //TODO: check from encounters same way
         middleSectionPanel.add(buttonPanel, BorderLayout.CENTER);
-
         // Set panel properties
         this.middleSectionPanel.setSize(500, 500);
         this.middleSectionPanel.setVisible(true);
@@ -134,28 +135,28 @@ public class MiddleSection {
         return this.middleSectionPanel;
     }
 
-    public void paint(Graphics g) {
-        Graphics2D g2D = (Graphics2D) g;
-        g2D.drawImage(currentLocationBackgroundImage, 0, 0, null);
-        g2D.drawImage(currentLocationEncounterImage, 0, 0, null);
-    }
+//    public void paint(Graphics g) {
+//        Graphics2D g2D = (Graphics2D) g;
+//        g2D.drawImage(currentLocationBackgroundImage, 0, 0, null);
+//        g2D.drawImage(currentLocationEncounterImage, 0, 0, null);
+//    }
+//
+//    public void actionPerformed(ActionEvent e) {
+//        if(x>=200-currentLocationEncounterImage.getWidth(null) || x<0) {
+//            xVelocity = xVelocity * -1;
+//        }
+//        x = x + xVelocity;
+//
+//        if(y>=200-currentLocationEncounterImage.getHeight(null) || y<0) {
+//            yVelocity = yVelocity * -1;
+//        }
+//        y = y + yVelocity;
+//        middleSectionPanel.repaint();
+//
+////        repaint();
+//    }
 
-    public void actionPerformed(ActionEvent e) {
-        if(x>=200-currentLocationEncounterImage.getWidth(null) || x<0) {
-            xVelocity = xVelocity * -1;
-        }
-        x = x + xVelocity;
-
-        if(y>=200-currentLocationEncounterImage.getHeight(null) || y<0) {
-            yVelocity = yVelocity * -1;
-        }
-        y = y + yVelocity;
-        middleSectionPanel.repaint();
-
-//        repaint();
-    }
-
-    public ImageIcon getBackgroundImage() {
+    public ImageIcon getBackgroundIcon() {
         String currentLocationImage = game.getCurrentRoom().getImage();
         currentLocationBackgroundIcon = null;
         try {
@@ -167,7 +168,7 @@ public class MiddleSection {
         return currentLocationBackgroundIcon;
     }
 
-    public ImageIcon getEncounterImage() {
+    public ImageIcon getEncounterIcon() {
         String encounter = game.getCurrentRoom().getEncounters_to().get(0);
         String encounterImagePath = game.getEncounters().get(encounter).getImage();
         currentLocationEncounterIcon = null;
