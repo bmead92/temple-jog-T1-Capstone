@@ -11,14 +11,14 @@ import java.io.*;
 
 public class TitleScreen {
 
-    private RunGUI runGui;
+    private final RunGUI runGui;
     JFrame startWindow;
     //    Container con;
     JPanel titleNamePanel, startButtonPanel, buttonPanel, bgPanel;
     JLabel titleNameLabel, musicQuestion;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 45);
     Font questionFont = new Font("Times New Roman", Font.PLAIN, 12);
-    JButton startButton, quitButton, settingsButton, creditsButton, loadButton, saveButton;
+    JButton startButton, quitButton, difficultyButton, creditsButton, loadButton;
 
     public TitleScreen(RunGUI runGui) {
         this.runGui = runGui;
@@ -32,16 +32,8 @@ public class TitleScreen {
         startWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         startWindow.setLayout(null);
 
-//        create image as background
-//        bgPanel = new JPanel();
-//        bgPanel.setBounds(0,100,750,300);
-//        bgPanel.setBackground(Color.cyan);
-//        bgPanel.setLayout(null);
-
         JLabel imageLabel = new JLabel();
         imageLabel.setBounds(100, 0, 600, 500);
-//        imageLabel.setSize(600,600);
-
         ImageIcon bgIcon = null;
         try {
             //noinspection ConstantConditions
@@ -79,7 +71,7 @@ public class TitleScreen {
             if (e.getSource() == this.startButton) {
                 Sound.stopSound();
                 Sound.themeSound("sounds/landing_zone.wav");
-                new Thread(() -> runGui.runGame()).start();
+                new Thread(runGui::runGame).start();
                 startWindow.dispose();
             }
         });
@@ -93,9 +85,36 @@ public class TitleScreen {
             }
         });
 
+        // create difficulty options button
+        difficultyButton = new JButton("DIFFICULTY");
+        JFrame difficultyFrame = new JFrame("Difficulty");
+        difficultyFrame.setLayout(new FlowLayout());
+        difficultyFrame.setSize(250, 250);
+        difficultyFrame.setLocationRelativeTo(null);
+        difficultyFrame.setResizable(false);
+        difficultyFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JButton medium = new JButton("I know what I'm doing!");
+        medium.addActionListener(e -> {
+            game.processDifficulty("medium");
+            difficultyFrame.dispose();
+        });
+        JButton hard = new JButton("I really like a challenge!");
+        hard.addActionListener(e -> {
+            game.processDifficulty("hard");
+            difficultyFrame.dispose();
+        });
+        JLabel difficultyLabel = new JLabel("Select a difficulty");
+        difficultyFrame.add(difficultyLabel);
+        difficultyFrame.add(medium);
+        difficultyFrame.add(hard);
+        difficultyButton.addActionListener(e -> {
+            difficultyFrame.setVisible(true);
+        });
+
+
         //create Button Panel
         buttonPanel = new JPanel();
-        buttonPanel.setBounds(300, 600, 200, 100);
+        buttonPanel.setBounds(300, 600, 200, 75);
         buttonPanel.setBackground(Color.lightGray);
 
 
@@ -122,6 +141,7 @@ public class TitleScreen {
 
         startButtonPanel.add(startButton);
         startButtonPanel.add(loadButton);
+        startButtonPanel.add(difficultyButton);
 
         buttonPanel.add(creditsButton);
         buttonPanel.add(quitButton);

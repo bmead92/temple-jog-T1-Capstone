@@ -56,6 +56,7 @@ public class QuitMenu {
         inGameQuitJFrame.add(quitOptionPane);
         inGameQuitJFrame.setLocationRelativeTo(null);
         inGameQuitJFrame.setResizable(false);
+        inGameQuitJFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         inGameQuitJFrame.setVisible(true);
 
     }
