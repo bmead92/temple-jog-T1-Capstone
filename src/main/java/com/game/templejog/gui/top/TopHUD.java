@@ -3,6 +3,7 @@ package com.game.templejog.gui.top;
 import com.game.templejog.Game;
 import com.game.templejog.client.Main;
 import com.game.templejog.gui.MainContainer;
+import com.game.templejog.gui.bottom.MapMenu;
 
 import javax.swing.*;
 import java.io.*;
@@ -57,7 +58,12 @@ public class TopHUD {
 
         settingsItem = new JMenuItem("SETTINGS");
         settingsItem.addActionListener(e -> {
-                SettingsMenu.settingsMenuDisplay(this.game);
+            if (SettingsMenu.activeWindow) {
+                SettingsMenu.settingsFrame.dispose();
+                SettingsMenu.activeWindow = false;
+            } else {
+                SettingsMenu.settingsMenuDisplay(game);
+            }
         });
 
         quitItem = new JMenuItem("QUIT GAME");

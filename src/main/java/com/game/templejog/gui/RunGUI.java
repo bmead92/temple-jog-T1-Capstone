@@ -28,10 +28,10 @@ public class RunGUI {
                 && !(game.getCommunicatorOff() && game.getCurrentRoom().getName().equalsIgnoreCase("landing zone")));
         // DONE: create win GUI stuff and call it here
         // game end message, sends you back to title screen
-        winAndLoss(mainContainer);
+        winAndLoss();
     }
 
-    public void winAndLoss(MainContainer mainContainer) {
+    public void winAndLoss() {
         WinAndLossScreen winAndLossScreen = new WinAndLossScreen(game, MainContainer.getMainContainer());
         winAndLossScreen.setUpWinAndLossScreen();
     }
