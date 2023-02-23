@@ -78,12 +78,15 @@ public class TitleScreen {
         /*DONE: connect to start game loop to call start of game show you are at LZ*/
         startButton.addActionListener(e -> {
             gameStarted = true;
-            Sound.stopSound();
-            if (game.getPlaySound()) {
-                Sound.themeSound(game.getCurrentRoom().getSound());
+//            Sound.stopSound();
+//            if (game.getPlaySound()) {
+//                Sound.themeSound(game.getCurrentRoom().getSound());
+//            }
+//            new Thread(runGui::runGame).start();
+            if(e.getSource() == this.startButton) {
+                IntroScreen.gameIntroScreen(game);
+                startWindow.dispose();
             }
-            new Thread(runGui::runGame).start();
-            startWindow.dispose();
         });
 
 //        create load button

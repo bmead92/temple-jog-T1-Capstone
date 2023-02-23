@@ -14,6 +14,7 @@ public class GUIClient {
         Game game = new Game(gameFiles);
         RunGUI runGui = new RunGUI(game);
         TitleScreen sm = new TitleScreen(runGui);
+        IntroScreen is = new IntroScreen(runGui);
         sm.gameStartScreen(game);
         Sound.themeSound("sounds/background_music.wav");
     }
