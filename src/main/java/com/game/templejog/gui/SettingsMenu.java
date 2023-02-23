@@ -29,16 +29,14 @@ public class SettingsMenu {
         JPanel settingsPanel = new JPanel();
         JLabel settingsLabel = new JLabel();
         // create a slider
-<<<<<<< Updated upstream
+
         musicSlider = new JSlider(0, 10, 10);
 
         settingsLabel.setText("Volume is set at " + musicSlider.getValue());
         /*TODO: use value to reduce sound*/
 
 //    // paint the ticks and tracks
-=======
-        musicSlider = new JSlider(1, 5, 5);
->>>>>>> Stashed changes
+
         musicSlider.setPaintTrack(true);
         musicSlider.setPaintTicks(true);
         musicSlider.setPaintLabels(true);
