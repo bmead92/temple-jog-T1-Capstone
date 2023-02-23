@@ -11,12 +11,15 @@ import java.util.List;
 public class UseMenu {
     public static void setUpUseMenu(Game game) {
         JPanel attackMenu = new JPanel();
+        attackMenu.setBackground(new Color(129,255,217));
         JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
         bottomRightSectionJPanel.removeAll();
         JTextArea encounterInformation = new JTextArea();
         encounterInformation.setLineWrap(true);
         encounterInformation.setWrapStyleWord(true);
-        //TODO: blend JTextArea w/ frame/panel
+        encounterInformation.setEditable(false);
+        encounterInformation.setOpaque(true);
+        encounterInformation.setBackground(new Color(129,255,217));
         encounterInformation.setBounds(0, 0, 500, 50);
         // if they player has items in their inventory, open an attack submenu and create a button for each inventory item
         // when the button is pressed, game.processChoice is called

@@ -11,8 +11,8 @@ import java.awt.*;
 import java.io.*;
 
 public class MainContainer {
-    public static final int MAIN_CONTAINER_WIDTH = 1200;
-    public static final int MAIN_CONTAINER_HEIGHT = 1000;
+    public static final int MAIN_CONTAINER_WIDTH = 1175;
+    public static final int MAIN_CONTAINER_HEIGHT = 925;
     private Game game;
     private static TopHUD topHUD;
     private static MiddleSection middleSection;
