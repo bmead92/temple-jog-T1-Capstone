@@ -32,12 +32,8 @@ public class SettingsMenu {
 
         settingsLabel.setText("Volume is set at " + musicSlider.getValue());
         /*TODO: use value to reduce sound*/
-<<<<<<< Updated upstream:src/main/java/com/game/templejog/gui/SettingsMenu.java
-        // paint the ticks and tracks
-=======
 
 //    // paint the ticks and tracks
->>>>>>> Stashed changes:src/main/java/com/game/templejog/gui/top/SettingsMenu.java
         musicSlider.setPaintTrack(true);
         musicSlider.setPaintTicks(true);
         musicSlider.setPaintLabels(true);
