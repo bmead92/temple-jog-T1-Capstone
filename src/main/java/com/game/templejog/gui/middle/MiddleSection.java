@@ -84,7 +84,6 @@ public class MiddleSection {
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
-
         this.animatedEncounterPanel = new AnimatedEncounterPanel();
     }
 
@@ -94,7 +93,6 @@ public class MiddleSection {
         buttonPanel.add(rightButton, BorderLayout.EAST);
         buttonPanel.add(upButton, BorderLayout.NORTH);
         buttonPanel.add(downButton, BorderLayout.SOUTH);
-
         currentLocationBackgroundIcon = getBackgroundIcon();
         currentLocationBackgroundImage = currentLocationBackgroundIcon.getImage();
 
@@ -106,28 +104,15 @@ public class MiddleSection {
             String encounterKey = game.getCurrentRoom().getEncounters_to().get(0);
             String encounterDescription = game.getEncounters().get(encounterKey).getShortDescription();
             bottomRightSectionJPanel.add(new JLabel(encounterDescription));
-
             currentLocationEncounterIcon = getEncounterIcon();
             animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationEncounterIcon
                     , currentLocationBackgroundImage);
-//            encounterLabel.setIcon(currentLocationEncounterIcon);
-
-//            backgroundImageJLabel.setLayout(null);
-//            encounterLabel.setBounds(50, 50, 100, 100);
-//            backgroundImageJLabel.setIcon(currentLocationEncounterIcon);
-//            imagePanel.add(backgroundImageJLabel);
-//            buttonPanel.add(imagePanel, BorderLayout.CENTER);
         } else {
-//            backgroundImageJLabel.setIcon(currentLocationBackgroundIcon);
-//            imagePanel.add(backgroundImageJLabel);
             animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationBackgroundImage);
-//            backgroundImageJLabel.setLayout(null);
-//            backgroundImageJLabel.setIcon(currentLocationBackgroundIcon);
         }
-
         buttonPanel.add(animatedEncounterPanel, BorderLayout.CENTER);
 
-        //TODO: check from encounters same way
+        //DONE: check from encounters same way
         middleSectionPanel.add(buttonPanel, BorderLayout.CENTER);
         // Set panel properties
         this.middleSectionPanel.setSize(500, 500);
@@ -135,27 +120,6 @@ public class MiddleSection {
 
         return this.middleSectionPanel;
     }
-
-//    public void paint(Graphics g) {
-//        Graphics2D g2D = (Graphics2D) g;
-//        g2D.drawImage(currentLocationBackgroundImage, 0, 0, null);
-//        g2D.drawImage(currentLocationEncounterImage, 0, 0, null);
-//    }
-//
-//    public void actionPerformed(ActionEvent e) {
-//        if(x>=200-currentLocationEncounterImage.getWidth(null) || x<0) {
-//            xVelocity = xVelocity * -1;
-//        }
-//        x = x + xVelocity;
-//
-//        if(y>=200-currentLocationEncounterImage.getHeight(null) || y<0) {
-//            yVelocity = yVelocity * -1;
-//        }
-//        y = y + yVelocity;
-//        middleSectionPanel.repaint();
-//
-////        repaint();
-//    }
 
     public ImageIcon getBackgroundIcon() {
         String currentLocationImage = game.getCurrentRoom().getImage();

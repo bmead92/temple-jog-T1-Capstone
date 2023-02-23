@@ -17,10 +17,10 @@ public class BottomSection {
         JPanel bottomSection = new JPanel();
         bottomSection.setBackground(new Color(5, 23, 38));
         this.bottomLeftOptions = new BottomLeftOptions(game);
-        bottomSection.setLayout(new BorderLayout(350, 0));
-        bottomSection.add(bottomLeftOptions.setUpBottomLeftOptionsJPanel(), BorderLayout.LINE_START);
+        bottomSection.setLayout(new FlowLayout());
+        bottomSection.add(bottomLeftOptions.setUpBottomLeftOptionsJPanel());
         this.bottomRightSection = new BottomRightSection();
-        bottomSection.add(bottomRightSection.getBottomRightSectionJPanel(), BorderLayout.CENTER);
+        bottomSection.add(bottomRightSection.getBottomRightSectionJPanel());
         return bottomSection;
     }
 
