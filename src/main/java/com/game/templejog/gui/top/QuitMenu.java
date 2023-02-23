@@ -4,6 +4,7 @@ import com.game.templejog.Game;
 import com.game.templejog.Sound;
 import com.game.templejog.Temple;
 import com.game.templejog.client.FileLoader;
+import com.game.templejog.gui.IntroScreen;
 import com.game.templejog.gui.RunGUI;
 import com.game.templejog.gui.TitleScreen;
 
@@ -41,7 +42,8 @@ public class QuitMenu {
             }
             Game game = new Game(gameFiles);
             RunGUI runGui = new RunGUI(game);
-            TitleScreen sm = new TitleScreen(runGui);
+            TitleScreen sm = new TitleScreen();
+            IntroScreen is = new IntroScreen(runGui);
             sm.gameStartScreen(game);
             Sound.themeSound("sounds/background_music.wav");
         });
