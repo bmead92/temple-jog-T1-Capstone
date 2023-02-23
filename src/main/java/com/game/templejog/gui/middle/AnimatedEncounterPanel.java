@@ -13,8 +13,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class AnimatedEncounterPanel extends JPanel implements ActionListener {
-    private static final int PANEL_WIDTH = 600;
-    private static final int PANEL_HEIGHT = 400;
+    private static final int PANEL_WIDTH = 1024;
+    private static final int PANEL_HEIGHT = 691;
     private static final int DELAY = 25;
     private static final int IMAGE_WIDTH = 50;
     private static final int IMAGE_HEIGHT = 50;
