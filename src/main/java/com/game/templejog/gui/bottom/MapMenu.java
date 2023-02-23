@@ -4,6 +4,8 @@ import com.game.templejog.Game;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -15,6 +17,12 @@ public class MapMenu {
     public static void mapDisplay(Game game){
         mapFrame = new JFrame("Map - " + game.getCurrentRoom().getName());
         mapFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        mapFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                clickTracking = false;
+            }
+        });
         mapFrame.setSize(800, 800);
         mapFrame.setLocationRelativeTo(null);
         JPanel mapPanel = new JPanel();
