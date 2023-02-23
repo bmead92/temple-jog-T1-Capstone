@@ -13,11 +13,7 @@ public class TitleScreen {
 
 //    private final RunGUI runGui;
     JFrame startWindow;
-    //    Container con;
     JPanel titleNamePanel, startButtonPanel, buttonPanel, bgPanel;
-    JLabel titleNameLabel, musicQuestion;
-    Font titleFont = new Font("Times New Roman", Font.PLAIN, 45);
-    Font questionFont = new Font("Times New Roman", Font.PLAIN, 12);
     JButton startButton, quitButton, settingsButton, creditsButton, loadButton;
 
     private boolean gameStarted = false;
@@ -52,19 +48,11 @@ public class TitleScreen {
         imageLabel.setBackground(new Color(5, 23, 38));
 
         startWindow.add(imageLabel);
-//        startWindow.add(bgPanel);
-
-//        con = startWindow.getContentPane();
 
         //Create Title
         titleNamePanel = new JPanel();
         titleNamePanel.setBounds(100, 10, 600, 60);
         titleNamePanel.setBackground(new Color(5, 23, 38));
-//
-//        titleNameLabel = new JLabel("TEMPLE JOG");
-//        titleNameLabel.setForeground(Color.lightGray);
-//        titleNameLabel.setFont(titleFont);
-
 
         //create Start button Panel
         startButtonPanel = new JPanel();
@@ -102,7 +90,7 @@ public class TitleScreen {
         settingsButton = new JButton("SETTINGS");
         JFrame difficultyFrame = new JFrame("SETTINGS");
         difficultyFrame.setLayout(new FlowLayout());
-        difficultyFrame.setSize(250, 250);
+        difficultyFrame.setSize(200, 250);
         difficultyFrame.setLocationRelativeTo(null);
         difficultyFrame.setResizable(false);
         difficultyFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -116,7 +104,7 @@ public class TitleScreen {
             game.processDifficulty("hard");
             difficultyFrame.dispose();
         });
-        JToggleButton musicToggle = new JToggleButton("Toggle Sound");
+        JButton musicToggle = new JButton("Toggle Sound");
         musicToggle.addActionListener(e -> {
             if (game.getPlaySound()) {
                 game.setPlaySound(false);

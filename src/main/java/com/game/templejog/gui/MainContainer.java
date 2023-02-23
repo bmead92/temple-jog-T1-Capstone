@@ -35,7 +35,7 @@ public class MainContainer {
 
     public void setUpMainContainer() {
         JMenuBar fileMenuBar = new JMenuBar();
-        JMenu settingsMenu = new JMenu("FILE");
+        JMenu settingsJMenu = new JMenu("FILE");
         saveItem = new JMenuItem("SAVE");
         saveItem.addActionListener(e -> {
             if (e.getSource() == this.saveItem) {
@@ -54,6 +54,7 @@ public class MainContainer {
                 SettingsMenu.settingsFrame.dispose();
                 SettingsMenu.activeWindow = false;
             } else {
+                SettingsMenu.activeWindow = true;
                 SettingsMenu.settingsMenuDisplay(game);
             }
         });
@@ -61,11 +62,11 @@ public class MainContainer {
         quitItem.addActionListener(e -> {
             QuitMenu.setUpInGameQuitOptions(MainContainer.getMainContainer());
         });
-        settingsMenu.add(saveItem);
-        settingsMenu.add(loadItem);
-        settingsMenu.add(settingsItem);
-        settingsMenu.add(quitItem);
-        fileMenuBar.add(settingsMenu);
+        settingsJMenu.add(saveItem);
+        settingsJMenu.add(loadItem);
+        settingsJMenu.add(settingsItem);
+        settingsJMenu.add(quitItem);
+        fileMenuBar.add(settingsJMenu);
         fileMenuBar.setBorder(BorderFactory.createBevelBorder(3));
         mainContainer.setJMenuBar(fileMenuBar);
         mainContainer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -92,4 +92,10 @@ public class Sound {
             System.out.println("Error: Could not play audio clip.");
         }
     }
+    public static Clip getClip() {
+        return Sound.clip;
+    }
+    public static void setClip(Clip clip) {
+        Sound.clip = clip;
+    }
 }
