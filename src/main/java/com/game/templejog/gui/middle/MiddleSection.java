@@ -14,30 +14,19 @@ import java.util.Objects;
 
 public class MiddleSection {
     private final Game game;
-<<<<<<< Updated upstream
     private JPanel middleSectionPanel, buttonPanel, imagePanel;
     private JLabel backgroundImageJLabel, encounterLabel;
     private ImageIcon currentLocationBackgroundIcon, currentLocationEncounterIcon;
-=======
-    private JPanel middleSectionPanel;
-    private JPanel imagePanel, encounterPanel;
-    private final JPanel buttonPanel;
-    private JLabel backgroundImageJLabel;
-    private ImageIcon currentLocationBackgroundIcon;
->>>>>>> Stashed changes
+    private JPanel encounterPanel;
     private JButton upButton, downButton, leftButton, rightButton;
     private Image currentLocationBackgroundImage;
-<<<<<<< Updated upstream
-
     private AnimatedEncounterPanel animatedEncounterPanel;
 
-=======
     private JFrame encounterFrame;
     int xVelocity = 1;
     int yVelocity = 1;
     int x = 0;
     int y = 0;
->>>>>>> Stashed changes
 
     public MiddleSection(Game game) {
         this.game = game;
@@ -113,23 +102,20 @@ public class MiddleSection {
         buttonPanel.add(rightButton, BorderLayout.EAST);
         buttonPanel.add(upButton, BorderLayout.NORTH);
         buttonPanel.add(downButton, BorderLayout.SOUTH);
-        currentLocationBackgroundIcon = getBackgroundIcon();
+
+        currentLocationBackgroundIcon = getBackgroundImage();
         currentLocationBackgroundImage = currentLocationBackgroundIcon.getImage();
-<<<<<<< Updated upstream
 
         animatedEncounterPanel.stopTimer();
         buttonPanel.remove(animatedEncounterPanel);
         // Add the panels to the middleHUD
-=======
         backgroundImageJLabel.setIcon(currentLocationBackgroundIcon);
->>>>>>> Stashed changes
 
         if (game.getCurrentRoom().getEncounters_to().size() > 0) {
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             String encounterKey = game.getCurrentRoom().getEncounters_to().get(0);
             String encounterDescription = game.getEncounters().get(encounterKey).getShortDescription();
             bottomRightSectionJPanel.add(new JLabel(encounterDescription));
-<<<<<<< Updated upstream
 
             String encounterType = game.getEncounters().get(encounterKey).getType();
             if (encounterType.equalsIgnoreCase("enemy")) {
@@ -146,56 +132,16 @@ public class MiddleSection {
 
         buttonPanel.add(animatedEncounterPanel, BorderLayout.CENTER);
 
-        //DONE: check from encounters same way
-=======
-            currentLocationEncounterIcon = getEncounterImage();
-            currentLocationEncounterImage = currentLocationEncounterIcon.getImage();
-            encounterLabel.setIcon(currentLocationEncounterIcon);
-        }
-
-        imagePanel.add(backgroundImageJLabel);
-        encounterPanel.add(encounterLabel);
-
-        buttonPanel.setBounds(0,0, 500,500);
-        buttonPanel.add(imagePanel);
-//        buttonPanel.add(encounterPanel);
-        // Add the panels to the middleHUD
-
->>>>>>> Stashed changes
-        middleSectionPanel.add(buttonPanel, BorderLayout.CENTER);
         // Set panel properties
+        this.middleSectionPanel.add(buttonPanel, BorderLayout.CENTER);
         this.middleSectionPanel.setSize(500, 500);
         this.middleSectionPanel.setVisible(true);
 
         return this.middleSectionPanel;
-    }
-
-<<<<<<< Updated upstream
-    public ImageIcon getBackgroundIcon() {
-=======
-    public void paint(Graphics g) {
-        Graphics2D g2D = (Graphics2D) g;
-        g2D.drawImage(currentLocationBackgroundImage, 0, 0, null);
-        g2D.drawImage(currentLocationEncounterImage, 0, 0, null);
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if (x >= 200 - currentLocationEncounterImage.getWidth(null) || x < 0) {
-            xVelocity = xVelocity * -1;
         }
-        x = x + xVelocity;
 
-        if (y >= 200 - currentLocationEncounterImage.getHeight(null) || y < 0) {
-            yVelocity = yVelocity * -1;
-        }
-        y = y + yVelocity;
-        middleSectionPanel.repaint();
-
-//        repaint();
-    }
 
     public ImageIcon getBackgroundImage() {
->>>>>>> Stashed changes
         String currentLocationImage = game.getCurrentRoom().getImage();
         currentLocationBackgroundIcon = null;
         try {
