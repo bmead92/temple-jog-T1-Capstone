@@ -3,6 +3,7 @@ package com.game.templejog.gui.bottom;
 import com.game.templejog.Game;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class BottomLeftOptions {
     private final Game game;
@@ -17,10 +18,13 @@ public class BottomLeftOptions {
     public BottomLeftOptions(Game game) {
         this.game = game;
         this.bottomLeftOptions = new JPanel();
+        bottomLeftOptions.setBackground(new Color(5, 23, 38));
         this.bottomLeftAttackMap = new JPanel();
         bottomLeftAttackMap.setLayout(new BoxLayout(bottomLeftAttackMap, BoxLayout.PAGE_AXIS));
+        bottomLeftAttackMap.setBackground(new Color(5, 23, 38));
         this.bottomLeftSearchInventory = new JPanel();
         bottomLeftSearchInventory.setLayout(new BoxLayout(bottomLeftSearchInventory, BoxLayout.PAGE_AXIS));
+        bottomLeftSearchInventory.setBackground(new Color(5, 23, 38));
         this.attackButton = new JButton("Use");
         attackButton.addActionListener(e -> {
             if (e.getSource() == this.attackButton) {

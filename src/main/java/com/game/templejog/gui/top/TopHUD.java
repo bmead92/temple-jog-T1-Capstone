@@ -3,6 +3,7 @@ package com.game.templejog.gui.top;
 import com.game.templejog.Game;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class TopHUD {
     private Game game;
@@ -15,11 +16,15 @@ public class TopHUD {
 
     public TopHUD(Game game) {
         this.topHUDJPanel = new JPanel();
+        this.topHUDJPanel.setBackground(new Color(5, 23, 38));
         this.game = game;
         this.currentLocation = new JLabel();
+        this.currentLocation.setForeground(Color.WHITE);
         this.currentHealth = new JLabel();
         this.currentHealthBar = new JProgressBar(0, 90);
+        this.currentHealth.setForeground(Color.WHITE);
         this.timeLabel = new JLabel();
+        this.timeLabel.setForeground(Color.WHITE);
         this.helpButton = new JButton("Help");
         helpButton.addActionListener(e -> {
             if (e.getSource() == this.helpButton) {
