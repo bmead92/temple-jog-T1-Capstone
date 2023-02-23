@@ -34,18 +34,16 @@ public class AnimatedEncounterPanel extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         setLayout(new BorderLayout());
         this.backgroundImage = backgroundImage;
-//        add(createPanelNoEncounter(), BorderLayout.CENTER);
     }
 
     public AnimatedEncounterPanel(ImageIcon imageIcon, Image backgroundImage) {
         this(backgroundImage);
         this.imageIcon = imageIcon;
-//        add(createPanel(), BorderLayout.CENTER);
         timer = new Timer(DELAY, this);
-       timer.start();
+        timer.start();
     }
 
-    public void stopTimer(){
+    public void stopTimer() {
         if (timer != null) {
             timer.stop();
         }
@@ -54,15 +52,13 @@ public class AnimatedEncounterPanel extends JPanel implements ActionListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(backgroundImage, 0,0,null);
+        g.drawImage(backgroundImage, 0, 0, null);
         if (imageIcon != null) {
-            imageIcon.paintIcon(this,g,xPosition,yPosition);
+            imageIcon.paintIcon(this, g, xPosition, yPosition);
         }
     }
 
     public JPanel createPanel() {
-//        imageIcon = new ImageIcon("src/main/resources/Images/Encounters/Lion.jpg");
-//        backgroundImage = new ImageIcon("src/main/resources/Images/Rooms/LZ.jpeg").getImage();
         JPanel panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {

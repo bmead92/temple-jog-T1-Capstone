@@ -101,6 +101,7 @@ public class MiddleSection {
         animatedEncounterPanel.stopTimer();
         buttonPanel.remove(animatedEncounterPanel);
         // Add the panels to the middleHUD
+
         if (game.getCurrentRoom().getEncounters_to().size() > 0) {
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             String encounterKey = game.getCurrentRoom().getEncounters_to().get(0);
@@ -109,13 +110,17 @@ public class MiddleSection {
 
             String encounterType = game.getEncounters().get(encounterKey).getType();
             if (encounterType.equalsIgnoreCase("enemy")) {
-                currentLocationEncounterIcon = getEncounterIcon();
-                animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationEncounterIcon
-                        , currentLocationBackgroundImage);
+            currentLocationEncounterIcon = getEncounterIcon();
+            animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationEncounterIcon
+                    , currentLocationBackgroundImage);
+            } else {
+                animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationBackgroundImage);
             }
-        } else {
+        }
+        else {
             animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationBackgroundImage);
         }
+
         buttonPanel.add(animatedEncounterPanel, BorderLayout.CENTER);
 
         //DONE: check from encounters same way
