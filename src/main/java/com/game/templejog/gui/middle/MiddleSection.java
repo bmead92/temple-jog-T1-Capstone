@@ -24,6 +24,7 @@ public class MiddleSection {
     public MiddleSection(Game game) {
         this.game = game;
         this.middleSectionPanel = new JPanel();
+        this.middleSectionPanel.setBackground(new Color(5, 23, 38));
         this.imagePanel = new JPanel();
         this.backgroundImageJLabel = new JLabel();
 

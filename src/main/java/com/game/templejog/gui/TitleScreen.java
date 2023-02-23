@@ -34,16 +34,22 @@ public class TitleScreen {
         startWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         startWindow.setLayout(null);
 
+        JPanel backgroundPanel = new JPanel();
+        backgroundPanel.setSize(800, 800);
+        backgroundPanel.setBackground(new Color(5,23,38));
+
+
         JLabel imageLabel = new JLabel();
         imageLabel.setBounds(100, 0, 600, 500);
         ImageIcon bgIcon = null;
         try {
             //noinspection ConstantConditions
-            bgIcon = new ImageIcon(ImageIO.read(getClass().getClassLoader().getResourceAsStream("Images/temple.jpeg")));
+            bgIcon = new ImageIcon(ImageIO.read(getClass().getClassLoader().getResourceAsStream("Images/temple-jog-Alien_green.png")));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         imageLabel.setIcon(bgIcon);
+        imageLabel.setBackground(new Color(5, 23, 38));
 
         startWindow.add(imageLabel);
 //        startWindow.add(bgPanel);
@@ -53,16 +59,17 @@ public class TitleScreen {
         //Create Title
         titleNamePanel = new JPanel();
         titleNamePanel.setBounds(100, 10, 600, 60);
-        titleNamePanel.setBackground(Color.darkGray);
+        titleNamePanel.setBackground(new Color(5, 23, 38));
+//
+//        titleNameLabel = new JLabel("TEMPLE JOG");
+//        titleNameLabel.setForeground(Color.lightGray);
+//        titleNameLabel.setFont(titleFont);
 
-        titleNameLabel = new JLabel("TEMPLE JOG");
-        titleNameLabel.setForeground(Color.lightGray);
-        titleNameLabel.setFont(titleFont);
 
         //create Start button Panel
         startButtonPanel = new JPanel();
         startButtonPanel.setBounds(300, 500, 200, 75);
-        startButtonPanel.setBackground(Color.lightGray);
+        startButtonPanel.setBackground(new Color(5, 23, 38));
 
         //create start button
         startButton = new JButton("START");
@@ -136,7 +143,7 @@ public class TitleScreen {
         //create Button Panel
         buttonPanel = new JPanel();
         buttonPanel.setBounds(300, 600, 200, 75);
-        buttonPanel.setBackground(Color.lightGray);
+        buttonPanel.setBackground(new Color(5, 23, 38));
 
 
         //create exit button
@@ -167,11 +174,12 @@ public class TitleScreen {
         buttonPanel.add(creditsButton);
         buttonPanel.add(quitButton);
 
-        titleNamePanel.add(titleNameLabel);
+//        titleNamePanel.add(titleNameLabel);
         startWindow.add(titleNamePanel);
 
         startWindow.add(startButtonPanel);
         startWindow.add(buttonPanel);
+        startWindow.add(backgroundPanel);
         startWindow.setResizable(false);
         startWindow.setVisible(true);
     }
