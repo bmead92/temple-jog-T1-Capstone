@@ -215,6 +215,7 @@ public class TitleScreen {
     public static void creditMenu() {
         JFrame creditFrame = new JFrame("Developers Menu");
         JTextArea creditMessage = new JTextArea("Temple Jog Capstone\n\nDevelopers:\nBryce Meadors, Joe Savella, Cindy Pottin\n\nAdaptation from Text Based Game Developed by:\nJoe Racke, Lorenzo Ortega, and Lok Tamang");
+        creditMessage.setEditable(false);
         JOptionPane.showMessageDialog(creditFrame, creditMessage, "Developers", JOptionPane.INFORMATION_MESSAGE);
     }
 
