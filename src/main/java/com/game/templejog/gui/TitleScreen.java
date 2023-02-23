@@ -11,7 +11,7 @@ import java.io.*;
 
 public class TitleScreen {
 
-    private final RunGUI runGui;
+//    private final RunGUI runGui;
     JFrame startWindow;
     //    Container con;
     JPanel titleNamePanel, startButtonPanel, buttonPanel, bgPanel;
@@ -22,8 +22,8 @@ public class TitleScreen {
 
     private boolean gameStarted = false;
 
-    public TitleScreen(RunGUI runGui) {
-        this.runGui = runGui;
+    public TitleScreen() {
+//        this.runGui = runGui;
     }
 
     public void gameStartScreen(Game game) {

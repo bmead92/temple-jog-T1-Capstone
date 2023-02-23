@@ -36,7 +36,8 @@ public class WinAndLossScreen {
             }
             Game newGame = new Game(gameFiles);
             RunGUI runGui = new RunGUI(newGame);
-            TitleScreen sm = new TitleScreen(runGui);
+            TitleScreen sm = new TitleScreen();
+            IntroScreen is = new IntroScreen(runGui);
             sm.gameStartScreen(newGame);
             Sound.themeSound("sounds/background_music.wav");
         });
