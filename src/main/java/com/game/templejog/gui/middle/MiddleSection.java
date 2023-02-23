@@ -1,5 +1,6 @@
 package com.game.templejog.gui.middle;
 
+import com.game.templejog.Encounter;
 import com.game.templejog.Game;
 import com.game.templejog.gui.GUIClient;
 import com.game.templejog.gui.MainContainer;
@@ -8,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class MiddleSection {
@@ -104,9 +106,13 @@ public class MiddleSection {
             String encounterKey = game.getCurrentRoom().getEncounters_to().get(0);
             String encounterDescription = game.getEncounters().get(encounterKey).getShortDescription();
             bottomRightSectionJPanel.add(new JLabel(encounterDescription));
-            currentLocationEncounterIcon = getEncounterIcon();
-            animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationEncounterIcon
-                    , currentLocationBackgroundImage);
+
+            String encounterType = game.getEncounters().get(encounterKey).getType();
+            if (encounterType.equalsIgnoreCase("enemy")) {
+                currentLocationEncounterIcon = getEncounterIcon();
+                animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationEncounterIcon
+                        , currentLocationBackgroundImage);
+            }
         } else {
             animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationBackgroundImage);
         }

@@ -277,7 +277,7 @@
       "weakness": ["crystal femur"],
       "success": "You found a way to destroy the communication device and thwarted all communication to the alien planet. Looking good for humanity, but not for you.",
       "failure": -1,
-      "image": "Images/Encounters/AlienGuard.jpg"
+      "image": ""
     },
     "pit": {
       "name": "pit",
@@ -287,7 +287,7 @@
       "weakness": [],
       "success": "pop",
       "outcome": -1,
-      "image": "Images/Encounters/AlienGuard.jpg"
+      "image": ""
     },
     "locked door": {
       "name": "locked door",
@@ -296,7 +296,7 @@
       "shortDescription": "...Strange, the south door is locked.",
       "weakness": ["key"],
       "success": "The door creaks open, revealing a dark and mysterious chamber beyond. unfamiliar machinery fills the room.",
-      "image": "Images/Encounters/AlienGuard.jpg"
+      "image": ""
     }
   },
   "items": {
