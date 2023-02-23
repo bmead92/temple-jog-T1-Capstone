@@ -11,7 +11,6 @@ import java.io.*;
 
 public class TitleScreen {
 
-//    private final RunGUI runGui;
     JFrame startWindow;
     JPanel titleNamePanel, startButtonPanel, buttonPanel, bgPanel;
     JButton startButton, quitButton, settingsButton, creditsButton, loadButton;
@@ -19,7 +18,6 @@ public class TitleScreen {
     private boolean gameStarted = false;
 
     public TitleScreen() {
-//        this.runGui = runGui;
     }
 
     public void gameStartScreen(Game game) {
@@ -66,11 +64,7 @@ public class TitleScreen {
         /*DONE: connect to start game loop to call start of game show you are at LZ*/
         startButton.addActionListener(e -> {
             gameStarted = true;
-//            Sound.stopSound();
-//            if (game.getPlaySound()) {
-//                Sound.themeSound(game.getCurrentRoom().getSound());
-//            }
-//            new Thread(runGui::runGame).start();
+
             if(e.getSource() == this.startButton) {
                 IntroScreen.gameIntroScreen(game);
                 startWindow.dispose();
@@ -165,7 +159,6 @@ public class TitleScreen {
         buttonPanel.add(creditsButton);
         buttonPanel.add(quitButton);
 
-//        titleNamePanel.add(titleNameLabel);
         startWindow.add(titleNamePanel);
 
         startWindow.add(startButtonPanel);
