@@ -108,9 +108,14 @@ class GameTest {
     // remove item from room items and map of items
     // check inventory
 
-    @Test
-    void processGetting_given_validInputString_andItemIsPresentInCurrentRoom_shouldAddItemToPlayerInventory_returnString(){}
-
+   @Test
+   void processGetting_Given_InvalidInputString_ShouldReturn_Bad_Get(){
+        String expect = "There is nothing to grab.";
+        String noun = "";
+        String[] testChoice = new String[]{"get", noun};
+        String actual = game.processChoice(testChoice);
+        assertEquals(expect, actual);
+   }
     //USING
     //LOOKING
     @Test
