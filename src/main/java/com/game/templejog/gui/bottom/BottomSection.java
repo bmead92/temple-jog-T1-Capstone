@@ -6,20 +6,22 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BottomSection {
-    private Game game;
+    private final Game game;
     private BottomLeftOptions bottomLeftOptions;
     private BottomRightSection bottomRightSection;
+
     public BottomSection(Game game) {
         this.game = game;
     }
 
     public JPanel setUpBottomSectionJPanel() {
         JPanel bottomSection = new JPanel();
+        bottomSection.setBackground(new Color(5, 23, 38));
         this.bottomLeftOptions = new BottomLeftOptions(game);
-        bottomSection.setLayout(new BorderLayout(350, 0));
-        bottomSection.add(bottomLeftOptions.setUpBottomLeftOptionsJPanel(), BorderLayout.LINE_START);
+        bottomSection.setLayout(new FlowLayout());
+        bottomSection.add(bottomLeftOptions.setUpBottomLeftOptionsJPanel());
         this.bottomRightSection = new BottomRightSection();
-        bottomSection.add(bottomRightSection.getBottomRightSectionJPanel(), BorderLayout.CENTER);
+        bottomSection.add(bottomRightSection.getBottomRightSectionJPanel());
         return bottomSection;
     }
 

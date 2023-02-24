@@ -1,6 +1,8 @@
 package com.game.templejog.client;
 
-import com.game.templejog.*;
+import com.game.templejog.Game;
+import com.game.templejog.Item;
+import com.game.templejog.Sound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +12,14 @@ import static org.fusesource.jansi.Ansi.ansi;
 
 public class ConsoleInterface { // Previously TitleScreen
 
-/*                  CONSTANTS & FIELDS                          */
+    /*                  CONSTANTS & FIELDS                          */
     static final String titleSplash = "@|green ████████████████████████████████████████████████████████████████████████████████\n█░         █░        █░  █████    █░       ███░ ███████░        ████████████████\n█░         █░        █░   ████    █░        ██░ ███████░        ████████████████\n█░░░░  ░░░░█░ ░░░░░░░█░   ████    █░ ░░░░   ██░ ███████░ ░░░░░░░████████████████\n█████░ █████░ ████████░   ████    █░ ████░  ██░ ███████░ ███████████████████████\n█████░ █████░ ████████░   ███     █░ █████   █░ ███████░ ███████████████████████\n█████░ █████░       ██░    ██     █░ ████   ██░ ███████░       █████████████████\n█████░ █████░ ░░░░░░░█░ ░  █      █░      ░░██░ ███████░ ░░░░░░░████████████████\n█████░ █████░ ████████░ █░    ░   █░ ░░░░░████░ ███████░ ███████████████████████\n█████░ █████░ ████████░ █░    █░  █░ █████████░ ███████░ ███████████████████████\n█████░ █████░        █░ █░    █░  █░ █████████░       █░        ████████████████\n█████░░█████░░░░░░░░░█░░██░░░██░░░█░░█████████░░░░░░░░█░░░░░░░░░████████████████\n██████████████████████████████████████████░ ████████████████████████████████████\n██████████████████████████████████████████░ ███░       █████░      █████████████\n██████████████████████████████████████████░ ██░   ░░    ███░   ░░░  ████████████\n██████████████████████████████████████████░ ██░   ██░░  ███░  ███░░  ███████████\n██████████████████████████████████████████░ ██░  █████░  █░ ███████░ ███████████\n██████████████████████████████████████████░ ██░  █████░  █░ ████████████████████\n██████████████████████████████████████████░ ██░  █████░  █░ ███░   █████████████\n█████████████████████████████████████░ ███  ██░  █████   █░ ████░░   ███████████\n█████████████████████████████████████░  █   ██░   ██     █░  █████░  ███████████\n██████████████████████████████████████░    ███░░        ███░        ████████████\n███████████████████████████████████████░░░█████░░░░░░░░█████░░░░░░░█████████████|@";
     static final Integer CONSOLE_HEIGHT = 25;
     static final Integer CONSOLE_WIDTH = 80;
 
     Game game;
 
-/*                      STATIC METHODS                          */
+    /*                      STATIC METHODS                          */
     public static int displaySetup() {
         String midLines = "\n|%" + (CONSOLE_WIDTH - 1) + "s";
         System.out.println('┌' + addDashes() + '┐' +
@@ -37,7 +39,12 @@ public class ConsoleInterface { // Previously TitleScreen
         return "-".repeat(CONSOLE_WIDTH - 2);
     }
 
-/*                      BUSINESS METHODS                        */
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    /*                      BUSINESS METHODS                        */
     public int displayIntro() throws InterruptedException {
         String title = ansi().render(getGame().getGameText().get("intro")).toString();
         char[] charArray = title.toCharArray();
@@ -75,20 +82,20 @@ public class ConsoleInterface { // Previously TitleScreen
 
         // Inventory Bar Setup v2
         String inventorySpaces;
-        StringBuilder inventory =  new StringBuilder();
-        StringBuilder line =     new StringBuilder("█  Inventory: ");
-        StringBuilder lineTwo =  new StringBuilder("█             ");
-        for(Item item : getGame().getPlayer().getInventory()) {
-            if( line.length() + item.getName().length() < 75 ) {
+        StringBuilder inventory = new StringBuilder();
+        StringBuilder line = new StringBuilder("█  Inventory: ");
+        StringBuilder lineTwo = new StringBuilder("█             ");
+        for (Item item : getGame().getPlayer().getInventory()) {
+            if (line.length() + item.getName().length() < 75) {
                 line.append(String.format("[%s] ", item.getName()));
             } else {
-                lineTwo.append(String.format("[%s] ",item.getName()));
+                lineTwo.append(String.format("[%s] ", item.getName()));
             }
         }
         inventorySpaces = "%" + (CONSOLE_WIDTH - line.length()) + "s";
-        line.append(String.format(inventorySpaces,"█")).append("\n");
+        line.append(String.format(inventorySpaces, "█")).append("\n");
         inventorySpaces = "%" + (CONSOLE_WIDTH - lineTwo.length()) + "s";
-        lineTwo.append(String.format(inventorySpaces,"█"));
+        lineTwo.append(String.format(inventorySpaces, "█"));
         inventory.append(line).append(lineTwo);
 
         // Encounter Setup
@@ -209,10 +216,10 @@ public class ConsoleInterface { // Previously TitleScreen
                     .append("\n");
         }
 
-    // Print gap above
+        // Print gap above
         int displayLines = display.length() / 80;
         System.out.print("\n".repeat(lineNumber - displayLines / 2));
-    // Iterate through string like the intro
+        // Iterate through string like the intro
 
         char[] charArray = display.toString().toCharArray();
         int pause = 0;
@@ -225,7 +232,7 @@ public class ConsoleInterface { // Previously TitleScreen
                 pause++;
             }
         }
-    // Print gap below
+        // Print gap below
         System.out.print("\n".repeat(lineNumber - 1 - displayLines / 2));
         if (lineNumber == 12) System.out.print(" ".repeat(35) + "Loading...");
         // Pause
@@ -236,13 +243,13 @@ public class ConsoleInterface { // Previously TitleScreen
     public void displayEnding() throws InterruptedException {
         if (game.getCommunicatorOff()) {
             if (getGame().getPlayer().getSteps() > 24 || getGame().getPlayer().getHealth() <= 0) {
-                displayResult("You look down as your alarm goes off. It's 18:00....",0);
+                displayResult("You look down as your alarm goes off. It's 18:00....", 0);
                 bombSound();
                 System.out.println(getGame().getGameText().get("gameOverNuked"));
                 TimeUnit.SECONDS.sleep(5L);
                 displayResult(getGame().getGameText().get("sortOfWin"), 7);
             } else {
-                displayResult("You manage to jog back to the landing zone just as the helicopter lands. You all take off, eager to get as much distance between yourselves and the temple as possible...",0);
+                displayResult("You manage to jog back to the landing zone just as the helicopter lands. You all take off, eager to get as much distance between yourselves and the temple as possible...", 0);
                 clearScreen();
                 System.out.println(ansi().fgBrightGreen().render(getGame().getGameText().get("gameOver")).fgDefault());
                 if (game.getPlaySound()) {
@@ -252,13 +259,13 @@ public class ConsoleInterface { // Previously TitleScreen
             }
         } else {
             if (getGame().getPlayer().getSteps() >= 24) {
-                displayResult("You look down as your alarm goes off. It's 18:00....",0);
+                displayResult("You look down as your alarm goes off. It's 18:00....", 0);
                 bombSound();
                 System.out.print(getGame().getGameText().get("gameOverNuked"));
                 TimeUnit.SECONDS.sleep(5L);
                 displayResult(getGame().getGameText().get("outOfTime"), 7);
-            } else if(getGame().getPlayer().getHealth() <= 0) {
-                displayResult("You collapse until the pressure of everything, unable to continue on...",0);
+            } else if (getGame().getPlayer().getHealth() <= 0) {
+                displayResult("You collapse until the pressure of everything, unable to continue on...", 0);
                 bombSound();
                 System.out.print(getGame().getGameText().get("gameOverNuked"));
                 TimeUnit.SECONDS.sleep(5L);
@@ -277,31 +284,26 @@ public class ConsoleInterface { // Previously TitleScreen
         }
     }
 
-    public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
     private String[] processColor() {
-        String locColor,timeColor,healthColor;
+        String locColor, timeColor, healthColor;
 
-        if(game.getPlayer().getHealth() <= 2) {
+        if (game.getPlayer().getHealth() <= 2) {
             healthColor = "red";
-        } else if(game.getPlayer().getHealth() <= 5) {
+        } else if (game.getPlayer().getHealth() <= 5) {
             healthColor = "yellow";
         } else {
-            healthColor ="cyan";
+            healthColor = "cyan";
         }
 
-        if(game.getPlayer().getSteps() >= 20){
+        if (game.getPlayer().getSteps() >= 20) {
             timeColor = "red";
-        } else if(game.getPlayer().getSteps() >= 12) {
+        } else if (game.getPlayer().getSteps() >= 12) {
             timeColor = "yellow";
         } else {
             timeColor = "cyan";
         }
 
-        if(timeColor.equals("red") || healthColor.equals("red")) {
+        if (timeColor.equals("red") || healthColor.equals("red")) {
             locColor = "red";
         } else if (timeColor.equals("yellow") || healthColor.equals("yellow")) {
             locColor = "yellow";
@@ -309,10 +311,15 @@ public class ConsoleInterface { // Previously TitleScreen
             locColor = "cyan";
         }
 
-        return new String[]{locColor,healthColor,timeColor};
+        return new String[]{locColor, healthColor, timeColor};
     }
 
-/*                      ACCESSORS                               */
-    public Game getGame() { return game; }
-    public void setGame(Game game) { this.game = game; }
+    /*                      ACCESSORS                               */
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
 }

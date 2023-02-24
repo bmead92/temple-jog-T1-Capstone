@@ -1,45 +1,36 @@
 package com.game.templejog.gui.middle;
 
-import com.game.templejog.Encounter;
 import com.game.templejog.Game;
-import com.game.templejog.Room;
 import com.game.templejog.gui.GUIClient;
-import com.game.templejog.gui.RunGUI;
 import com.game.templejog.gui.MainContainer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Objects;
-import java.util.*;
-import java.util.List;
 
 public class MiddleSection {
     private final Game game;
     private JPanel middleSectionPanel;
-    private JPanel imagePanel;
     private final JPanel buttonPanel;
+    private JPanel imagePanel;
     private JLabel backgroundImageJLabel;
-    private ImageIcon currentLocationBackgroundIcon;
-    private JButton upButton, downButton, leftButton, rightButton;
-    private JLabel encounterLabel;
-    private ImageIcon currentLocationEncounterIcon;
-    private Image currentLocationEncounterImage;
-    private Image currentLocationBackgroundImage;
-    int xVelocity = 1;
-    int yVelocity = 1;
-    int x = 0;
-    int y = 0;
+    private ImageIcon currentLocationBackgroundIcon, currentLocationEncounterIcon;
+    private final JButton upButton;
+    private final JButton downButton;
+    private final JButton leftButton;
+    private final JButton rightButton;
+    private AnimatedEncounterPanel animatedEncounterPanel;
 
     public MiddleSection(Game game) {
         this.game = game;
         this.middleSectionPanel = new JPanel();
+        this.middleSectionPanel.setBackground(new Color(5, 23, 38));
         this.imagePanel = new JPanel();
+        JPanel encounterPanel = new JPanel();
         this.backgroundImageJLabel = new JLabel();
+        JLabel encounterLabel = new JLabel();
 
         // Create the button panel
         this.buttonPanel = new JPanel(new BorderLayout());
@@ -47,27 +38,29 @@ public class MiddleSection {
         this.rightButton = new JButton(">");
         this.upButton = new JButton("^");
         this.downButton = new JButton("v");
-        this.encounterLabel = new JLabel();
 
         // Add button listeners
         leftButton.addActionListener(e -> {
             String[] commands = new String[]{"go", "west"};
             // handle left button click
-            this.game.processChoice(commands);
-            String roomDescription = this.game.getCurrentRoom().getShortDescription();
+            String cantGoDirection = game.processChoice(commands);
+            String roomDescription = game.getCurrentRoom().getShortDescription();
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
+            bottomRightSectionJPanel.add(new JLabel(cantGoDirection));
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
+            middleSectionPanel.remove(imagePanel);
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
         rightButton.addActionListener(e -> {
             String[] commands = new String[]{"go", "east"};
             // handle right button click
-            this.game.processChoice(commands);
-            String roomDescription = this.game.getCurrentRoom().getShortDescription();
+            String cantGoDirection = game.processChoice(commands);
+            String roomDescription = game.getCurrentRoom().getShortDescription();
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
+            bottomRightSectionJPanel.add(new JLabel(cantGoDirection));
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
@@ -75,10 +68,11 @@ public class MiddleSection {
         upButton.addActionListener(e -> {
             String[] commands = new String[]{"go", "north"};
             // handle up button click
-            this.game.processChoice(commands);
-            String roomDescription = this.game.getCurrentRoom().getShortDescription();
+            String cantGoDirection = game.processChoice(commands);
+            String roomDescription = game.getCurrentRoom().getShortDescription();
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
+            bottomRightSectionJPanel.add(new JLabel(cantGoDirection));
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
             setUpMiddleSectionJPanel();
             //DONE: Update HUD when changing locations
@@ -87,14 +81,16 @@ public class MiddleSection {
         downButton.addActionListener(e -> {
             String[] commands = new String[]{"go", "south"};
             // handle down button click
-            this.game.processChoice(commands);
-            String roomDescription = this.game.getCurrentRoom().getShortDescription();
+            String cantGoDirection = game.processChoice(commands);
+            String roomDescription = game.getCurrentRoom().getShortDescription();
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
+            bottomRightSectionJPanel.add(new JLabel(cantGoDirection));
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
+        this.animatedEncounterPanel = new AnimatedEncounterPanel();
     }
 
     public JPanel setUpMiddleSectionJPanel() {
@@ -105,55 +101,40 @@ public class MiddleSection {
         buttonPanel.add(downButton, BorderLayout.SOUTH);
 
         currentLocationBackgroundIcon = getBackgroundImage();
-        currentLocationBackgroundImage = currentLocationBackgroundIcon.getImage();
-        backgroundImageJLabel.setIcon(currentLocationBackgroundIcon);
+        Image currentLocationBackgroundImage = currentLocationBackgroundIcon.getImage();
+
+        animatedEncounterPanel.stopTimer();
+        buttonPanel.remove(animatedEncounterPanel);
         // Add the panels to the middleHUD
+        backgroundImageJLabel.setIcon(currentLocationBackgroundIcon);
 
         if (game.getCurrentRoom().getEncounters_to().size() > 0) {
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             String encounterKey = game.getCurrentRoom().getEncounters_to().get(0);
             String encounterDescription = game.getEncounters().get(encounterKey).getShortDescription();
             bottomRightSectionJPanel.add(new JLabel(encounterDescription));
-            currentLocationEncounterIcon = getEncounterImage();
-            currentLocationEncounterImage = currentLocationEncounterIcon.getImage();
-            encounterLabel.setIcon(currentLocationEncounterIcon);
-            encounterLabel.setLayout(new OverlayLayout(imagePanel));
+            String encounterType = game.getEncounters().get(encounterKey).getType();
+            if (encounterType.equalsIgnoreCase("enemy")) {
+                currentLocationEncounterIcon = getEncounterIcon();
+                animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationEncounterIcon
+                        , currentLocationBackgroundImage);
+            } else {
+                animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationBackgroundImage);
+            }
+        } else {
+            animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationBackgroundImage);
         }
 
-//        imagePanel.add(encounterLabel);
-        imagePanel.add(backgroundImageJLabel);
-        buttonPanel.add(imagePanel, BorderLayout.CENTER);
-
-        //TODO: check from encounters same way
-        middleSectionPanel.add(buttonPanel, BorderLayout.CENTER);
+        buttonPanel.add(animatedEncounterPanel, BorderLayout.CENTER);
 
         // Set panel properties
+        this.middleSectionPanel.add(buttonPanel, BorderLayout.CENTER);
         this.middleSectionPanel.setSize(500, 500);
         this.middleSectionPanel.setVisible(true);
 
         return this.middleSectionPanel;
     }
 
-    public void paint(Graphics g) {
-        Graphics2D g2D = (Graphics2D) g;
-        g2D.drawImage(currentLocationBackgroundImage, 0, 0, null);
-        g2D.drawImage(currentLocationEncounterImage, 0, 0, null);
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if(x>=200-currentLocationEncounterImage.getWidth(null) || x<0) {
-            xVelocity = xVelocity * -1;
-        }
-        x = x + xVelocity;
-
-        if(y>=200-currentLocationEncounterImage.getHeight(null) || y<0) {
-            yVelocity = yVelocity * -1;
-        }
-        y = y + yVelocity;
-        middleSectionPanel.repaint();
-
-//        repaint();
-    }
 
     public ImageIcon getBackgroundImage() {
         String currentLocationImage = game.getCurrentRoom().getImage();
@@ -167,7 +148,7 @@ public class MiddleSection {
         return currentLocationBackgroundIcon;
     }
 
-    public ImageIcon getEncounterImage() {
+    public ImageIcon getEncounterIcon() {
         String encounter = game.getCurrentRoom().getEncounters_to().get(0);
         String encounterImagePath = game.getEncounters().get(encounter).getImage();
         currentLocationEncounterIcon = null;
@@ -181,5 +162,9 @@ public class MiddleSection {
             System.out.println(e);
         }
         return currentLocationEncounterIcon;
+    }
+
+    public JPanel getMiddleSectionPanel() {
+        return middleSectionPanel;
     }
 }

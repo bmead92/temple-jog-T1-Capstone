@@ -13,7 +13,8 @@ public class GUIClient {
         Temple gameFiles = FileLoader.jsonLoader("JSON/gameFiles.json");
         Game game = new Game(gameFiles);
         RunGUI runGui = new RunGUI(game);
-        StartMenu sm = new StartMenu(runGui);
+        TitleScreen sm = new TitleScreen();
+        IntroScreen is = new IntroScreen(runGui);
         sm.gameStartScreen(game);
         Sound.themeSound("sounds/background_music.wav");
     }

@@ -6,12 +6,13 @@ import java.util.List;
  * Created by dev0 on 2/2/23.
  */
 public class Encounter implements java.io.Serializable {
-    String name,type,description , shortDescription, success;
+    String name, type, description, shortDescription, success;
     List<String> weakness;
-    Integer failure,outcome;
+    Integer failure, outcome;
     String image;
 
-    public Encounter(){}
+    public Encounter() {
+    }
 
     public String getImage() {
         return image;

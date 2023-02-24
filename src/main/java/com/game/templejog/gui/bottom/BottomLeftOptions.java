@@ -3,6 +3,10 @@ package com.game.templejog.gui.bottom;
 import com.game.templejog.Game;
 
 import javax.swing.*;
+import java.awt.*;
+
+import static com.game.templejog.gui.MainContainer.MAIN_CONTAINER_HEIGHT;
+import static com.game.templejog.gui.MainContainer.MAIN_CONTAINER_WIDTH;
 
 public class BottomLeftOptions {
     private final Game game;
@@ -14,13 +18,18 @@ public class BottomLeftOptions {
     private final JPanel bottomLeftAttackMap;
     private final JPanel bottomLeftSearchInventory;
 
+
     public BottomLeftOptions(Game game) {
         this.game = game;
         this.bottomLeftOptions = new JPanel();
+        bottomLeftOptions.setBounds(0, 0, MAIN_CONTAINER_WIDTH / 4, MAIN_CONTAINER_HEIGHT / 6);
+        bottomLeftOptions.setBackground(new Color(5, 23, 38));
         this.bottomLeftAttackMap = new JPanel();
         bottomLeftAttackMap.setLayout(new BoxLayout(bottomLeftAttackMap, BoxLayout.PAGE_AXIS));
+        bottomLeftAttackMap.setBackground(new Color(5, 23, 38));
         this.bottomLeftSearchInventory = new JPanel();
         bottomLeftSearchInventory.setLayout(new BoxLayout(bottomLeftSearchInventory, BoxLayout.PAGE_AXIS));
+        bottomLeftSearchInventory.setBackground(new Color(5, 23, 38));
         this.attackButton = new JButton("Use");
         attackButton.addActionListener(e -> {
             if (e.getSource() == this.attackButton) {
@@ -37,10 +46,16 @@ public class BottomLeftOptions {
         //DONE: add map actionListener
         //Map button with action listener
         mapButton.addActionListener(e -> {
-            if(e.getSource() == this.mapButton){
-                MapMenu.mapDisplay(this.game);
+            if (e.getSource() == this.mapButton) {
+                if (!MapMenu.clickTracking) {
+                    MapMenu.mapDisplay(this.game);
+                } else {
+                    MapMenu.mapFrame.dispose();
+                    MapMenu.clickTracking = false;
+                }
             }
         });
+
         this.inventoryButton = new JButton("Inventory");
         inventoryButton.addActionListener(e -> {
             if (e.getSource() == this.inventoryButton) {

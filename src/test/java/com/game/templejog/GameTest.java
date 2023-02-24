@@ -1,13 +1,10 @@
 package com.game.templejog;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.game.templejog.client.FileLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -18,6 +15,8 @@ class GameTest {
     HashMap<String, Item> itemsMap;
     HashMap<String, Room> roomsMap;
     Game game;
+    HashMap<String, Encounter> encounterHashMap;
+    HashMap<String, Item> weaponsMap;
 
     @BeforeEach
     void setUp() {
@@ -41,6 +40,12 @@ class GameTest {
 //DONE update constructor
         game = new Game(new Player(), roomsMap, new HashMap<>(), itemsMap);
 //        game.setCurrentRoom(room01);
+
+        weaponsMap = new HashMap<>();
+        weaponsMap.putAll(game.getItems());
+
+        encounterHashMap = new HashMap<>();
+        encounterHashMap.putAll(game.getEncounters());
     }
     public Game generateGameFromJSON() throws IOException {
         Game gameJSON;
@@ -108,10 +113,21 @@ class GameTest {
     // remove item from room items and map of items
     // check inventory
 
-    @Test
-    void processGetting_given_validInputString_andItemIsPresentInCurrentRoom_shouldAddItemToPlayerInventory_returnString(){}
-
+   @Test
+   void processGetting_Given_InvalidInputString_ShouldReturn_Bad_Get(){
+        String expect = "There is nothing to grab.";
+        String noun = "";
+        String[] testChoice = new String[]{"get", noun};
+        String actual = game.processChoice(testChoice);
+        assertEquals(expect, actual);
+   }
     //USING
+    @Test
+    public void testProcessUsingInvalidStringReturnsWarningEnum() {
+        String expected = "You have no item to use.";
+        String actual = game.processChoice(new String[] {"use", ""});
+        assertEquals(expected, actual);
+    }
     //LOOKING
     @Test
     void processLooking_Given_ValidInputString_ShouldReturnItemDescription_WhenItemIsInInventory(){
@@ -173,4 +189,24 @@ class GameTest {
         Item actual = game.popItemFromMap(null);
         assertTrue(actual.equals(expected));
     }
+
+    //Arrange
+    //Act
+    //Assert
+    @Test
+    void handleEnemyEncounters_GivenInvalidNoun(){
+        String[] userInput = new String[] {"use", "notAValidNoun"};
+        String expected = "notAValidNoun not in your inventory";
+        String actual = game.processChoice(userInput);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void handleEnemyEncounters_GivenValidNoun_NotInInventory(){
+        String[] userInput = new String[] {"use", "not there"};
+        String expected = "not there not in your inventory";
+        String actual = game.processChoice(userInput);
+        assertEquals(expected, actual);
+    }
+
 }
