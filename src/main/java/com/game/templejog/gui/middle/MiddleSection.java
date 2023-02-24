@@ -10,17 +10,17 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
 
-import static com.game.templejog.gui.MainContainer.MAIN_CONTAINER_HEIGHT;
-import static com.game.templejog.gui.MainContainer.MAIN_CONTAINER_WIDTH;
-
 public class MiddleSection {
     private final Game game;
-    private JPanel middleSectionPanel, buttonPanel, imagePanel;
-    private JLabel backgroundImageJLabel, encounterLabel;
+    private JPanel middleSectionPanel;
+    private final JPanel buttonPanel;
+    private JPanel imagePanel;
+    private JLabel backgroundImageJLabel;
     private ImageIcon currentLocationBackgroundIcon, currentLocationEncounterIcon;
-    private JPanel encounterPanel;
-    private JButton upButton, downButton, leftButton, rightButton;
-    private Image currentLocationBackgroundImage;
+    private final JButton upButton;
+    private final JButton downButton;
+    private final JButton leftButton;
+    private final JButton rightButton;
     private AnimatedEncounterPanel animatedEncounterPanel;
 
     public MiddleSection(Game game) {
@@ -28,9 +28,9 @@ public class MiddleSection {
         this.middleSectionPanel = new JPanel();
         this.middleSectionPanel.setBackground(new Color(5, 23, 38));
         this.imagePanel = new JPanel();
-        this.encounterPanel = new JPanel();
+        JPanel encounterPanel = new JPanel();
         this.backgroundImageJLabel = new JLabel();
-        this.encounterLabel = new JLabel();
+        JLabel encounterLabel = new JLabel();
 
         // Create the button panel
         this.buttonPanel = new JPanel(new BorderLayout());
@@ -49,6 +49,7 @@ public class MiddleSection {
             bottomRightSectionJPanel.removeAll();
             bottomRightSectionJPanel.add(new JLabel(cantGoDirection));
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
+            middleSectionPanel.remove(imagePanel);
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
@@ -74,6 +75,7 @@ public class MiddleSection {
             bottomRightSectionJPanel.add(new JLabel(cantGoDirection));
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
             setUpMiddleSectionJPanel();
+            //DONE: Update HUD when changing locations
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
         downButton.addActionListener(e -> {
@@ -99,7 +101,7 @@ public class MiddleSection {
         buttonPanel.add(downButton, BorderLayout.SOUTH);
 
         currentLocationBackgroundIcon = getBackgroundImage();
-        currentLocationBackgroundImage = currentLocationBackgroundIcon.getImage();
+        Image currentLocationBackgroundImage = currentLocationBackgroundIcon.getImage();
 
         animatedEncounterPanel.stopTimer();
         buttonPanel.remove(animatedEncounterPanel);

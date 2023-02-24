@@ -14,7 +14,7 @@ public class MapMenu {
     public static boolean clickTracking = false;
     public static JFrame mapFrame;
 
-    public static void mapDisplay(Game game){
+    public static void mapDisplay(Game game) {
         mapFrame = new JFrame("Map - " + game.getCurrentRoom().getName());
         mapFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         mapFrame.addWindowListener(new WindowAdapter() {
@@ -26,11 +26,11 @@ public class MapMenu {
         mapFrame.setSize(800, 800);
         mapFrame.setLocationRelativeTo(null);
         JPanel mapPanel = new JPanel();
-        mapPanel.setBounds(0,50,800,800);
+        mapPanel.setBounds(0, 50, 800, 800);
         mapPanel.setLayout(null);
 
         JLabel mapLabel = new JLabel();
-        mapLabel.setBounds(50,0,800,800);
+        mapLabel.setBounds(50, 0, 800, 800);
         ImageIcon mapImage = null;
         try {
             mapImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(MapMenu.class.getClassLoader().getResourceAsStream("Images/Temple_Jog_map.png"))));

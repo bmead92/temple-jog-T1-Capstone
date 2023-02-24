@@ -1,8 +1,8 @@
 package com.game.templejog.gui.top;
 
-import javax.swing.*;
-
 import com.game.templejog.Game;
+
+import javax.swing.*;
 
 public class HelpMenu {
     /**

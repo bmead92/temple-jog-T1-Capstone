@@ -10,12 +10,13 @@ import java.awt.*;
 import java.io.IOException;
 
 public class WinAndLossScreen {
-    private Game game;
-    private JFrame winAndLossFrame;
+    private final Game game;
+    private final JFrame winAndLossFrame;
     private JTextArea winAndLossTextArea;
-    private JButton confirmationButton;
+    private final JButton confirmationButton;
 
     private JFrame mainContainer;
+
     public WinAndLossScreen(Game game, JFrame mainContainer) {
         this.game = game;
         this.winAndLossFrame = new JFrame();
@@ -64,12 +65,12 @@ public class WinAndLossScreen {
                     Sound.ending("sounds/explosion.wav");
                 }
                 this.winAndLossTextArea.setText(String.format("%s\n%s", playerDiesMessage, sortOfWinDeath));
-            } else if(playerOutOfSteps) {
+            } else if (playerOutOfSteps) {
                 if (game.getPlaySound()) {
                     Sound.ending("sounds/explosion.wav");
                 }
                 this.winAndLossTextArea.setText(String.format("%s\n%s", outOfTime, sortOfWinTime));
-             }else {
+            } else {
                 if (game.getPlaySound()) {
                     Sound.ending("sounds/victory.wav");
                 }

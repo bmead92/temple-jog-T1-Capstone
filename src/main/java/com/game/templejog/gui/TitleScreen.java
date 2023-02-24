@@ -1,8 +1,8 @@
 package com.game.templejog.gui;
 
+import com.game.templejog.Game;
 import com.game.templejog.Sound;
 import com.game.templejog.gui.top.QuitMenu;
-import com.game.templejog.Game;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -20,6 +20,38 @@ public class TitleScreen {
     public TitleScreen() {
     }
 
+    private static void saveGame(Game game) {
+        try {
+            FileOutputStream fos = new FileOutputStream("TempleJog.sav");
+            ObjectOutput oos = new ObjectOutputStream(fos);
+            oos.writeObject(game);
+            oos.flush();
+            oos.close();
+            System.out.println("Game saved\n");
+        } catch (Exception e) {
+            System.out.println("Serialization error: " + e.getClass() + ": " + e.getMessage());
+        }
+    }
+
+    private static void loadGame() {
+        try {
+            FileInputStream fis = new FileInputStream("TempleJog.sav");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Game game = (Game) ois.readObject();
+            ois.close();
+            System.out.println("\n Game loaded");
+        } catch (Exception e) {
+            System.out.println("Deserialization error: " + e.getClass() + ": " + e.getMessage());
+        }
+    }
+
+    public static void creditMenu() {
+        JFrame creditFrame = new JFrame("Developers Menu");
+        JTextArea creditMessage = new JTextArea("Temple Jog Capstone\n\nDevelopers:\nBryce Meadors, Joe Savella, Cindy Pottin\n\nAdaptation from Text Based Game Developed by:\nJoe Racke, Lorenzo Ortega, and Lok Tamang");
+        creditMessage.setEditable(false);
+        JOptionPane.showMessageDialog(creditFrame, creditMessage, "Developers", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     public void gameStartScreen(Game game) {
         //create JFrame to hold start menu and title
         startWindow = new JFrame();
@@ -30,7 +62,7 @@ public class TitleScreen {
 
         JPanel backgroundPanel = new JPanel();
         backgroundPanel.setSize(800, 800);
-        backgroundPanel.setBackground(new Color(5,23,38));
+        backgroundPanel.setBackground(new Color(5, 23, 38));
 
 
         JLabel imageLabel = new JLabel();
@@ -65,7 +97,7 @@ public class TitleScreen {
         startButton.addActionListener(e -> {
             gameStarted = true;
 
-            if(e.getSource() == this.startButton) {
+            if (e.getSource() == this.startButton) {
                 IntroScreen.gameIntroScreen(game);
                 startWindow.dispose();
             }
@@ -76,7 +108,7 @@ public class TitleScreen {
         loadButton.setBackground(Color.white);
         loadButton.addActionListener(e -> {
             if (e.getSource() == this.loadButton) {
-                loadGame(game);
+                loadGame();
             }
         });
 
@@ -120,9 +152,7 @@ public class TitleScreen {
         difficultyFrame.add(hard);
         difficultyFrame.add(musicLabel);
         difficultyFrame.add(musicToggle);
-        settingsButton.addActionListener(e -> {
-            difficultyFrame.setVisible(true);
-        });
+        settingsButton.addActionListener(e -> difficultyFrame.setVisible(true));
 
 
         //create Button Panel
@@ -166,38 +196,6 @@ public class TitleScreen {
         startWindow.add(backgroundPanel);
         startWindow.setResizable(false);
         startWindow.setVisible(true);
-    }
-
-    private static void saveGame(Game game) {
-        try {
-            FileOutputStream fos = new FileOutputStream("TempleJog.sav");
-            ObjectOutput oos = new ObjectOutputStream(fos);
-            oos.writeObject(game);
-            oos.flush();
-            oos.close();
-            System.out.println("Game saved\n");
-        } catch (Exception e) {
-            System.out.println("Serialization error: " + e.getClass() + ": " + e.getMessage());
-        }
-    }
-
-    private static void loadGame(Game game) {
-        try {
-            FileInputStream fis = new FileInputStream("TempleJog.sav");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            game = (Game) ois.readObject();
-            ois.close();
-            System.out.println("\n Game loaded");
-        } catch (Exception e) {
-            System.out.println("Deserialization error: " + e.getClass() + ": " + e.getMessage());
-        }
-    }
-
-    public static void creditMenu() {
-        JFrame creditFrame = new JFrame("Developers Menu");
-        JTextArea creditMessage = new JTextArea("Temple Jog Capstone\n\nDevelopers:\nBryce Meadors, Joe Savella, Cindy Pottin\n\nAdaptation from Text Based Game Developed by:\nJoe Racke, Lorenzo Ortega, and Lok Tamang");
-        creditMessage.setEditable(false);
-        JOptionPane.showMessageDialog(creditFrame, creditMessage, "Developers", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

@@ -1,7 +1,6 @@
 package com.game.templejog.gui.bottom;
 
 import com.game.templejog.Game;
-import com.game.templejog.gui.MainContainer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +47,7 @@ public class BottomLeftOptions {
         //Map button with action listener
         mapButton.addActionListener(e -> {
             if (e.getSource() == this.mapButton) {
-                if (MapMenu.clickTracking == false) {
+                if (!MapMenu.clickTracking) {
                     MapMenu.mapDisplay(this.game);
                 } else {
                     MapMenu.mapFrame.dispose();

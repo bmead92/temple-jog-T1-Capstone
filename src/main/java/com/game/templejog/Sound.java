@@ -1,11 +1,11 @@
 package com.game.templejog;
 
 import com.game.templejog.client.Main;
+
 import javax.sound.sampled.*;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.Scanner;
 
 public class Sound {
@@ -34,16 +34,17 @@ public class Sound {
             System.out.println("Error: Could not read audio file.");
         } catch (LineUnavailableException e) {
             System.out.println("Error: Could not play audio clip.");
-        } catch (IllegalArgumentException ignored) {}
+        } catch (IllegalArgumentException ignored) {
+        }
     }
 
-    public static String turningSound(String noun, Game game){
-        if(noun.isEmpty()){
+    public static String turningSound(String noun, Game game) {
+        if (noun.isEmpty()) {
             return InvalidNounInput.BAD_SOUND.getWarning();
-        } else if(noun.equalsIgnoreCase("on")){
+        } else if (noun.equalsIgnoreCase("on")) {
             game.setPlaySound(true);
             Sound.themeSound(game.getCurrentRoom().getSound());
-        } else if(noun.equalsIgnoreCase("off")){
+        } else if (noun.equalsIgnoreCase("off")) {
             Sound.stopSound();
             game.setPlaySound(false);
         }
@@ -53,7 +54,7 @@ public class Sound {
     public static void gameSound(Scanner scanner, Game game) {
         System.out.println(UserInput.TURN_MUSIC.getUserPrompt());
         String musicOn = scanner.nextLine();
-        if (musicOn.equalsIgnoreCase("y")){
+        if (musicOn.equalsIgnoreCase("y")) {
             game.setPlaySound(true);
             Sound.themeSound("sounds/background_music.wav");
         } else {
@@ -61,8 +62,8 @@ public class Sound {
         }
     }
 
-    public static void stopSound(){
-        if(clip != null) {
+    public static void stopSound() {
+        if (clip != null) {
             clip.stop();
         }
     }
@@ -90,11 +91,14 @@ public class Sound {
             System.out.println("Error: Could not read audio file.");
         } catch (LineUnavailableException e) {
             System.out.println("Error: Could not play audio clip.");
-        } catch (IllegalArgumentException ignored) {}
+        } catch (IllegalArgumentException ignored) {
+        }
     }
+
     public static Clip getClip() {
         return Sound.clip;
     }
+
     public static void setClip(Clip clip) {
         Sound.clip = clip;
     }

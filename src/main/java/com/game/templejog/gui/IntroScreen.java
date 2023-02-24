@@ -5,21 +5,17 @@ import com.game.templejog.Sound;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.io.IOException;
+import java.util.Objects;
 
 public class IntroScreen {
 
     private static JFrame introScreen;
     private static RunGUI runGUI;
 
-
-    private static JButton parachuteCut;
-    private boolean gameStarted = false;
-
     public IntroScreen(RunGUI runGUI) {
-        this.runGUI = runGUI;
+        IntroScreen.runGUI = runGUI;
     }
 
     public static void gameIntroScreen(Game game) {
@@ -36,10 +32,10 @@ public class IntroScreen {
         JLabel imageMARADMIN = new JLabel();
         imageMARADMIN.setBounds(25, 0, 800, 700);
         ImageIcon introIcon = null;
-
         try {
             introIcon = new ImageIcon(ImageIO.read(
-                    IntroScreen.class.getClassLoader().getResourceAsStream("Images/report_TJ_game.png")));
+                    Objects.requireNonNull(IntroScreen.class.getClassLoader()
+                            .getResourceAsStream("Images/report_TJ_game.png"))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -50,7 +46,7 @@ public class IntroScreen {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBounds(300, 650, 200, 75);
         buttonPanel.setBackground(new Color(5, 23, 38));
-        parachuteCut = new JButton("Click to Parachute into LZ");
+        JButton parachuteCut = new JButton("Click to Parachute into LZ");
         parachuteCut.setBackground(new Color(129, 255, 217));
         parachuteCut.setOpaque(true);
         parachuteCut.setBorderPainted(false);
