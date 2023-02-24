@@ -110,7 +110,7 @@ public class Game implements java.io.Serializable {
             if (getPlaySound()) {
                 currentRoomSound();
             }
-            return String.format("Traveling to %s... %s",getCurrentRoom().getName(), outputMessage);
+            return String.format("Travelled to %s... %s",getCurrentRoom().getName(), outputMessage);
         }
 
         return "Cannot go in that direction...";

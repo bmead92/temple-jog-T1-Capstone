@@ -49,11 +49,13 @@ public class MiddleSection {
         leftButton.addActionListener(e -> {
             String[] commands = new String[]{"go", "west"};
             // handle left button click
-            this.game.processChoice(commands);
+//            this.game.processChoice(commands);
+            String cannotGoDirection = this.game.processChoice(commands);
             String roomDescription = this.game.getCurrentRoom().getShortDescription();
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
+            bottomRightSectionJPanel.add(new JLabel(cannotGoDirection));
             middleSectionPanel.remove(imagePanel);
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
@@ -61,22 +63,26 @@ public class MiddleSection {
         rightButton.addActionListener(e -> {
             String[] commands = new String[]{"go", "east"};
             // handle right button click
-            this.game.processChoice(commands);
+//            this.game.processChoice(commands);
+            String cannotGoDirection = this.game.processChoice(commands);
             String roomDescription = this.game.getCurrentRoom().getShortDescription();
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
+            bottomRightSectionJPanel.add(new JLabel(cannotGoDirection));
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
         upButton.addActionListener(e -> {
             String[] commands = new String[]{"go", "north"};
             // handle up button click
-            this.game.processChoice(commands);
+//            this.game.processChoice(commands);
+            String cannotGoDirection = this.game.processChoice(commands);
             String roomDescription = this.game.getCurrentRoom().getShortDescription();
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
+            bottomRightSectionJPanel.add(new JLabel(cannotGoDirection));
             middleSectionPanel.remove(imagePanel);
             setUpMiddleSectionJPanel();
             //DONE: Update HUD when changing locations
@@ -85,11 +91,13 @@ public class MiddleSection {
         downButton.addActionListener(e -> {
             String[] commands = new String[]{"go", "south"};
             // handle down button click
-            this.game.processChoice(commands);
+//            this.game.processChoice(commands);
+            String cannotGoDirection = this.game.processChoice(commands);
             String roomDescription = this.game.getCurrentRoom().getShortDescription();
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
+            bottomRightSectionJPanel.add(new JLabel(cannotGoDirection));
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
