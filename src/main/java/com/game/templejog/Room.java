@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Room implements java.io.Serializable {
-//    TODO private fields
+    //    TODO private fields
     Integer number;
     String name;
     String description, shortDescription, west, south, north, east;
@@ -17,7 +17,9 @@ public class Room implements java.io.Serializable {
     String sound;
     String image;
 
-    public Room() {}
+    public Room() {
+    }
+
     public Room(Integer number, String name, String description, String shortDescription, String west, String south, String north, String east, List<String> items, List<String> encounters_to, List<String> encounters_from, Boolean hasBeenVisited, String sound, String backgroungImage) {
         this.number = number;
         this.name = name;
@@ -35,7 +37,7 @@ public class Room implements java.io.Serializable {
         this.image = backgroungImage;
     }
 
-//  HELPER METHODS
+    //  HELPER METHODS
     public String checkDirection(String noun) {
         HashMap<String, String> directions = new HashMap<>();
         directions.put("west", getWest());
@@ -45,9 +47,13 @@ public class Room implements java.io.Serializable {
         String dir = directions.get(noun);
         return dir;
     }
-    public Boolean directionBlockedByDoor(){ return getEncounters_to().contains("locked door"); }
-    public Boolean removeEncounter(String targetEncounter){
-        if( getEncounters_to().contains(targetEncounter) ){
+
+    public Boolean directionBlockedByDoor() {
+        return getEncounters_to().contains("locked door");
+    }
+
+    public Boolean removeEncounter(String targetEncounter) {
+        if (getEncounters_to().contains(targetEncounter)) {
             Boolean removedEncounterTo = getEncounters_to().remove(targetEncounter);
             return removedEncounterTo;
         }
@@ -59,7 +65,7 @@ public class Room implements java.io.Serializable {
         return false;
     }
 
-//  ACCESSOR METHODS
+    //  ACCESSOR METHODS
     public String getImage() {
         return image;
     }
@@ -68,9 +74,17 @@ public class Room implements java.io.Serializable {
         this.image = image;
     }
 
-    public Integer getNumber() { return number; }
-    public void setNumber(Integer number) { this.number = number;}
-    public String getName() { return name; }
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -156,13 +170,18 @@ public class Room implements java.io.Serializable {
         this.hasBeenVisited = hasBeenVisited;
     }
 
-    public Boolean getIsLocked() { return isLocked; }
+    public Boolean getIsLocked() {
+        return isLocked;
+    }
 
-    public void setIsLocked(Boolean locked) { isLocked = locked; }
+    public void setIsLocked(Boolean locked) {
+        isLocked = locked;
+    }
 
     public String getSound() {
         return sound;
     }
+
     public void setSound(String sound) {
         this.sound = sound;
     }

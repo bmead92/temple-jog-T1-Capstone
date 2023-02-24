@@ -6,9 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BottomSection {
-    private Game game;
+    private final Game game;
     private BottomLeftOptions bottomLeftOptions;
     private BottomRightSection bottomRightSection;
+
     public BottomSection(Game game) {
         this.game = game;
     }

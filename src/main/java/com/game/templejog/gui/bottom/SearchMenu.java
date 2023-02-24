@@ -1,7 +1,6 @@
 package com.game.templejog.gui.bottom;
 
 import com.game.templejog.Game;
-import com.game.templejog.Item;
 import com.game.templejog.gui.MainContainer;
 
 import javax.swing.*;
@@ -25,7 +24,7 @@ public class SearchMenu {
                 // if button is pressed, loot the item, add to inventory
                 buttonToAdd.addActionListener(e -> {
                     if (e.getSource() == buttonToAdd) {
-                        String[] choice = new String[] {"get", item};
+                        String[] choice = new String[]{"get", item};
                         // processChoice  calls processGetting, which adds the item to the user inventory and
                         // deletes the item from the current room
                         String message = game.processChoice(choice);
@@ -50,7 +49,7 @@ public class SearchMenu {
                 }
             });
         } else {
-            String[] choice = new String[] {"get", ""};
+            String[] choice = new String[]{"get", ""};
             String message = game.processChoice(choice);
             JLabel searchDisplayJLabel = new JLabel(message);
             bottomRightSectionJPanel.removeAll();

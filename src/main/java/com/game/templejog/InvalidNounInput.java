@@ -8,10 +8,11 @@ public enum InvalidNounInput {
     BAD_NAV("You cannot move in this direction.");
     private final String warning_message;
 
-    private InvalidNounInput(String msg){
+    private InvalidNounInput(String msg) {
         this.warning_message = msg;
     }
-    public String getWarning(){
+
+    public String getWarning() {
         return this.warning_message;
     }
 }

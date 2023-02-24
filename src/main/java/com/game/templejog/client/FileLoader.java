@@ -10,10 +10,10 @@ import java.io.InputStream;
 public class FileLoader {
     public static Temple jsonLoader(String path) throws IOException {
         Temple gameFiles;
-        try(InputStream inputStream = Main.class.getClassLoader().getResourceAsStream(path)){
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
-                gameFiles = mapper.readValue(inputStream,Temple.class);
+        try (InputStream inputStream = Main.class.getClassLoader().getResourceAsStream(path)) {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            gameFiles = mapper.readValue(inputStream, Temple.class);
             return gameFiles;
         }
     }

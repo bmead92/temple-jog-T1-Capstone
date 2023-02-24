@@ -4,8 +4,13 @@ public class Item implements java.io.Serializable {
     private String name, room, description;
     private Integer damage, reuse;
 
-    public Item() {}
-    public Item(String name) {this.name = name;}
+    public Item() {
+    }
+
+    public Item(String name) {
+        this.name = name;
+    }
+
     public Item(String name, String room, String description, Integer damage, Integer reuse) {
         this.name = name;
         this.room = room;
@@ -15,14 +20,14 @@ public class Item implements java.io.Serializable {
     }
 
     @Override
-    public boolean equals(Object other){
-        if( this == other ) return true;
-        if( !(other instanceof Item) ) return false;
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (!(other instanceof Item)) return false;
 
-        Item otherObj = (Item)other;
-        Boolean nameEquals = ( this.name == null && otherObj.name == null );
-        Boolean roomEquals = ( this.room == null && otherObj.room == null );
-        Boolean descriptionEquals = ( this.room == null && otherObj.room == null );
+        Item otherObj = (Item) other;
+        Boolean nameEquals = (this.name == null && otherObj.name == null);
+        Boolean roomEquals = (this.room == null && otherObj.room == null);
+        Boolean descriptionEquals = (this.room == null && otherObj.room == null);
 
         return nameEquals && roomEquals && descriptionEquals;
     }

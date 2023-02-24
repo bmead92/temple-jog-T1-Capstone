@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class QuitMenu {
     static JFrame frame;
+
     public static void setUpTitleScreenQuitOptions() {
         //click event will return an int and we can use that int in the if statement to take action
         int n = JOptionPane.showConfirmDialog(
@@ -22,7 +23,7 @@ public class QuitMenu {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
         );
-        if(n == 0){
+        if (n == 0) {
             System.exit(0);
         }
     }

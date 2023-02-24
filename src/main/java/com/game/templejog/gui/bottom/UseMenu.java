@@ -15,7 +15,7 @@ import static com.game.templejog.gui.MainContainer.MAIN_CONTAINER_WIDTH;
 public class UseMenu {
     public static void setUpUseMenu(Game game) {
         JPanel attackMenu = new JPanel();
-        attackMenu.setBackground(new Color(129,255,217));
+        attackMenu.setBackground(new Color(129, 255, 217));
         JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
         bottomRightSectionJPanel.removeAll();
 
@@ -27,7 +27,7 @@ public class UseMenu {
         encounterInformation.setWrapStyleWord(true);
         encounterInformation.setEditable(false);
         encounterInformation.setOpaque(true);
-        encounterInformation.setBackground(new Color(129,255,217));
+        encounterInformation.setBackground(new Color(129, 255, 217));
         encounterInformation.setBounds(0, 0, MAIN_CONTAINER_WIDTH / 2, MAIN_CONTAINER_HEIGHT / 6);
         // if they player has items in their inventory, open an attack submenu and create a button for each inventory item
         // when the button is pressed, game.processChoice is called
@@ -35,14 +35,14 @@ public class UseMenu {
         if (playerInventory.size() > 0) {
             JFrame attackSubMenu = new JFrame("Use");
             attackSubMenu.setLayout(new FlowLayout());
-            attackSubMenu.setSize(250, 100);
+            attackSubMenu.setSize(250, 175);
             attackSubMenu.setLocationRelativeTo(null);
             for (Item item : playerInventory) {
                 JButton buttonToAdd = new JButton(item.getName());
                 buttonToAdd.addActionListener(e -> {
                     if (e.getSource() == buttonToAdd) {
                         String inventoryItem = item.getName().toLowerCase();
-                        final String[] choice = new String[] {"use", inventoryItem};
+                        final String[] choice = new String[]{"use", inventoryItem};
                         if (item.getReuse() == 0) {
                             attackSubMenu.remove(buttonToAdd);
                             attackSubMenu.validate();
@@ -73,7 +73,7 @@ public class UseMenu {
             });
             attackSubMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             attackSubMenu.setVisible(true);
-        // if user inventory is empty, do not open attack sub menu, and display message in lower right corner
+            // if user inventory is empty, do not open attack sub menu, and display message in lower right corner
         } else {
             encounterInformation.setText(game.processChoice(new String[]{"use", ""}));
             bottomRightSectionJPanel.add(encounterInformation);

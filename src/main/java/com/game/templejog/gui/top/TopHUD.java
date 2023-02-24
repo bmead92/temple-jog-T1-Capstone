@@ -6,13 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TopHUD {
+    private final JButton helpButton;
     private Game game;
     private JPanel topHUDJPanel;
     private JLabel currentLocation;
     private JLabel currentHealth;
     private JProgressBar currentHealthBar;
     private JLabel timeLabel;
-    private final JButton helpButton;
 
     public TopHUD(Game game) {
         this.topHUDJPanel = new JPanel();

@@ -13,11 +13,11 @@ import java.io.*;
 public class MainContainer {
     public static final int MAIN_CONTAINER_WIDTH = 1175;
     public static final int MAIN_CONTAINER_HEIGHT = 925;
-    private Game game;
     private static TopHUD topHUD;
     private static MiddleSection middleSection;
     private static BottomSection bottomSection;
     private static JFrame mainContainer;
+    private Game game;
     private JMenuItem saveItem;
     private JMenuItem loadItem;
 
@@ -33,6 +33,63 @@ public class MainContainer {
         MainContainer.bottomSection = bottomSection;
     }
 
+    private static void saveGame(Game game) {
+        try {
+            FileOutputStream fos = new FileOutputStream("TempleJog.sav");
+            ObjectOutput oos = new ObjectOutputStream(fos);
+            oos.writeObject(game);
+            oos.flush();
+            oos.close();
+            System.out.println("Game saved\n");
+        } catch (Exception e) {
+            System.out.println("Serialization error: " + e.getClass() + ": " + e.getMessage());
+        }
+    }
+
+    private static void loadGame() {
+        try {
+            FileInputStream fis = new FileInputStream("TempleJog.sav");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Game game = (Game) ois.readObject();
+            ois.close();
+            System.out.println("\n Game loaded");
+        } catch (Exception e) {
+            System.out.println("Deserialization error: " + e.getClass() + ": " + e.getMessage());
+        }
+    }
+
+    public static TopHUD getTopHUD() {
+        return topHUD;
+    }
+
+    public static void setTopHUD(TopHUD t) {
+        topHUD = t;
+    }
+
+    public static MiddleSection getMiddleSection() {
+        return middleSection;
+    }
+
+    public void setMiddleSection(MiddleSection middleSection) {
+        MainContainer.middleSection = middleSection;
+    }
+
+    public static BottomSection getBottomSection() {
+        return bottomSection;
+    }
+
+    public void setBottomSection(BottomSection bottomSection) {
+        MainContainer.bottomSection = bottomSection;
+    }
+
+    public static JFrame getMainContainer() {
+        return mainContainer;
+    }
+
+    public void setMainContainer(JFrame mainContainer) {
+        MainContainer.mainContainer = mainContainer;
+    }
+
     public void setUpMainContainer() {
         JMenuBar fileMenuBar = new JMenuBar();
         JMenu settingsJMenu = new JMenu("FILE");
@@ -45,7 +102,7 @@ public class MainContainer {
         loadItem = new JMenuItem("LOAD");
         loadItem.addActionListener(e -> {
             if (e.getSource() == this.loadItem) {
-                loadGame(game);
+                loadGame();
             }
         });
         JMenuItem settingsItem = new JMenuItem("SETTINGS");
@@ -77,68 +134,12 @@ public class MainContainer {
         mainContainer.setVisible(true);
     }
 
-
-    private static void saveGame(Game game) {
-        try {
-            FileOutputStream fos = new FileOutputStream("TempleJog.sav");
-            ObjectOutput oos = new ObjectOutputStream(fos);
-            oos.writeObject(game);
-            oos.flush();
-            oos.close();
-            System.out.println("Game saved\n");
-        } catch (Exception e) {
-            System.out.println("Serialization error: " + e.getClass() + ": " + e.getMessage());
-        }
-    }
-    private static void loadGame(Game game) {
-        try {
-            FileInputStream fis = new FileInputStream("TempleJog.sav");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            game = (Game) ois.readObject();
-            ois.close();
-            System.out.println("\n Game loaded");
-        } catch (Exception e) {
-            System.out.println("Deserialization error: " + e.getClass() + ": " + e.getMessage());
-        }
-    }
     public Game getGame() {
         return game;
     }
 
     public void setGame(Game game) {
         this.game = game;
-    }
-
-    public static TopHUD getTopHUD() {
-        return topHUD;
-    }
-
-    public static void setTopHUD(TopHUD t) {
-        topHUD = t;
-    }
-
-    public static MiddleSection getMiddleSection() {
-        return middleSection;
-    }
-
-    public void setMiddleSection(MiddleSection middleSection) {
-        this.middleSection = middleSection;
-    }
-
-    public static BottomSection getBottomSection() {
-        return bottomSection;
-    }
-
-    public void setBottomSection(BottomSection bottomSection) {
-        MainContainer.bottomSection = bottomSection;
-    }
-
-    public static JFrame getMainContainer() {
-        return mainContainer;
-    }
-
-    public void setMainContainer(JFrame mainContainer) {
-        this.mainContainer = mainContainer;
     }
 
 }

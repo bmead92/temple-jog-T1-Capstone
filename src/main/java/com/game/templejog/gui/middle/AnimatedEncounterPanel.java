@@ -1,16 +1,9 @@
 package com.game.templejog.gui.middle;
 
-import com.game.templejog.Game;
-import com.game.templejog.Temple;
-import com.game.templejog.gui.GUIClient;
-
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Objects;
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
 public class AnimatedEncounterPanel extends JPanel implements ActionListener {
     private static final int PANEL_WIDTH = 1024;

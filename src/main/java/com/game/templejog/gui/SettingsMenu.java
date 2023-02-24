@@ -9,7 +9,6 @@ import javax.sound.sampled.FloatControl;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 public class SettingsMenu {
     public static boolean activeWindow = false;
@@ -48,7 +47,7 @@ public class SettingsMenu {
         FloatControl gainControl =
                 (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         musicSlider.addChangeListener(e -> {
-            switch(musicSlider.getValue()) {
+            switch (musicSlider.getValue()) {
                 case 5:
                     gainControl.setValue(-10);
                     break;
@@ -90,7 +89,7 @@ public class SettingsMenu {
         settingsPanel.add(musicToggle);
         settingsFrame.add(settingsPanel);
         // set the size of frame
-        settingsFrame.setSize(300, 300);
+        settingsFrame.setSize(300, 175);
         settingsFrame.setLocationRelativeTo(null);
         settingsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         settingsFrame.addWindowListener(new WindowAdapter() {

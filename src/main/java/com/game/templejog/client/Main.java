@@ -1,6 +1,10 @@
 package com.game.templejog.client;
 
-import com.game.templejog.*;
+import com.game.templejog.Game;
+import com.game.templejog.Sound;
+import com.game.templejog.Temple;
+import com.game.templejog.UserInput;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -20,7 +24,7 @@ public class Main {
         ConsoleInterface.clearScreen();
         ConsoleInterface.displayTitle();
         String playerInput = "";
-        while(playerInput.isEmpty()){
+        while (playerInput.isEmpty()) {
             System.out.println(UserInput.START_GAME.getUserPrompt());
             playerInput = scanner.nextLine();
         }
@@ -36,12 +40,12 @@ public class Main {
                 System.out.println(UserInput.DIFFICULTY_LEVEL.getUserPrompt());
                 playerInput = scanner.nextLine();
 
-                if(TextParser.parseText(playerInput)[0].equals("quit")) {
+                if (TextParser.parseText(playerInput)[0].equals("quit")) {
                     System.out.println("Quitting... ");
                     exit(0);
                 }
                 playerInput = TextParser.parseDifficulty(playerInput);
-            } while(playerInput.equals(""));
+            } while (playerInput.equals(""));
             game.processDifficulty(playerInput);
             Sound.gameSound(scanner, game);
 // Play intro
@@ -50,8 +54,8 @@ public class Main {
             scanner.nextLine();
             ConsoleInterface.clearScreen();
 
-/* Stop the background music when entering landing zone */
-            if(game.getPlaySound()){
+            /* Stop the background music when entering landing zone */
+            if (game.getPlaySound()) {
                 Sound.stopSound();
                 Sound.themeSound("sounds/landing_zone.wav");
             }
@@ -63,18 +67,18 @@ public class Main {
                 game.updateScannerString();
                 String[] choice = TextParser.parseText(game.getScannerString());
                 ConsoleInterface.clearScreen();
-                console.displayResult(game.processChoice(choice),0);
-            } while ( !game.getQuitGame()
+                console.displayResult(game.processChoice(choice), 0);
+            } while (!game.getQuitGame()
                     && game.getPlayer().getSteps() < 24
                     && game.getPlayer().getHealth() > 0
                     && !(game.getCommunicatorOff() && game.getCurrentRoom().getName().equalsIgnoreCase("landing zone")));
             ConsoleInterface.clearScreen();
-            if(!game.getQuitGame()) {
+            if (!game.getQuitGame()) {
                 console.displayEnding();
             } else {
                 Sound.stopSound();
                 ConsoleInterface.clearScreen();
-                console.displayResult("Thank you for playing!",1);
+                console.displayResult("Thank you for playing!", 1);
             }
         }
     }
