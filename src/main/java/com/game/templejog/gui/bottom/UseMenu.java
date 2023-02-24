@@ -9,6 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+import static com.game.templejog.gui.MainContainer.MAIN_CONTAINER_HEIGHT;
+import static com.game.templejog.gui.MainContainer.MAIN_CONTAINER_WIDTH;
+
 public class UseMenu {
     public static void setUpUseMenu(Game game) {
         JPanel attackMenu = new JPanel();
@@ -25,14 +28,14 @@ public class UseMenu {
         encounterInformation.setEditable(false);
         encounterInformation.setOpaque(true);
         encounterInformation.setBackground(new Color(129,255,217));
-        encounterInformation.setBounds(0, 0, 500, 50);
+        encounterInformation.setBounds(0, 0, MAIN_CONTAINER_WIDTH / 2, MAIN_CONTAINER_HEIGHT / 6);
         // if they player has items in their inventory, open an attack submenu and create a button for each inventory item
         // when the button is pressed, game.processChoice is called
         List<Item> playerInventory = game.getPlayer().getInventory();
         if (playerInventory.size() > 0) {
             JFrame attackSubMenu = new JFrame("Use");
             attackSubMenu.setLayout(new FlowLayout());
-            attackSubMenu.setSize(250, 250);
+            attackSubMenu.setSize(250, 100);
             attackSubMenu.setLocationRelativeTo(null);
             for (Item item : playerInventory) {
                 JButton buttonToAdd = new JButton(item.getName());

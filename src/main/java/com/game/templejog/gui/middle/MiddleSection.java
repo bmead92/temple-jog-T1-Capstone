@@ -10,6 +10,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
 
+import static com.game.templejog.gui.MainContainer.MAIN_CONTAINER_HEIGHT;
+import static com.game.templejog.gui.MainContainer.MAIN_CONTAINER_WIDTH;
+
 public class MiddleSection {
     private final Game game;
     private JPanel middleSectionPanel, buttonPanel, imagePanel;
@@ -84,7 +87,6 @@ public class MiddleSection {
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
-            MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
         this.animatedEncounterPanel = new AnimatedEncounterPanel();
     }
@@ -109,7 +111,6 @@ public class MiddleSection {
             String encounterKey = game.getCurrentRoom().getEncounters_to().get(0);
             String encounterDescription = game.getEncounters().get(encounterKey).getShortDescription();
             bottomRightSectionJPanel.add(new JLabel(encounterDescription));
-
             String encounterType = game.getEncounters().get(encounterKey).getType();
             if (encounterType.equalsIgnoreCase("enemy")) {
                 currentLocationEncounterIcon = getEncounterIcon();

@@ -15,7 +15,7 @@ public class SearchMenu {
         if (itemsInCurrentRoom.size() > 0) {
             JFrame searchSubMenu = new JFrame("Loot");
             searchSubMenu.setLayout(new FlowLayout());
-            searchSubMenu.setSize(250, 250);
+            searchSubMenu.setSize(250, 100);
             searchSubMenu.setLocationRelativeTo(null);
             searchSubMenu.setVisible(true);
             for (String item : itemsInCurrentRoom) {

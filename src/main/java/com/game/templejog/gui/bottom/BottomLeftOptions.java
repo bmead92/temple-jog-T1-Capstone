@@ -23,7 +23,7 @@ public class BottomLeftOptions {
     public BottomLeftOptions(Game game) {
         this.game = game;
         this.bottomLeftOptions = new JPanel();
-        bottomLeftOptions.setSize(MAIN_CONTAINER_WIDTH / 4, MAIN_CONTAINER_HEIGHT / 6);
+        bottomLeftOptions.setBounds(0, 0, MAIN_CONTAINER_WIDTH / 4, MAIN_CONTAINER_HEIGHT / 6);
         bottomLeftOptions.setBackground(new Color(5, 23, 38));
         this.bottomLeftAttackMap = new JPanel();
         bottomLeftAttackMap.setLayout(new BoxLayout(bottomLeftAttackMap, BoxLayout.PAGE_AXIS));

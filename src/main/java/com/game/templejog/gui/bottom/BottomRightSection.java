@@ -11,9 +11,8 @@ public class BottomRightSection {
 
     public BottomRightSection() {
         this.bottomRightSectionJPanel = new JPanel();
-        bottomRightSectionJPanel.setSize(MAIN_CONTAINER_WIDTH / 4, MAIN_CONTAINER_HEIGHT / 6);
-        BoxLayout boxLayout = new BoxLayout(bottomRightSectionJPanel, BoxLayout.Y_AXIS);
-        bottomRightSectionJPanel.setLayout(boxLayout);
+        bottomRightSectionJPanel.setSize(MAIN_CONTAINER_WIDTH / 2, MAIN_CONTAINER_HEIGHT / 6);
+        bottomRightSectionJPanel.setLayout(new BoxLayout(bottomRightSectionJPanel, BoxLayout.Y_AXIS));
         bottomRightSectionJPanel.setBackground(new Color(129,255,217));
     }
     public JPanel getBottomRightSectionJPanel() {
