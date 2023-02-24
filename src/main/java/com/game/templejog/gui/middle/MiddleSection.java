@@ -1,6 +1,5 @@
 package com.game.templejog.gui.middle;
 
-import com.game.templejog.Encounter;
 import com.game.templejog.Game;
 import com.game.templejog.gui.GUIClient;
 import com.game.templejog.gui.MainContainer;
@@ -9,7 +8,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Objects;
 
 public class MiddleSection {
@@ -22,12 +20,6 @@ public class MiddleSection {
     private Image currentLocationBackgroundImage;
     private AnimatedEncounterPanel animatedEncounterPanel;
 
-    private JFrame encounterFrame;
-    int xVelocity = 1;
-    int yVelocity = 1;
-    int x = 0;
-    int y = 0;
-
     public MiddleSection(Game game) {
         this.game = game;
         this.middleSectionPanel = new JPanel();
@@ -36,7 +28,6 @@ public class MiddleSection {
         this.encounterPanel = new JPanel();
         this.backgroundImageJLabel = new JLabel();
         this.encounterLabel = new JLabel();
-//        this.encounterPanel = new AnimationPanel(currentLocationEncounterImage);
 
         // Create the button panel
         this.buttonPanel = new JPanel(new BorderLayout());
@@ -49,56 +40,50 @@ public class MiddleSection {
         leftButton.addActionListener(e -> {
             String[] commands = new String[]{"go", "west"};
             // handle left button click
-//            this.game.processChoice(commands);
-            String cannotGoDirection = this.game.processChoice(commands);
-            String roomDescription = this.game.getCurrentRoom().getShortDescription();
+            String cantGoDirection = game.processChoice(commands);
+            String roomDescription = game.getCurrentRoom().getShortDescription();
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
+            bottomRightSectionJPanel.add(new JLabel(cantGoDirection));
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
-            bottomRightSectionJPanel.add(new JLabel(cannotGoDirection));
-            middleSectionPanel.remove(imagePanel);
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
         rightButton.addActionListener(e -> {
             String[] commands = new String[]{"go", "east"};
             // handle right button click
-//            this.game.processChoice(commands);
-            String cannotGoDirection = this.game.processChoice(commands);
-            String roomDescription = this.game.getCurrentRoom().getShortDescription();
+            String cantGoDirection = game.processChoice(commands);
+            String roomDescription = game.getCurrentRoom().getShortDescription();
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
+            bottomRightSectionJPanel.add(new JLabel(cantGoDirection));
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
-            bottomRightSectionJPanel.add(new JLabel(cannotGoDirection));
             setUpMiddleSectionJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
         upButton.addActionListener(e -> {
             String[] commands = new String[]{"go", "north"};
             // handle up button click
-//            this.game.processChoice(commands);
-            String cannotGoDirection = this.game.processChoice(commands);
-            String roomDescription = this.game.getCurrentRoom().getShortDescription();
+            String cantGoDirection = game.processChoice(commands);
+            String roomDescription = game.getCurrentRoom().getShortDescription();
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
+            bottomRightSectionJPanel.add(new JLabel(cantGoDirection));
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
-            bottomRightSectionJPanel.add(new JLabel(cannotGoDirection));
-            middleSectionPanel.remove(imagePanel);
             setUpMiddleSectionJPanel();
-            //DONE: Update HUD when changing locations
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
         downButton.addActionListener(e -> {
             String[] commands = new String[]{"go", "south"};
             // handle down button click
-//            this.game.processChoice(commands);
-            String cannotGoDirection = this.game.processChoice(commands);
-            String roomDescription = this.game.getCurrentRoom().getShortDescription();
+            String cantGoDirection = game.processChoice(commands);
+            String roomDescription = game.getCurrentRoom().getShortDescription();
             JPanel bottomRightSectionJPanel = MainContainer.getBottomSection().getBottomRightSection().getBottomRightSectionJPanel();
             bottomRightSectionJPanel.removeAll();
+            bottomRightSectionJPanel.add(new JLabel(cantGoDirection));
             bottomRightSectionJPanel.add(new JLabel(roomDescription));
-            bottomRightSectionJPanel.add(new JLabel(cannotGoDirection));
             setUpMiddleSectionJPanel();
+            MainContainer.getTopHUD().setUpTopHUDJPanel();
             MainContainer.getTopHUD().setUpTopHUDJPanel();
         });
         this.animatedEncounterPanel = new AnimatedEncounterPanel();
@@ -127,14 +112,13 @@ public class MiddleSection {
 
             String encounterType = game.getEncounters().get(encounterKey).getType();
             if (encounterType.equalsIgnoreCase("enemy")) {
-            currentLocationEncounterIcon = getEncounterIcon();
-            animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationEncounterIcon
-                    , currentLocationBackgroundImage);
+                currentLocationEncounterIcon = getEncounterIcon();
+                animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationEncounterIcon
+                        , currentLocationBackgroundImage);
             } else {
                 animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationBackgroundImage);
             }
-        }
-        else {
+        } else {
             animatedEncounterPanel = new AnimatedEncounterPanel(currentLocationBackgroundImage);
         }
 
@@ -146,7 +130,7 @@ public class MiddleSection {
         this.middleSectionPanel.setVisible(true);
 
         return this.middleSectionPanel;
-        }
+    }
 
 
     public ImageIcon getBackgroundImage() {

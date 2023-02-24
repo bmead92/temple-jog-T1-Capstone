@@ -34,7 +34,7 @@ public class Sound {
             System.out.println("Error: Could not read audio file.");
         } catch (LineUnavailableException e) {
             System.out.println("Error: Could not play audio clip.");
-        }
+        } catch (IllegalArgumentException ignored) {}
     }
 
     public static String turningSound(String noun, Game game){
@@ -72,14 +72,14 @@ public class Sound {
             stopSound();
             InputStream sound = Main.class.getClassLoader().getResourceAsStream(filePath);
             InputStream buffer = new BufferedInputStream(sound);
-            AudioInputStream audiostream = AudioSystem.getAudioInputStream(buffer);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(buffer);
             clip = AudioSystem.getClip();
             clip.addLineListener(event -> {
                 if (event.getType().equals(LineEvent.Type.CLOSE)) {
                     clip.close();
                 }
             });
-            clip.open(audiostream);
+            clip.open(audioStream);
             FloatControl gainControl =
                     (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             gainControl.setValue(-10.0f); // Reduce volume by 10 decibels.
@@ -90,7 +90,7 @@ public class Sound {
             System.out.println("Error: Could not read audio file.");
         } catch (LineUnavailableException e) {
             System.out.println("Error: Could not play audio clip.");
-        }
+        } catch (IllegalArgumentException ignored) {}
     }
     public static Clip getClip() {
         return Sound.clip;
