@@ -84,7 +84,7 @@ public class TitleScreen {
         settingsButton = new JButton("SETTINGS");
         JFrame difficultyFrame = new JFrame("SETTINGS");
         difficultyFrame.setLayout(new FlowLayout());
-        difficultyFrame.setSize(200, 250);
+        difficultyFrame.setSize(200, 200);
         difficultyFrame.setLocationRelativeTo(null);
         difficultyFrame.setResizable(false);
         difficultyFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
