@@ -18,6 +18,8 @@ class GameTest {
     HashMap<String, Item> itemsMap;
     HashMap<String, Room> roomsMap;
     Game game;
+    HashMap<String, Encounter> encounterHashMap;
+    HashMap<String, Item> weaponsMap;
 
     @BeforeEach
     void setUp() {
@@ -41,6 +43,12 @@ class GameTest {
 //DONE update constructor
         game = new Game(new Player(), roomsMap, new HashMap<>(), itemsMap);
 //        game.setCurrentRoom(room01);
+
+        weaponsMap = new HashMap<>();
+        weaponsMap.putAll(game.getItems());
+
+        encounterHashMap = new HashMap<>();
+        encounterHashMap.putAll(game.getEncounters());
     }
     public Game generateGameFromJSON() throws IOException {
         Game gameJSON;
@@ -184,4 +192,24 @@ class GameTest {
         Item actual = game.popItemFromMap(null);
         assertTrue(actual.equals(expected));
     }
+
+    //Arrange
+    //Act
+    //Assert
+    @Test
+    void handleEnemyEncounters_GivenInvalidNoun(){
+        String[] userInput = new String[] {"use", "notAValidNoun"};
+        String expected = "notAValidNoun not in your inventory";
+        String actual = game.processChoice(userInput);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void handleEnemyEncounters_GivenValidNoun_NotInInventory(){
+        String[] userInput = new String[] {"use", "not there"};
+        String expected = "not there not in your inventory";
+        String actual = game.processChoice(userInput);
+        assertEquals(expected, actual);
+    }
+
 }
