@@ -112,6 +112,12 @@ class GameTest {
     void processGetting_given_validInputString_andItemIsPresentInCurrentRoom_shouldAddItemToPlayerInventory_returnString(){}
 
     //USING
+    @Test
+    public void testProcessUsingInvalidStringReturnsWarningEnum() {
+        String expected = "You have no item to use.";
+        String actual = game.processChoice(new String[] {"use", ""});
+        assertEquals(expected, actual);
+    }
     //LOOKING
     @Test
     void processLooking_Given_ValidInputString_ShouldReturnItemDescription_WhenItemIsInInventory(){
