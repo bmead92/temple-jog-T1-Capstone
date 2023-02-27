@@ -8,7 +8,7 @@
   
 ## TLG Capstone T1
 
-The GUI version of this game was created from the existing code base of the original text based, console game. As a team, we created what is now the current view structure when the game is played with the GUI. Much of the game logic has remained the same or was expanded on from the original with the main difference being it is implemented with an interface that allows the user to interact with the game through a different lense. Much was learned through this process, as most of us had little knowledge utilizing Java Swing but ultimately had a lot of fun doing it! We hope you enjoy the game as much as we did building it.
+The GUI version of this game was created from the existing code base of the original text based, console game. As a team, we created what is now the current view structure when the game is played with the GUI. Much of the game logic has remained the same or was expanded on from the original with the main difference being it is implemented with an interface that allows the user to interact with the game through a different lens. Much was learned through this process, as most of us had little knowledge utilizing Java Swing but ultimately had a lot of fun doing it! We hope you enjoy the game as much as we did building it.
 
 ## The Story
 
@@ -59,11 +59,15 @@ Freeconvert MP3->WAV Convertor [FreeConvert](https://www.freeconvert.com/)
 
 ## About the Devs
 
+Pre-Capstone Developers (Text based implementation)
+
 Lorenzo Ortega [GitHub Profile](https://github.com/antoni909)
 
 Joseph Racke [GitHub Profile](https://github.com/JMRacke)
 
 Lok Tamang [GitHub Profile](https://github.com/loktama21)
+
+Capstone Developers (GUI implementation)
 
 Joe Savella [GitHub Profile](https://github.com/codemojoe)
 
