@@ -5,6 +5,10 @@
   - [Project Documentation](#project-documentation)
   - [Application Tools/Technologies](#application-toolstechnologies)
   - [About the Devs](#about-the-devs)
+  
+## TLG Capstone T1
+
+The GUI version of this game was created from the existing code base of the original text based, console game. As a team, we created what is now the current view structure when the game is played with the GUI. Much of the game logic has remained the same or was expanded on from the original with the main difference being it is implemented with an interface that allows the user to interact with the game through a different lense. Much was learned through this process, as most of us had little knowledge utilizing Java Swing but ultimately had a lot of fun doing it! We hope you enjoy the game as much as we did building it.
 
 ## The Story
 
@@ -12,7 +16,12 @@ A temple in remote location, but it's actually an Alien ship. They’re trying t
 
 #### Game Flow
 
-Navigate a maze, overcome obstacles, gather items and reach the aliens communications room under a maximum number of moves
+Navigate a maze, overcome obstacles, gather items and reach the aliens communications room under a maximum number of moves.
+Multiple endings to the game such as a full win, total loss or win with death.
+
+#### GUI
+
+Navigation arrows to maneuver around the map. Buttons to the bottom left for different actions. Location indicator and health bar at the top of the HUD. Help button for game info. File dropdown menu for general game actions such as setting and quit game.  
 
 ## Project Documentation
 
@@ -55,3 +64,9 @@ Lorenzo Ortega [GitHub Profile](https://github.com/antoni909)
 Joseph Racke [GitHub Profile](https://github.com/JMRacke)
 
 Lok Tamang [GitHub Profile](https://github.com/loktama21)
+
+Joe Savella [GitHub Profile](https://github.com/codemojoe)
+
+Cindy Pottin [GitHub Profile](https://github.com/cpottin)
+
+Bryce Meadors [GitHub Profile](https://github.com/bmead92)
